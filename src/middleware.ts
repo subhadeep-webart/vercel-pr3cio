@@ -12,7 +12,6 @@ const protectedRoutes = [
     '/songs',
     '/library',
     '/store',
-    '/artists',
 ]
 const authRoutes = ['/signin', '/signup']
 
