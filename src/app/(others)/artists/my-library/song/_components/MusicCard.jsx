@@ -12,13 +12,17 @@ import usePlayer from "@/hooks/usePlayer";
 import queryConstants from "@/constants/query-constants";
 import { addToFavorite } from '@/services/api/album-ep'
 
-const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComplete,showing=true }) => {
+const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComplete, showing = true }) => {
     const player = usePlayer()
     const queryClient = useQueryClient()
     const router = useRouter()
     const { user } = useAuth()
-
+    console.log("User====>", user);
     const handleSongPlay = () => {
+        if (!user) {
+            // toast.error("Login to play song")
+            router.push("/login");
+        }
         player.clearCachedState()
         if (player.isCurrentSong(track?._id)) {
             player.togglePlayback()
