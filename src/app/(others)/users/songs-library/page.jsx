@@ -7,15 +7,15 @@ import { useQuery } from "@tanstack/react-query";
 import queryConstants from '@/constants/query-constants';
 import { getSongs } from '@/services/api/song-api';
 
-const SongsLibrary = ({ trending = true }) => {
+const SongsLibrary = () => {
     // Use useQuery to fetch songs for page 1 with limit 10
     const { data, status, refetch } = useQuery({
-        queryKey: [queryConstants.getSongs, trending],
+        queryKey: [queryConstants.getSongs, true],
         queryFn: () =>
             getSongs({
                 page: 1,
                 limit: 50,
-                is_trending: trending,
+                is_trending: true,
             }),
         keepPreviousData: true, // Optional: helps keep old data while fetching new
     });
@@ -28,7 +28,7 @@ const SongsLibrary = ({ trending = true }) => {
     // Refetch when trending changes
     useEffect(() => {
         refetch();
-    }, [trending, refetch]);
+    }, [refetch]);
 
     const handleRefetch = () => {
         refetch();

@@ -10,7 +10,7 @@ import httpService from '../http-service'
 type PageParams = {
     page?: number;
     limit?: number;
-    is_trending?: boolean;
+    is_trending?: any;
 };
 
 interface PaginatedApiResponse<T> {

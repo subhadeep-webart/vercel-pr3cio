@@ -187,7 +187,7 @@
                         bg-[#2E2E2E] text-[#929292]`}
                             >
                                 <option value="">Select album</option>
-                                {(albums ?? []).map((album: Album) => (
+                                {(albums ?? []).map((album) => (
                                     <option key={album._id} value={album._id}>
                                         {album.name}
                                     </option>
@@ -236,7 +236,7 @@
                             touched.album_id && !!errors.album_id
                         }
                         errorMessage={errors.album_id}>
-                        {(album: Album) => (
+                        {(album) => (
                             <SelectItem key={album._id}>
                                 {album.name}
                             </SelectItem>

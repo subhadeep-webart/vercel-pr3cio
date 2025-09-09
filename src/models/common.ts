@@ -21,7 +21,7 @@ export type StandardApiResponse<T> = ApiResponseWithData<T>
 export type PageParams = {
     page: number
     limit: number
-    is_trending?: boolean
+    is_trending?: any
 }
 
 export type fevSongParams = {
