@@ -1,0 +1,28 @@
+.withBefore {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #6156e2;
+    filter: blur(10.45px);
+    border-radius: 100%;
+    z-index: -1;
+  }
+}
+
+.afterNone {
+  [data-slot="thumb"]::after {
+    display: none !important;
+  }
+}
+
+.volumeControl {
+  [data-slot="track-wrapper"] {
+    gap: 0;
+  }
+}
+

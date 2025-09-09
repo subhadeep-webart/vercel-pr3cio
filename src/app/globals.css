@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.signUpCard {
+    box-shadow: rgb(123 120 120 / 65%) 1px 3px 12px;
+}
+
+/* Custom Select Styles */
+.custom-select {
+    border-radius: 9px;
+    padding: 8px;
+    background-color: #27272a;
+    border: 1px solid #444141;
+    height: 55px;
+}

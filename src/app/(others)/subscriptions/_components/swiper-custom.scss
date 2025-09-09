@@ -1,0 +1,15 @@
+.plan-swiper {
+    padding-block: 25px;
+    .swiper-wrapper {
+        align-items: center;
+    }
+    .swiper-slide-next {
+        .each-slide {
+            // transition: 0.3s ease-in-out;
+            height: 457px;
+            background: #4888ff;
+            border: 1px solid #74a1f5;
+            box-shadow: 0px 2px 20px 0px #4d8bff80;
+        }
+    }
+}
