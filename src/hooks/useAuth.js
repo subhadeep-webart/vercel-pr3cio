@@ -9,7 +9,7 @@ import { setArtist } from '@/redux/slices/app-slice'
 const useAuth = () => {
     const dispatch = useAppDispatch()
     const auth = useAppSelector((state) => state.auth)
-
+    
     const saveSession = (user) => {
         dispatch(saveSessionAction(user))
         dispatch(setArtist(user?.is_artist ?? false))

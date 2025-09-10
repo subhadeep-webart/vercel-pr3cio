@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 const TrackDetails = ({ trackDetails }) => {
-    console.log("Track Details======>", trackDetails);
     const { artwork, title, artist } = trackDetails;
     return (
         <>

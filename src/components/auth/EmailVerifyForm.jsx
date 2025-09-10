@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import Loader from "../ui/Loader";
 
 const EmailVerifyForm = () => {
-    const router=useRouter();
+    const router = useRouter();
     const email = sessionStorage.getItem("email") ?? ""
     const { saveSession } = useAuth()
 
@@ -30,12 +30,17 @@ const EmailVerifyForm = () => {
             otp: '',
         },
         validationSchema: otpValidationSchema,
-        onSubmit: async(values, {resetForm,setSubmitting}) => {
+        onSubmit: async (values, { resetForm, setSubmitting }) => {
             try {
                 const data = await mutateAsync({ ...values, email: getEmailFromCookie() });
                 toast.success('Verify email successfully!');
                 saveSession(data.user);
-                router.push("/");
+                console.log("Data=======>", data.user);
+                if (data.user.is_artist) {
+                    router.push("/discover-your-genre");
+                } else {
+                    router.push("/");
+                }
                 resetForm();
             } catch (err) {
                 toast.error(err?.message);
@@ -108,7 +113,7 @@ const EmailVerifyForm = () => {
                                     type="submit"
                                     className="bg-[#C6FF00] w-full text-sm text-black h-[3rem] leading-[3rem] text-center rounded-4xl cursor-pointer hover:bg-[#afe200] transition-colors"
                                 >
-                                     {formik.isSubmitting ? <Loader size="sm"/> : "Submit"}
+                                    {formik.isSubmitting ? <Loader size="sm" /> : "Submit"}
                                 </button>
                             </div>
                         </form>

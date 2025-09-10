@@ -8,7 +8,6 @@ const ArtistDashboard = () => {
 
                         <span className="grid justify-center mb-5 h-[5.313rem] w-[5.313rem] rounded-[50%] m-auto border-1 items-center border-[#C5288C]">
                             <img src="/img/artist-dashboard/upload.svg" alt="upload image" /></span>
-
                         <h3 className="text-lg font-semibold">Select Music to upload</h3>
                         <p className="text-[#979797] mb-5 mt-4">Upload video from the below button
                             or drag and drop</p>
@@ -18,12 +17,6 @@ const ArtistDashboard = () => {
                                 Song & Album</a></span>
                         <div className="flex-1 relative flex mt-10">
                             <img src="/img/artist-dashboard/amico.png" alt="Upload Song & Album" />
-                            <div className="absolute top-10 right-0">
-                                <a href="#" className="flex items-center"><span
-                                    className="h-[2.5rem] w-[2.75rem] bg-[#9C9C9C] text-[#9C9C9C] mr-2 rounded-[1.688rem] flex items-center justify-center"><img
-                                        src="/img/artist-dashboard/arrow.svg"
-                                        alt="Logout Button" /></span>Logout</a>
-                            </div>
                         </div>
                     </div>
                 </div>

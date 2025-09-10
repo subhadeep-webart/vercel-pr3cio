@@ -51,7 +51,9 @@ const queryConstants = {
     inAppDownload: "/download-album-song-in-app",
     getInAppDownload: "/songs/download-album-song-in-app",
     inAppDownLoad: "/songs/download-album-song-in-app",
-    getAllCrews:"/songs/crew-details",
-    addToStripeAccount:"/payments/create-stripe-account"
+    getAllCrews: "/songs/crew-details",
+    addToStripeAccount: "/payments/create-stripe-account",
+    getAllGenres: "/category",
+    postCategory:"/category/add-of-user"
 }
 export default queryConstants

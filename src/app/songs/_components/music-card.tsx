@@ -40,10 +40,12 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
     const [deleteItemId, setDeleteItemId] = useState<string | null>(null)
 
     const handleSongPlay = () => {
-        player.clearCachedState()
         if (player.isCurrentSong(track?._id)) {
+            console.log("Calling inside the current song playing======>");
             player.togglePlayback()
         } else {
+            console.log("Calling when track is not playing");
+            player.clearCachedState()
             player.playTrack({ track, tracks })
         }
     }

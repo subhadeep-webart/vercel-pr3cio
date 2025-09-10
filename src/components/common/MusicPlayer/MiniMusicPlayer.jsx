@@ -162,8 +162,7 @@ const MiniMusicPlayer = () => {
             }
         }
     }
-
-    console.log("Demo Audio Ref=====>", demoAudioRef.current?.paused);
+    
     return (
         <>
 

@@ -44,22 +44,20 @@ const UserSignupForm = () => {
     });
     return (
         <section className="login">
-            <div className="flex flex-col md:flex-row ">
-                <div className="w-[50%]">
-                    <Image src="/images/login/login.webp" alt="" className='h-full 2xl:h-screen w-full object-cover' height={400} width={400} />
+            <div className="flex flex-col md:flex-row h-screen">
+                <div className="w-[50%] h-screen">
+                    <Image src="/images/login/login.webp" alt="" className='h-screen 2xl:h-screen w-full object-cover' height={400} width={400} />
                 </div>
                 <div
                     className="w-[50%] bg-[#191919] relative bg-[url('/images/login/wave.webp')] bg-no-repeat bg-center flex justify-center items-center p-4 bg-cover ">
-
                     <SignupToggle />
-
                     <div className="max-w-[27.38rem] w-full m-auto">
                         <center>
-                            <h1 className="font-semibold text-[2.25rem] mb-6">Let’s Get Started</h1>
+                            <h1 className="font-semibold text-[2.25rem] mb-2">Let’s Get Started</h1>
                         </center>
                         <form onSubmit={formik.handleSubmit}>
                             {/* Email */}
-                            <div className="mb-5 relative">
+                            <div className="mb-2 relative">
                                 <label className="text-base font-medium text-[#D1CAD5] mb-2 block">
                                     Email
                                 </label>
@@ -78,7 +76,7 @@ const UserSignupForm = () => {
                             </div>
 
                             {/* Phone */}
-                            <div className="mb-5 relative">
+                            <div className="mb-2 relative">
                                 <label className="text-base font-medium text-[#D1CAD5] mb-2 block">
                                     Phone
                                 </label>
@@ -97,7 +95,7 @@ const UserSignupForm = () => {
                             </div>
 
                             {/* Password */}
-                            <div className="mb-5 relative">
+                            <div className="mb-2 relative">
                                 <label className="text-base font-medium text-[#D1CAD5] mb-2 block">
                                     Password
                                 </label>
@@ -116,7 +114,7 @@ const UserSignupForm = () => {
                             </div>
 
                             {/* Confirm Password */}
-                            <div className="mb-5 relative">
+                            <div className="mb-2 relative">
                                 <label className="text-base font-medium text-[#D1CAD5] mb-2 block">
                                     Confirm Password
                                 </label>
@@ -135,7 +133,7 @@ const UserSignupForm = () => {
                             </div>
 
                             {/* Submit */}
-                            <div className="mb-5 relative">
+                            <div className="mt-4 relative">
                                 <button
                                     type="submit"
                                     className="bg-[#C6FF00] w-full text-sm text-black h-[3rem] leading-[3rem] text-center rounded-4xl cursor-pointer hover:bg-[#afe200] transition-colors"
@@ -145,12 +143,12 @@ const UserSignupForm = () => {
                             </div>
                         </form>
                         <center>
-                            <h6 className="mt-6 mb-6 text-sm font-semibold">Already have an account? <a href="user-signup.html"
+                            <h6 className="mt-2 mb-2 text-sm font-semibold">Already have an account? <a href="user-signup.html"
                                 className="text-[#4D41FA] underline">Sign
                                 Up</a></h6>
                             <p className="text-sm text-[#B5B5B5]">OR</p>
                             <a href="#"
-                                className="border-1 mt-7 border-[rgba(255,255,255,0.15)] w-full text-sm text-[#9D9D9D] h-[3.5rem] leading-[3.5rem] text-center rounded-4xl cursor-pointer hover:bg-white transition-colors flex justify-center items-center"><span><img
+                                className="border-1 mt-2 border-[rgba(255,255,255,0.15)] w-full text-sm text-[#9D9D9D] h-[3.5rem] leading-[3.5rem] text-center rounded-4xl cursor-pointer hover:bg-white transition-colors flex justify-center items-center"><span><img
                                     src="/images/login/google.webp" alt="pr3cio-logo" loading="lazy"
                                     className="mr-3" /></span> Log in to continue</a>
                         </center>

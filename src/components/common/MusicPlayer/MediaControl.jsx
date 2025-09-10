@@ -11,7 +11,7 @@ const MediaControls = ({
     onPrevious,
     playerStatus
 }) => {
-    console.log("Is Playing Details======>", isPlaying);
+    
     const [isShuffleActive, setIsShuffleActive] = useState(false)
     const [isLoopActive, setIsLoopActive] = useState(false)
     return (

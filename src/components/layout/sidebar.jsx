@@ -6,7 +6,6 @@ import {
     AccordionItem,
     cn,
     Image,
-    Link,
     Listbox,
     ListboxItem,
 } from '@heroui/react'
@@ -17,7 +16,7 @@ import { IoAlbumsOutline } from 'react-icons/io5'
 import { LiaCommentDollarSolid } from 'react-icons/lia'
 import { MdOutlineLibraryMusic, MdOutlinePerson } from 'react-icons/md'
 import { PiMusicNoteFill } from 'react-icons/pi'
-
+import Link from 'next/link'
 import { SIDEBAR_MENU, SIDEBAR_MENU_ARTISTS } from '@/utils/constant'
 import useAuth from '@/hooks/useAuth'
 import LogoutButton from './LogoutButton'
@@ -42,112 +41,10 @@ const SideBar = () => {
         return false
     }
 
-    console.log("User Details=====>", user);
-
-    console.log("Is artist======>", user?.is_artist);
 
     const SIDEBAR_MENU_ARRAY = user?.is_artist ? SIDEBAR_MENU_ARTISTS : SIDEBAR_MENU;
 
     return (
-        // <ListboxWrapper className='w-52'>
-        //     <div className='flex h-14 items-center border-small border-l-0 border-r-0 border-t-0 border-default-200 pl-3 dark:border-default-100'>
-        //         <Link href='/'>
-        //             <Image
-        //                 src='/img/logo/logo.png'
-        //                 alt='PR3CIO LOGO'
-        //                 className='h-12 object-contain'
-        //             />
-        //         </Link>
-        //     </div>
-        //     <Listbox
-        //         aria-label='Actions'
-        //         classNames={{
-        //             base: 'mt-3 px-3',
-        //             list: 'gap-3 ',
-        //         }}>
-        //         <ListboxItem
-        //             key='new'
-        //             className='h-12'
-        //             href='/'
-        //             textValue='home'
-        //             classNames={{
-        //                 base: cn(isActive('/') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <BiHomeSmile className='text-2xl' /> Home
-        //         </ListboxItem>
-        //         <ListboxItem
-        //             className='h-12'
-        //             href='/songs'
-        //             textValue='songs'
-        //             classNames={{
-        //                 base: cn(isActive('/songs') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <IoMdMusicalNotes className='text-2xl' />
-        //             Songs
-        //         </ListboxItem>
-        //         <ListboxItem
-        //             key='album'
-        //             className='h-12'
-        //             href='/albums'
-        //             textValue='albums'
-        //             classNames={{
-        //                 base: cn(isActive('/albums') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <IoAlbumsOutline className='text-2xl' /> Albums
-        //         </ListboxItem>
-        //         <ListboxItem
-        //             className='h-12'
-        //             textValue='Library'
-        //             href='/library'
-        //             classNames={{
-        //                 base: cn(isActive('/library') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <MdOutlineLibraryMusic className='text-2xl' />
-        //             My Library
-        //         </ListboxItem>
-        //         <ListboxItem
-        //             className='h-12'
-        //             textValue='Artists'
-        //             href='/artists'
-        //             classNames={{
-        //                 base: cn(isActive('/artists') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <MdOutlinePerson className='text-2xl' />
-        //             Artists
-        //         </ListboxItem>
-
-        //         <ListboxItem
-        //             className='h-12'
-        //             textValue='Store'
-        //             href='/store'
-        //             classNames={{
-        //                 base: cn(isActive('/store') && '!bg-primary'),
-        //                 title: 'text-lg flex gap-3 items-center',
-        //             }}>
-        //             <PiMusicNoteFill className='text-2xl' />
-        //             Store
-        //         </ListboxItem>
-        //         {user && !user?.is_artist ? (
-        //             <ListboxItem
-        //                 className='h-12'
-        //                 textValue='Subscriptions'
-        //                 href='/subscriptions'
-        //                 classNames={{
-        //                     base: cn(isActive('/subscriptions') && '!bg-primary'),
-        //                     title: 'text-lg flex gap-3 items-center',
-        //                 }}>
-        //                 <LiaCommentDollarSolid className='text-2xl' />
-        //                 Subscriptions
-        //             </ListboxItem>
-        //         ) : null}
-
-        //     </Listbox>
-        // </ListboxWrapper>
         <>
             <nav className='menu rounded-0 fixed right-[-100%] top-[4.5rem] z-10 h-[100vh] w-full flex-[0_0_auto] bg-[#2A2929] px-3 py-3 transition-all sm:left-5 sm:top-[7.2rem] sm:block sm:h-screen sm:w-[11.63rem] sm:flex-[0_0_11.63rem] sm:rounded-xl'>
                 <div className='searchBox relative mb-4 mt-4 px-3 sm:hidden'>
@@ -222,7 +119,7 @@ const SideBar = () => {
                         </li>
                     ))}
 
-                    {user && <LogoutButton/>}
+                    {user && <LogoutButton />}
                 </ul>
             </nav>
         </>

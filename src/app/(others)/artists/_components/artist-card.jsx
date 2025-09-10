@@ -15,25 +15,10 @@ const ArtistCard = ({ data }) => {
     }
 
     return (
-        // <div
-        //     onClick={handleClick}
-        //     className='flex cursor-pointer flex-col items-center space-y-2 transition-opacity hover:opacity-80'>
-        //     <div className='h-[151px] w-[151px] overflow-hidden rounded-full'>
-        //         <Image
-        //             alt='Artist'
-        //             src={data.image}
-        //             className='h-full w-full object-cover'
-        //             classNames={{
-        //                 wrapper: 'relative aspect-square w-full h-full',
-        //             }}
-        //         />
-        //     </div>
-        //     <h3 className='text-center text-sm font-medium'>{data.name}</h3>
-        // </div>
         <div
-            class=" group mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+            class=" group mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem] cursor-pointer" onClick={handleClick}>
             <center>
-                <div className="w-[9.38rem] h-[9.38rem] rounded-full p-3 border border-[#585858] mb-2 group-hover:border-[#D344C9] transition-colors duration-300 relative overflow-hidden">
+                <div className="w-[9.38rem] h-[9.38rem] rounded-full p-3 border border-[#585858] mb-2 group-hover:border-[#D344C9] transition-colors duration-300 relative">
                     <img
                         src={data.image}
                         alt="Artist"
@@ -41,7 +26,7 @@ const ArtistCard = ({ data }) => {
                         className="w-full h-full object-cover rounded-full"
                     />
 
-                    {/* <span className="w-[2.25rem] h-[2.25rem] rounded-full bg-[#C6FF00] flex justify-center items-center text-center transition-colors duration-300 cursor-pointer absolute right-0 bottom-[1rem] opacity-0 group-hover:opacity-100">
+                    <span className="w-[2.25rem] h-[2.25rem] rounded-full bg-[#C6FF00] flex justify-center items-center text-center transition-colors duration-300 cursor-pointer absolute right-0 bottom-[1rem] opacity-0 group-hover:opacity-100 z-[100]">
                         <svg
                             width="20"
                             height="18"
@@ -55,7 +40,7 @@ const ArtistCard = ({ data }) => {
                                 strokeWidth="2"
                             />
                         </svg>
-                    </span> */}
+                    </span>
                 </div>
                 <h3 class="text-sm font-semibold">{data?.name}</h3>
                 <small class="text-xs text-[#9D9D9D]">Artist</small>

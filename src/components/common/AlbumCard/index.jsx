@@ -5,14 +5,22 @@ const AlbumCard = ({ albumDetails }) => {
     const { name = '', thumbnail, user } = albumDetails
     return (
         <div className='mb-3 md:mb-5'>
-            <div className="relative z-0 w-full overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.5)] after:content-['']">
-                <Image
+            <div className="relative z-0 w-full h-40 overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.5)] after:content-['']">
+                <img
+                    src={thumbnail}
+                    alt="Artist"
+                    loading="lazy"
+                    className="w-full h-full object-cover rounded-2xl"
+                />
+
+                {/* <Image
                     src={thumbnail}
                     alt='signs'
-                    height={200}
-                    width={200}
-                    className='block w-full rounded-2xl'
-                />
+                    // height={200}
+                    // width={200}
+                    fill
+                    className='block w-full rounded-2xl absolute'
+                /> */}
                 <span className='playNow z-1 absolute bottom-0 left-0 right-0 top-0 m-auto flex h-[2rem] w-[2rem] cursor-pointer items-center justify-center rounded-full border-1 border-solid border-white bg-[rgba(255,255,255,0.3)] text-center leading-[2rem] lg:h-[2.76rem] lg:w-[2.76rem] lg:leading-[2.76rem] xl:h-[3.76rem] xl:w-[3.76rem] xl:leading-[3.76rem] 2xl:h-[3.76rem] 2xl:w-[3.76rem] 2xl:leading-[3.76rem]'>
                     <img
                         src='/images/player-icon/play-big.webp'

@@ -16,17 +16,17 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
     const player = usePlayer()
     const queryClient = useQueryClient()
     const router = useRouter()
-    const { user } = useAuth()
-    console.log("User====>", user);
+    const { user } = useAuth();
+
+    console.log("Userrr======>",user);
+
     const handleSongPlay = () => {
-        if (!user) {
-            // toast.error("Login to play song")
-            router.push("/login");
-        }
-        player.clearCachedState()
+        player.clearCachedState();
         if (player.isCurrentSong(track?._id)) {
+            console.log("Music Already Playing Brooo====>")
             player.togglePlayback()
         } else {
+            console.log("Music not playing brooo=======>")
             player.playTrack({ track, tracks })
         }
     }
@@ -62,8 +62,6 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
             toast.error("Error publishing song.")
         }
     }
-
-    console.log("Track=======>", track);
 
     return (
         <>

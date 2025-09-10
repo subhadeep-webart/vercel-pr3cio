@@ -54,7 +54,36 @@ export const postToAddSongToPublish = async (id) => {
 export const createStripeAccount = async () => {
     try {
         const response = await httpService.post(`${queryConstants.addToStripeAccount}`)
-        console.log("Response Object=====>",response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+
+export const getAllGenreCategory = async () => {
+    try {
+        const response = await httpService.get(queryConstants.getAllGenres);
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data;
+
+        }
+
+        throw new Error(response?.statusText || 'Failed to fetch genres');
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err);
+        throw new Error(errorMessage);
+    }
+};
+
+export const postCategory = async (payload) => {
+    try {
+        const response = await httpService.post(`${queryConstants.postCategory}`,payload)
         if (response.status === HttpStatusCode.Ok) {
             return response.data
         }

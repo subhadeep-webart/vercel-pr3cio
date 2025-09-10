@@ -188,7 +188,7 @@ export const SIDEBAR_MENU_ARTISTS = [
         ),
     },
     {
-        label: 'Upload',
+        label: 'My Gallery',
         path: '/artists/my-upload',
         icon: (
             <svg width="24" height="22" viewBox="0 0 24 22" fill="none"

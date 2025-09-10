@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookieConstants } from './constants/cookie-constants'
 import { AccessToken } from './models/access-token'
 
-// 1. Specify protected and public routes
 const protectedRoutes = [
     '/profile',
     '/albums',
@@ -12,39 +11,87 @@ const protectedRoutes = [
     '/songs',
     '/library',
     '/store',
+    '/artists',
+    '/users/songs-library',
 ]
-const authRoutes = ['/signin', '/signup']
+
+const authRoutes = ['/signin', '/signup', '/user-signup', '/artist-signup']
 
 export default async function middleware(req: NextRequest) {
-    // 2. Check if the current route is protected or public
     const path = req.nextUrl.pathname
     const isProtectedRoute = protectedRoutes.some((route) =>
         path.startsWith(route)
     )
     const isAuthRoute = authRoutes.includes(path)
+    const isDiscoverGenreRoute = path === '/discover-your-genre'
 
-    // 3. Decrypt the session from the cookie
-    const cookies = await req.cookies
+    const cookies = req.cookies
     const cookie = cookies.get(cookieConstants.accessToken)?.value
 
-    const hasSession = cookie
-        ? jwtDecode<AccessToken>(cookie)?.user?.is_verified
-        : false
+    let hasSession = false
+    let isCategorySelected = true
 
-    // 4. Open the sign in modal if the user is not authenticated
-    if (isProtectedRoute && !hasSession) {
-        return NextResponse.redirect(new URL('/login', req.nextUrl))
+    try {
+        if (cookie) {
+            const decoded = jwtDecode<AccessToken>(cookie);
+            console.log("Decoded=======>", decoded);
+            hasSession = decoded?.user?.is_verified ?? false
+
+            // 🔑 Fetch fresh user data if session exists
+            if (hasSession) {
+                console.log("Is entered======> inside middleware");
+                const res = await fetch(`https://adminpr3cio.dwstaging.link/api/v1/users/me`, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${cookie}`,
+                    },
+                    cache: 'no-store', // avoid stale data
+                })
+
+                console.log("Response======>", res);
+
+                if (res.ok) {
+                    const user = await res.json()
+                    console.log("User=======>", user);
+                    isCategorySelected =
+                        Array.isArray(user?.userWithDetails?.categories) && user.userWithDetails?.categories?.length > 0
+                    console.log("Is category selected====>", isCategorySelected);
+                } else {
+                    // fallback to false if API fails
+                    isCategorySelected = false
+                }
+            }
+        }
+    } catch (err) {
+        hasSession = false
     }
 
-    // 5. Redirect to the home page if the user is authenticated
+    // 1. Redirect to login if protected route and not logged in
+    if (isProtectedRoute && !hasSession) {
+        return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+    // 2. Redirect to home if logged in and trying to access auth routes
     if (isAuthRoute && hasSession) {
-        return NextResponse.redirect(new URL('/', req.nextUrl))
+        return NextResponse.redirect(new URL('/', req.url))
+    }
+
+    // 3. Redirect to /discover-your-genre if logged in, has no categories selected, and not already on that route
+    if (hasSession && !isCategorySelected && !isDiscoverGenreRoute) {
+        return NextResponse.redirect(new URL('/discover-your-genre', req.url))
+    }
+
+    // 4. If user is on /discover-your-genre but already selected categories, send to home
+    if (hasSession && isCategorySelected && isDiscoverGenreRoute) {
+        return NextResponse.redirect(new URL('/', req.url))
     }
 
     return NextResponse.next()
 }
 
-// Routes Middleware should not run on
+// Exclude static assets, API routes, etc.
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+    matcher: [
+        '/((?!api|_next|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|gif|webp|ico|js|css|woff2?|ttf)).*)',
+    ],
 }

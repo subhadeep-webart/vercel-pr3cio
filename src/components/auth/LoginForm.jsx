@@ -34,9 +34,17 @@ const LoginForm = () => {
                 console.log("Data======>", data);
                 saveSession(data.user);
                 if (data?.user?.is_artist) {
-                    router.push("/artists/dashboard");
+                    if (data?.user?.categories && data?.user?.categories.length) {
+                        router.push("/artists/dashboard");
+                    } else {
+                        router.push("/discover-your-genre");
+                    }
                 } else {
-                    router.push("/");
+                    if (data?.user?.categories && data?.user?.categories.length) {
+                        router.push("/");
+                    } else {
+                        router.push("/discover-your-genre");
+                    }
                 }
             } catch (err) {
                 toast.error(err?.message || 'Login failed');
@@ -49,7 +57,7 @@ const LoginForm = () => {
     return (
         <section className="login">
             <div className="flex flex-col md:flex-row ">
-                <div className="w-[50%]">
+                <div className="w-[50%] h-screen">
                     <Image
                         height={700}
                         width={400}

@@ -9,6 +9,7 @@ export interface AccountUser {
   updated_at: string;
   user_name: string;
   avatar: string;
+  categories:any[];
   __v: 0;
   isSubscribed: boolean;
 }
