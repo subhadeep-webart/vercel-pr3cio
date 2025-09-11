@@ -11,155 +11,275 @@ import {
     useDisclosure,
 } from "@heroui/react";
 
+import { log } from 'util'
+import { useCallback, useEffect, useRef, useState, useMemo } from 'react'
+import {
+    updateSongPlayCount,
+    updateUserSongPlayCount,
+} from '@/services/api/song-api'
+import { playerService } from '@/services/player-service'
+import { Image } from '@heroui/react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
+
+import queryConstants from '@/constants/query-constants'
+import useAuth from '@/hooks/useAuth'
+import usePlayer from '@/hooks/usePlayer'
+
+// import AudioDurationSlider from './AudioDurationSlider'
+// import MediaControls from './MediaControls'
+// import VolumeControl from './VolumeControl'
+import TrackDetails from './TrackDetails'
+import VolumeControl from '@/app/(others)/artists/_components/VolumeControl'
+import { PAUSE_ICON } from '@/utils/icons'
+import MediaControls from './MediaControl'
+import AudioDurationSlider from '@/app/(others)/artists/_components/AudioDurationSlider'
+import MainAlbumTitle from "./MainAlbumTitle";
+import MainPlayerControl from "./MainPlayerControl";
+import MusicAlbumCard from "./MusicAlbumCard";
+
 const MainPlayer = () => {
+
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleOpen = () => {
         onOpen();
     };
+
+
+    const player = usePlayer()
+    const [currentTime, setCurrentTime] = useState(0)
+    const [currentTime1, setCurrentTime1] = useState(0)
+    const [playDemo, setPlayDemo] = useState(false)
+    const [demoUrl, setDemoUrl] = useState(null)
+    const [duration, setDuration] = useState(0)
+    const [duration1, setDuration1] = useState(0)
+    const [imgUrl, setImagUrl] = useState('')
+    const { user } = useAuth()
+    const router = useRouter()
+    const demoAudioRef = useRef(null)
+
+    const { mutate: updateSongCountMutate } = useMutation({
+        mutationKey: [queryConstants.songCount],
+        mutationFn: updateSongPlayCount,
+    })
+
+    const { data: musicData, status, refetch } = useQuery({
+        queryKey: [queryConstants.getSongs, true],
+        queryFn: () =>
+            getSongs({
+                page: 1,
+                limit: 10,
+                is_trending: true,
+            }),
+        keepPreviousData: true, // Optional: helps keep old data while fetching new
+    });
+
+    const musics = useMemo(() => {
+        return musicData?.data ?? [];
+    }, [musicData]);
+
+    const { mutate: updateUserSongCountMutate } = useMutation({
+        mutationKey: [queryConstants.userSongCount],
+        mutationFn: updateUserSongPlayCount,
+        onSuccess: (data) => {
+            player.play()
+            // console.log("data", data)
+            // if (data?.limitReached) {
+            //     if (data.data.song.isSongDownLoad) {
+            //         player.play()
+            //     } else {
+            //         player.pause()
+            //         setPlayDemo(true)
+            //         setDemoUrl(data.data.song.demoAudioUrl)
+            //         setImagUrl(data.data.song.imageUrl)
+            //     }
+            // } else {
+            //     // Directly play the main audio if user is subscribed or no limit is reached
+            //     player.play()
+            // }
+        },
+        onError: (error) => {
+            toast.error(error.message)
+        },
+    })
+    useEffect(() => {
+        if (demoAudioRef.current) {
+            demoAudioRef.current.onended = () => {
+                if (!user?.isSubscribed) {
+                    // If the user is not subscribed, start the main track after demo ends
+                    setPlayDemo(false)
+                    setDemoUrl(null)
+                    player.play() // This will start playing the main audio
+                } else {
+                    // If the user is subscribed, just start playing the main audio
+                    player.play() // This will start playing the main audio
+                }
+            }
+        }
+    }, [demoAudioRef, user?.isSubscribed, player])
+    const updateSongCount = useCallback(() => {
+        if (!player.activeTrack?._id) return
+        updateSongCountMutate(player.activeTrack._id)
+    }, [player.activeTrack?._id, updateSongCountMutate])
+
+    const updateUserSongCount = useCallback(() => {
+        if (!player.activeTrack?._id) return
+        updateUserSongCountMutate(player.activeTrack._id)
+    }, [player.activeTrack?._id, updateUserSongCountMutate])
+
+    useEffect(() => {
+        const isSubscribed = user?.isSubscribed || false
+        if (isSubscribed || !player.activeTrack?._id) return
+        updateUserSongCount()
+    }, [player.activeTrack?._id, updateUserSongCount, user?.isSubscribed])
+
+    useEffect(() => {
+        let animationFrame
+        let hasUpdatedCount = false
+
+        const updateTime = (currTime, dur) => {
+            animationFrame = requestAnimationFrame(() => {
+                setCurrentTime(currTime)
+                setDuration((prev) => (prev !== dur ? dur : prev))
+            })
+
+            if (!hasUpdatedCount && dur > 0 && currTime / dur >= 0.3) {
+                hasUpdatedCount = true
+                updateSongCount()
+            }
+        }
+
+        if (!playDemo) {
+            playerService.onTimeUpdate(updateTime)
+        }
+
+        return () => {
+            playerService.onTimeUpdate(() => { })
+            cancelAnimationFrame(animationFrame)
+        }
+    }, [player.activeTrack?._id, updateSongCount, playDemo])
+
+    useEffect(() => {
+        if (playDemo && demoAudioRef.current) {
+            const audio = demoAudioRef.current
+            const updateDemoTime = () => {
+                setCurrentTime1(audio.currentTime)
+                setDuration1(audio.duration || 0)
+            }
+
+            const handleDemoEnded = () => {
+                setPlayDemo(false)
+                setDemoUrl(null)
+                setCurrentTime1(0)
+                setDuration1(0)
+                if (player.activeTrack) {
+                    player.togglePlayback() // Resume the active track
+                }
+            }
+
+            audio.addEventListener('timeupdate', updateDemoTime)
+            audio.addEventListener('ended', handleDemoEnded)
+
+            return () => {
+                audio.removeEventListener('timeupdate', updateDemoTime)
+                audio.removeEventListener('ended', handleDemoEnded)
+            }
+        }
+    }, [playDemo, player])
+
+    const handleDemoPlayPause = () => {
+        if (demoAudioRef.current) {
+            if (demoAudioRef.current.paused) {
+                demoAudioRef.current.play()
+            } else {
+                demoAudioRef.current.pause()
+            }
+        }
+    }
+
+    const formatTime = (val) => {
+        const mins = Math.floor(val / 60)
+        const secs = Math.floor(val % 60)
+        return `${mins}:${secs.toString().padStart(2, '0')}`
+    }
+
     return (
         <>
             <div className="flex flex-wrap gap-3">
-                <div class="mx-1">
+                <div className="mx-1">
                     <button onClick={handleOpen}>
-                        <i class="bi bi-arrows-fullscreen"></i>
+                        <i className="bi bi-arrows-fullscreen"></i>
                     </button>
                 </div>
             </div>
-            <Modal isOpen={isOpen} size={"full"} onClose={onClose}>
+            <Modal isOpen={isOpen} size={"full"} onClose={onClose} hideCloseButton={true}>
                 <ModalContent>
                     {(onClose) => (
                         <>
                             {/* <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader> */}
                             <ModalBody>
                                 <div id="default-modal" tabIndex="-1" aria-hidden="true"
-                                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-full max-w-screen max-h-full">
-                                        <div class="relative shadow-sm dark:bg-gray-700">
-                                            <div class="space-y-4">
+                                    className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div className="relative p-4 w-full max-w-screen max-h-full">
+                                        <div className="relative shadow-sm dark:bg-gray-700">
+                                            <div className="space-y-4">
                                                 <div
-                                                    class=" w-full m-auto border-[#878787] border-1 border-solid rounded-[1.75rem] px-15 py-10 bg-cover bg-no-repeat  bg-[url('/images/player-bg.webp')] relative">
+                                                    className=" w-full m-auto border-[#878787] border-1 border-solid rounded-[1.75rem] px-15 py-10 bg-cover bg-no-repeat  bg-[url('/images/player-bg.webp')] relative">
 
                                                     <button type="button"
-                                                        class="text-gray-400 w-[2.38rem] flex-[0_0_2.38rem] h-[2.38rem] rounded-full flex justify-center items-center border-[#878787] border-1 border-solid absolute top-10 right-10 cursor-pointer"
-                                                        data-modal-hide="default-modal">
-                                                        <span class="clodePopup ">
+                                                        className="text-gray-400 w-[2.38rem] flex-[0_0_2.38rem] h-[2.38rem] rounded-full flex justify-center items-center border-[#878787] border-1 border-solid absolute top-10 right-10 cursor-pointer"
+                                                        onClick={onClose}>
+                                                        <span className="clodePopup ">
                                                             <img src="/images/player/close.webp" alt="cover" loading="lazy"
-                                                                class="inline-block" />
+                                                                className="inline-block" />
                                                         </span>
-                                                        <span class="sr-only">Close modal</span>
+                                                        <span className="sr-only">Close modal</span>
                                                     </button>
 
-
                                                     <div
-                                                        class="musicPlayer md:inline-flex justify-between items-center hidden sm:hidden md:ml-4 xl:ml-8 2xl:ml-12">
-                                                        <span class="w-[3.25rem] flex-[0_0_3.25rem]"><a href="#"><img
-                                                            src="/images/player-icon/thumb.webp" alt="pr3cio-logo" loading="lazy"
-                                                            class="w-full rounded-[0.56rem]" /></a></span>
-                                                        <div class="songInfo sm:hidden md:hidden lg:block lg:px-2 xl:px-3 2xl:px-5">
-                                                            <p class="m-0"><strong
-                                                                class="font-semibold md:text-xs lg:text-xs xl:text-sm 2xl:text-sm text-white">love
-                                                                me
-                                                                like you
-                                                                do</strong></p>
-                                                            <p
-                                                                class="font-normal md:text-xs lg:text-xs xl:text-[0.75rem] 2xl:text-[0.75rem] text-[#A8A8A8]">
-                                                                By
-                                                                Jonsan Doe</p>
-                                                            <span class="inline-block"><a href="#"
-                                                                class="text-[#C6FF00] md:text-xs lg:text-xs xl:text-[0.75rem] 2xl:text-[0.75rem]">Follow</a></span>
-                                                        </div>
+                                                        className="musicPlayer md:inline-flex justify-between items-center hidden sm:hidden md:ml-4 xl:ml-8 2xl:ml-12">
+                                                        {player?.activeTrack && <TrackDetails trackDetails={player.activeTrack} />}
                                                     </div>
                                                     <div
-                                                        class="mainPlayer w-full relative text-center after:content-[''] after:absolute after:w-full after:max-w-[46.00rem] after:h-[14.88rem] after:w-full after:bottom-[-3rem] after:left-0 after:right-0 after:z-0 after:rounded-[100%]  after:border-[rgba(255,255,255,0.7)] after:border-[0.16rem] after:border-solid after:m-auto after:shadow-[0_4px_15px_rgba(255,255,255,0.3)] mb-20 mt-10">
+                                                        className="mainPlayer w-full relative text-center after:content-[''] after:absolute after:w-full after:max-w-[46.00rem] after:h-[14.88rem] after:w-full after:bottom-[-3rem] after:left-0 after:right-0 after:z-0 after:rounded-[100%]  after:border-[rgba(255,255,255,0.7)] after:border-[0.16rem] after:border-solid after:m-auto after:shadow-[0_4px_15px_rgba(255,255,255,0.3)] mb-20 mt-10">
+                                                        {musics?.slice(0, 10).map((item, index) => {
+                                                            return (
+                                                                <MusicAlbumCard musicDetails={item} index={index} key={item?._id} />
+                                                            );
+                                                        })}
+                                                        <div className="innerWap w-full max-w-[15.63rem] m-auto relative player  z-1">
+                                                            {/* <img src="/images/player/1.webp" alt="cover" loading="lazy"
+                                                                className="m-auto rounded-[0.75rem] max-w[12.50rem] h-[15.63rem] object-cover" />
+                                                            <h2 className="text-sm font-semibold mt-3">Maecenas biben</h2>
+                                                            <p className="truncate text-xs w-[12.25rem] m-auto text-[#C3C3C3]">Quisque isus laoreet,
+                                                                risus </p> */}
+                                                            {player?.activeTrack && <MainAlbumTitle trackDetails={player.activeTrack} />}
+                                                            {/* <div className="w-full relative overflow-hidden bg-white h-0.5 mt-4">
+                                                                <span className="absolute left-0 top-0 w-30 bg-[#ff2663]  h-0.5"></span>
+                                                            </div> */}
+                                                            {/* <div className="w-full relative overflow-hidden h-4 mt-4"> */}
+                                                            <AudioDurationSlider
+                                                                currentTime={currentTime}
+                                                                setCurrentTime={setCurrentTime}
+                                                                playerService={playerService}
+                                                                duration={duration}
+                                                            />
+                                                            {/* </div> */}
 
-                                                        <span
-                                                            class="rotate-[3.86deg]  absolute left-[20%] top-[25%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]"><img
-                                                                src="/images/player/2.webp" alt="cover" loading="lazy"
-                                                                class="max-w[8.50rem] h-[9.75rem] object-cover " /></span>
-                                                        <span
-                                                            class="rotate-[-3.86deg]  absolute right-[15%] top-[25%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]"><img
-                                                                src="/images/player/3.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[8.50rem] h-[9.75rem] object-cover " /></span>
-                                                        <span
-                                                            class="rotate-[3.86deg]  absolute left-[1%] top-[45%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]"><img
-                                                                src="/images/player/4.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[7.31rem] h-[9.75rem] object-cover " /></span>
-                                                        <span
-                                                            class="rotate-[-2.86deg]  absolute right-[-2%] top-[40%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]"><img
-                                                                src="/images/player/5.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[8.50rem] h-[9.75rem] object-cover " /></span>
-                                                        <span
-                                                            class="rotate-[2.86deg]  absolute left-[15%] top-[95%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]"><img
-                                                                src="/images/player/6.webp" alt="cover" loading="lazy"
-                                                                class="max-w[5.78rem] h-[7.01rem] object-cover " /></span>
-                                                        <span
-                                                            class="rotate-[-2.86deg]  absolute right-[15%] top-[95%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]">
-                                                            <img src="/images/player/7.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[ 5.78rem] h-[7.01rem] object-cover" /></span>
-                                                        <span
-                                                            class="rotate-[19.86deg]  absolute left-[11%] top-0 z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]">
-                                                            <img src="/images/player/8.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[4.60rem] h-[5.10rem] object-cover" /></span>
-
-                                                        <span
-                                                            class="rotate-[-19.86deg]  absolute left-[33%] top-[-25%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]">
-                                                            <img src="/images/player/9.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[5.42rem] h-[6.40rem] object-cover" /></span>
-                                                        <span
-                                                            class="rotate-[19.86deg]  absolute right-[33%] top-[-25%] z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]">
-                                                            <img src="/images/player/10.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[5.42rem] h-[6.40rem] object-cover" /></span>
-
-                                                        <span
-                                                            class="rotate-[-19.86deg]  absolute right-[10%] top-1 z-1 after:content-[''] after:absolute after:w-full after:w-full after:h-full after:top-0 after:left-0 after:right-0 after:z-0 after:bg-[rgba(0,0,0,0.5)] after:opacity-0 after:transition-colors after:delay-300 active:after:opacity-100 cursor-pointer overflow-hidden rounded-[0.50rem]">
-                                                            <img src="/images/player/11.webp" alt="cover" loading="lazy"
-                                                                class=" max-w[4.60rem] h-[5.10rem] object-cover" /></span>
-
-                                                        <div class="innerWap w-full max-w-[15.63rem] m-auto relative player  z-1">
-                                                            <img src="/images/player/1.webp" alt="cover" loading="lazy"
-                                                                class="m-auto rounded-[0.75rem] max-w[12.50rem] h-[15.63rem] object-cover" />
-                                                            <h2 class="text-sm font-semibold mt-3">Maecenas biben</h2>
-                                                            <p class="truncate text-xs w-[12.25rem] m-auto text-[#C3C3C3]">Quisque isus laoreet,
-                                                                risus </p>
-                                                            <div class="w-full relative overflow-hidden bg-white h-0.5 mt-4">
-                                                                <span class="absolute left-0 top-0 w-30 bg-[#ff2663]  h-0.5"></span>
+                                                            <div className="flex justify-between w-full mt-1">
+                                                                <span className="text-xs text-[#C3C3C3]">{formatTime(currentTime)}</span>
+                                                                <span className="text-xs text-[#C3C3C3]">{formatTime(duration)}</span>
                                                             </div>
-                                                            <div class="flex justify-between w-full mt-1">
-                                                                <span class="text-xs text-[#C3C3C3]">1.25</span>
-                                                                <span class="text-xs text-[#C3C3C3]">4.18</span>
-                                                            </div>
-                                                            <ul
-                                                                class="flex justify-center items-center absolute left-0 right-0 m-auto top-[calc(100%+1.25rem)]">
-                                                                <li class="px-2 sm:px-2 md:px-2 xl:px-1 2xl:px-2">
-                                                                    <a href="#"
-                                                                        class="flex justify-center items-center bg-[rgba(255,255,255,0.2)] w-[1.88rem] h-[1.88rem] rounded-full backdrop-blur-xs"><img
-                                                                            src="/images/player-icon/repeat-big.png" alt="shuffle"
-                                                                            loading="lazy" /></a>
-                                                                </li>
-                                                                <li class="px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2"><a href="#"
-                                                                    class="flex justify-center items-center bg-[rgba(255,255,255,0.2)] w-[1.88rem] h-[1.88rem] rounded-full backdrop-blur-xs"><img
-                                                                        src="/images/player-icon/skipBack-big.webp" alt="skipBack"
-                                                                        loading="lazy" src="/images/player-icon/pause.webp" alt="play"
-                                                                        loading="lazy" class="w-[1.19rem]" /></a>
-                                                                </li>
-                                                                <li class="px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2"><a href="#" id="playBtn2"
-                                                                    class="w-[3.00rem] h-[2.88rem] leading-[2.88rem] bg-[#C6FF00] text-center  flex justify-center items-center rounded-full playBtn"><img
-                                                                        src="/images/player-icon/play.webp" alt="play" loading="lazy"
-                                                                        class="playIcon" id="playIcon2" /></a>
-                                                                </li>
+                                                            <MainPlayerControl isPlaying={player.status === 'playing'}
+                                                                isLoading={player.status === 'loading'}
+                                                                onPlayPause={player.togglePlayback}
+                                                                playerStatus={player.status}
+                                                                onNext={player.skipNext}
+                                                                onPrevious={player.skipPrevious} />
 
-                                                                <li class="px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2"><a href="#"
-                                                                    class="flex justify-center items-center bg-[rgba(255,255,255,0.2)] w-[1.88rem] h-[1.88rem] rounded-full backdrop-blur-xs"><img
-                                                                        src="/images/player-icon/skipFwd-big.png" alt="skipFwd"
-                                                                        loading="lazy" class="w-[1.19rem]" /></a></li>
-                                                                <li class="px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2 pr-0"><a href="#"
-                                                                    class="flex justify-center items-center bg-[rgba(255,255,255,0.2)] w-[1.88rem] h-[1.88rem] rounded-full backdrop-blur-xs"><img
-                                                                        src="/images/player-icon/repeat-big.png" alt="repeat"
-                                                                        loading="lazy" /></a>
-                                                                </li>
-                                                            </ul>
-                                                            <audio id="myAudio2" class="hidden myAudio" src="/music.mp3"></audio>
+                                                            {/* <audio id="myAudio2" className="hidden myAudio" src="/music.mp3"></audio> */}
                                                         </div>
 
                                                     </div>

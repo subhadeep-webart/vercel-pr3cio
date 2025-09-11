@@ -10,11 +10,21 @@ import PageCommonBg from '@/components/artist/PageCommonBg'
 
 import ArtistDetailsSkeleton from './_components/artist-details-skeleton'
 import BankAccountAddDrawer from './_components/BankAccountAddDrawer'
+import BankAccountAddAlert from './_components/BankAccountAddAlert'
+import useAuth from '@/hooks/useAuth'
 
 const Artist_layout = ({ children }) => {
+    const { user } = useAuth();
+    const [isBankAccountAlert, setIsBankAccountAlert] = useState(false);
+    useEffect(() => {
+        if (user && !user?.bankAccountId) {
+            setIsBankAccountAlert(true);
+        }
+    }, [user]);
     return (
         <>
-            <BankAccountAddDrawer/>
+            {isBankAccountAlert && <BankAccountAddAlert />}
+            {/* <BankAccountAddDrawer/> */}
             <div className='ml-3 w-full rounded-[0.75rem] bg-[#333232] md:ml-5'>
                 {children}
             </div>

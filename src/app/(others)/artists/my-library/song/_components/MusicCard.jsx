@@ -104,7 +104,7 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
                             <path d="M11.7373 5.92105V1.5L13.0005 2.76316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        1.5K
+                        {track?.play_count}
                     </span>
                     <ul className="flex">
                         <li className="ml-2">

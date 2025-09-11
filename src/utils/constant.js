@@ -350,3 +350,56 @@ export const AFTER_LOGIN_USER = [
         ),
     },
 ]
+
+export const ALBUM_IMAGE_LAYOUT = [
+    {
+        rotate: "rotate-[3.86deg]",
+        position: "left-[20%] top-[25%]",
+        size: "max-w-[8.50rem] h-[9.75rem]",
+    },
+    {
+        rotate: "rotate-[-3.86deg]",
+        position: "right-[15%] top-[25%]",
+        size: "max-w-[8.50rem] h-[9.75rem]",
+    },
+    {
+        rotate: "rotate-[3.86deg]",
+        position: "left-[1%] top-[45%]",
+        size: "max-w-[7.31rem] h-[9.75rem]",
+    },
+    {
+        rotate: "rotate-[-2.86deg]",
+        position: "right-[-2%] top-[40%]",
+        size: "max-w-[8.50rem] h-[9.75rem]",
+    },
+    {
+        rotate: "rotate-[2.86deg]",
+        position: "left-[15%] top-[95%]",
+        size: "max-w-[5.78rem] h-[7.01rem]",
+    },
+    {
+        rotate: "rotate-[-2.86deg]",
+        position: "right-[15%] top-[95%]",
+        size: "max-w-[5.78rem] h-[7.01rem]",
+    },
+    {
+        rotate: "rotate-[19.86deg]",
+        position: "left-[11%] top-0",
+        size: "max-w-[4.60rem] h-[5.10rem]",
+    },
+    {
+        rotate: "rotate-[-19.86deg]",
+        position: "left-[33%] top-[-25%]",
+        size: "max-w-[5.42rem] h-[6.40rem]",
+    },
+    {
+        rotate: "rotate-[19.86deg]",
+        position: "right-[33%] top-[-25%]",
+        size: "max-w-[5.42rem] h-[6.40rem]",
+    },
+    {
+        rotate: "rotate-[-19.86deg]",
+        position: "right-[10%] top-[1%]",
+        size: "max-w-[4.60rem] h-[5.10rem]",
+    },
+];

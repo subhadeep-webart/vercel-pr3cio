@@ -34,13 +34,14 @@ const EmailVerifyForm = () => {
             try {
                 const data = await mutateAsync({ ...values, email: getEmailFromCookie() });
                 toast.success('Verify email successfully!');
-                saveSession(data.user);
+                // saveSession(data.user);
                 console.log("Data=======>", data.user);
-                if (data.user.is_artist) {
-                    router.push("/discover-your-genre");
-                } else {
-                    router.push("/");
-                }
+                router.push("/discover-your-genre");
+                // if (data.user.is_artist) {
+                //     router.push("/discover-your-genre");
+                // } else {
+                //     router.push("/");
+                // }
                 resetForm();
             } catch (err) {
                 toast.error(err?.message);

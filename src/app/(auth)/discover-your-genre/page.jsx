@@ -39,9 +39,13 @@ const DiscoverYourGenre = () => {
             try {
                 const profile = await getUserProfile();
                 saveSession(profile.userWithDetails);
-
+                if (profile.userWithDetails?.is_artist) {
+                    await router.push("/artists/dashboard");
+                } else {
+                    await router.push("/");
+                }
                 // Redirect only after success
-                await router.push("/artists/dashboard");
+                // await router.push("/artists/dashboard");
             } catch (err) {
                 console.error("Error while refreshing user profile:", err);
                 toast.error('Unable to refresh user session');

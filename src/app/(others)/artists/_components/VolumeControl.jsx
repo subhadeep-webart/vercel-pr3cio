@@ -33,30 +33,42 @@ export default function VolumeControl() {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-start justify-center text-white">
-      <Slider
-        aria-label="Volume"
-        className={styles.volumeControl}
-        value={volume}
-        onChange={handleVolumeChange}
-        color="default"
-        hideThumb={true}
-        showTooltip={true}
-        classNames={{
-          base: "w-full",
-          track: "bg-white w-[103px] h-[4px] border-none",
-          filler: "bg-[#ff2663]",
-        }}
-        startContent={
-          <Button isIconOnly radius="full" variant="light" onPress={toggleMute}>
-            {isMuted ? (
-              <FiVolumeX className="text-xl text-white" />
-            ) : (
-              <FiVolume1 className="text-xl text-white" />
-            )}
-          </Button>
-        }
-      />
+    <div className="flex flex-col gap-2 items-start justify-center text-white">
+      <div className="relative group">
+        {/* Volume Button */}
+        <Button
+          isIconOnly
+          radius="full"
+          variant="light"
+          onPress={toggleMute}
+          className="z-10"
+        >
+          {isMuted ? (
+            <FiVolumeX className="text-xl text-white" />
+          ) : (
+            <FiVolume1 className="text-xl text-white" />
+          )}
+        </Button>
+
+        {/* Slider (hidden until hover) */}
+        <div className="absolute left-10 top-1/2 -translate-y-1/2 hidden group-hover:block transition-all duration-300">
+          <Slider
+            aria-label="Volume"
+            className={styles.volumeControl}
+            value={volume}
+            onChange={handleVolumeChange}
+            color="default"
+            hideThumb={true}
+            showTooltip={true}
+            classNames={{
+              base: "w-full",
+              track: "bg-white w-[103px] h-[4px] border-none",
+              filler: "bg-[#ff2663]",
+            }}
+          />
+        </div>
+      </div>
     </div>
+
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PAUSE_ICON } from "@/utils/icons";
 import Image from "next/image";
+import VolumeControl from "@/app/(others)/artists/_components/VolumeControl";
 const MediaControls = ({
     isPlaying,
     isLoading,
@@ -11,7 +12,7 @@ const MediaControls = ({
     onPrevious,
     playerStatus
 }) => {
-    
+
     const [isShuffleActive, setIsShuffleActive] = useState(false)
     const [isLoopActive, setIsLoopActive] = useState(false)
     return (
@@ -84,6 +85,9 @@ const MediaControls = ({
                     />
                 </button>
             </li>
+            {/* <li className="className='w-[0.8rem] flex-[0_0_0.8rem]'">
+                <VolumeControl />
+            </li> */}
         </ul>
     )
 }
