@@ -1,3 +1,5 @@
+"use client"
+
 import MusicCard from '@/app/(others)/artists/my-library/song/_components/MusicCard';
 import MusicCardSkeleton from "@/app/(others)/artists/my-library/song/_components/MusicCardSkeleton";
 import NoDataFound from '@/components/NoDataFound';

@@ -439,3 +439,15 @@ export const DASHBOARD_CARD_CONTENT = [
     }
 ];
 
+export const EVENT_COLUMN = [
+    { name: 'IMAGE', uid: 'image' },
+    { name: 'TITLE', uid: 'title' },
+    { name: 'LINK', uid: 'link' },
+    { name: 'DESCRIPTION', uid: 'description' },
+    { name: 'DATE', uid: 'date' },
+    { name: 'VENUE', uid: 'venue' },
+    { name: 'STATE', uid: 'state' },
+    { name: 'CITY', uid: 'city' },
+    { name: 'ACTIONS', uid: 'actions' },
+]
+

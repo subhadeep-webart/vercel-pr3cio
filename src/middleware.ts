@@ -18,7 +18,9 @@ const protectedRoutes = [
     '/users/purchase-library/albums',
     '/users/purchase-library/songs',
     '/users/albums-library/latest',
-    '/users/albums-library/trendings'
+    '/users/albums-library/trendings',
+    '/users/song-library/favourite',
+    '/users/song-library/downloads'
 ]
 
 const authRoutes = ['/signin', '/signup', '/user-signup', '/artist-signup']

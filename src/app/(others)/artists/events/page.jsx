@@ -22,18 +22,7 @@ import queryConstants from '@/constants/query-constants'
 import useAuth from '@/hooks/useAuth'
 import DeleteEvent from './_components/DeleteEvent'
 import Link from 'next/link'
-
-export const columns = [
-    { name: 'IMAGE', uid: 'image' },
-    { name: 'TITLE', uid: 'title' },
-    { name: 'LINK', uid: 'link' },
-    { name: 'DESCRIPTION', uid: 'description' },
-    { name: 'DATE', uid: 'date' },
-    { name: 'VENUE', uid: 'venue' },
-    { name: 'STATE', uid: 'state' },
-    { name: 'CITY', uid: 'city' },
-    { name: 'ACTIONS', uid: 'actions' },
-]
+import { EVENT_COLUMN } from '@/utils/constant'
 
 const statusColorMap = {
     active: 'success',
@@ -42,8 +31,8 @@ const statusColorMap = {
 }
 
 const Events = () => {
-        const [openDelete, setOpenDelete] = useState(false)
-        const [eventId,setEventId]=useState(false)
+    const [openDelete, setOpenDelete] = useState(false)
+    const [eventId, setEventId] = useState(false)
     const { user } = useAuth()
     console.log('user', user)
 
@@ -55,8 +44,8 @@ const Events = () => {
             }),
     })
 
-    
-     const handleDelete = (id) => {
+
+    const handleDelete = (id) => {
         setEventId(id);
         setOpenDelete(true);
     };
@@ -73,16 +62,16 @@ const Events = () => {
             />
         ),
         title: (event) => <span className='capitalize'>{event.title}</span>,
-         link: (event) => (
-        <a
-            href={event.third_party_url}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='text-blue-600 underline hover:text-blue-800'
-        >
-            View
-        </a>
-    ),
+        link: (event) => (
+            <a
+                href={event.third_party_url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-blue-600 underline hover:text-blue-800'
+            >
+                View
+            </a>
+        ),
         date: (event) => (
             <span>{new Date(event.date).toLocaleDateString('en-GB')}</span>
         ),
@@ -92,12 +81,12 @@ const Events = () => {
         actions: (event) => (
             <div className='relative flex items-center gap-2'>
                 <Tooltip content='Edit event'>
-                    <Link  href={`/artists/edit-event/${event?._id}`} className='cursor-pointer text-lg text-default-400 active:opacity-50'>
+                    <Link href={`/artists/edit-event/${event?._id}`} className='cursor-pointer text-lg text-default-400 active:opacity-50'>
                         <PiPencilSimpleLineBold />
                     </Link>
                 </Tooltip>
                 <Tooltip color='danger' content='Delete event'>
-                    <button onClick={()=> handleDelete(event?._id)} className='cursor-pointer text-lg text-danger active:opacity-50'>
+                    <button onClick={() => handleDelete(event?._id)} className='cursor-pointer text-lg text-danger active:opacity-50'>
                         <RiDeleteBin6Line />
                     </button>
                 </Tooltip>
@@ -109,13 +98,13 @@ const Events = () => {
     return (
         <>
             <Table aria-label='Artist event list'>
-                <TableHeader columns={columns}>
+                <TableHeader columns={EVENT_COLUMN}>
                     {(column) => (
                         <TableColumn
                             key={column.uid}
                             align={
                                 // column.uid === 'actions' ? 'center' : 'start'
-                               'start'
+                                'start'
                             }>
                             {column.name}
                         </TableColumn>
@@ -135,13 +124,13 @@ const Events = () => {
                 </TableBody>
             </Table>
 
-               {openDelete && (
-                    <DeleteEvent
+            {openDelete && (
+                <DeleteEvent
                     openDelete={openDelete}
                     setOpenDelete={setOpenDelete}
                     eventId={eventId}
-                    />
-                )}
+                />
+            )}
         </>
     )
 }
