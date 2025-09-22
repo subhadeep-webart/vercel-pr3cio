@@ -15,9 +15,10 @@ import useAuth from '@/hooks/useAuth'
 
 const Artist_layout = ({ children }) => {
     const { user } = useAuth();
+    console.log("user",user)
     const [isBankAccountAlert, setIsBankAccountAlert] = useState(false);
     useEffect(() => {
-        if (user && !user?.bankAccountId) {
+        if (user?.is_artist && !user?.bankAccountId) {
             setIsBankAccountAlert(true);
         }
     }, [user]);

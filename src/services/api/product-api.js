@@ -19,6 +19,68 @@ export const postProductsDetails = async (productDetail) => {
     }
 }
 
+export const getProductsDetails = async (productId) => {
+    try {
+        const response = await httpService.get(queryConstants.getProductUpload + "/" + productId)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const updateProductsDetails = async (productId, productDetail) => {
+    try {
+        const endpoint = `${queryConstants.allProduct}/${productId}`
+        console.log("Update Endpoint:", endpoint)
+
+        const response = await httpService.patch(endpoint, productDetail)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const deleteProduct = async (productId) => {
+    try {
+        const response = await httpService.delete(queryConstants.deleteUploadedProduct + "/" + productId)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (error) {
+        const errorMessage = httpService.getErrorMessage(error)
+        throw new Error(errorMessage)
+    }
+}
+
+export const deleteProductVarient = async (productId) => {
+    try {
+          const response = await httpService.delete(
+            `${queryConstants.deleteProductVariant}?id=${variantId}`
+        )
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (error) {
+        const errorMessage = httpService.getErrorMessage(error)
+        throw new Error(errorMessage)
+    }
+}
+
 
 export const getAllProduct = async () => {
     try {

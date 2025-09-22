@@ -10,7 +10,8 @@ const MediaControls = ({
     onPlayPause,
     onNext,
     onPrevious,
-    playerStatus
+    playerStatus,
+    activeTrack
 }) => {
 
     const [isShuffleActive, setIsShuffleActive] = useState(false)
@@ -38,7 +39,7 @@ const MediaControls = ({
                 </button>
             </li>
             <li>
-                <button className='flex h-[2.03rem] w-[2.03rem] items-center justify-center rounded-full bg-white text-center leading-[2.03rem]' onClick={onPlayPause} disabled={isLoading}>
+                <button className={`flex h-[2.03rem] w-[2.03rem] items-center justify-center rounded-full bg-white text-center leading-[2.03rem] ${!activeTrack ? "cursor-not-allowed opacity-40" : "cursor-pointer"}`} onClick={onPlayPause} disabled={isLoading || !activeTrack}>
                     {
                         isPlaying ? (
                             <Image src={PAUSE_ICON?.src} height={10} width={10} alt="Click to Pause" />

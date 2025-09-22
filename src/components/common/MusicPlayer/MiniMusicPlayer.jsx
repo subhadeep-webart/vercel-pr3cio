@@ -50,20 +50,6 @@ const MiniMusicPlayer = () => {
         mutationFn: updateUserSongPlayCount,
         onSuccess: (data) => {
             player.play()
-            // console.log("data", data)
-            // if (data?.limitReached) {
-            //     if (data.data.song.isSongDownLoad) {
-            //         player.play()
-            //     } else {
-            //         player.pause()
-            //         setPlayDemo(true)
-            //         setDemoUrl(data.data.song.demoAudioUrl)
-            //         setImagUrl(data.data.song.imageUrl)
-            //     }
-            // } else {
-            //     // Directly play the main audio if user is subscribed or no limit is reached
-            //     player.play()
-            // }
         },
         onError: (error) => {
             toast.error(error.message)
@@ -180,6 +166,7 @@ const MiniMusicPlayer = () => {
                                     playerStatus={player.status}
                                     onNext={player.skipNext}
                                     onPrevious={player.skipPrevious}
+                                    activeTrack={player?.activeTrack?._id}
                                 />
                                 <audio
                                     ref={demoAudioRef}

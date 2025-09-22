@@ -14,16 +14,16 @@ const MyAlbumPage = () => {
     })
     return (
         <div
-            class="grid grid-cols-1 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8">
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            className="grid grid-cols-1 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/7.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -37,13 +37,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -56,12 +56,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -71,11 +71,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -84,12 +84,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -99,15 +99,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/8.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -121,13 +121,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -140,12 +140,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -155,11 +155,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -168,12 +168,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -183,15 +183,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/9.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -205,13 +205,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -224,12 +224,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -239,11 +239,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -252,12 +252,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -267,15 +267,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/8.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -289,13 +289,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -308,12 +308,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -323,11 +323,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -336,12 +336,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -351,15 +351,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/9.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -373,13 +373,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -392,12 +392,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -407,11 +407,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -420,12 +420,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -436,15 +436,15 @@ const MyAlbumPage = () => {
                 </div>
             </div>
 
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/7.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -458,13 +458,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -477,12 +477,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -492,11 +492,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -505,12 +505,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -520,15 +520,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/8.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -542,13 +542,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -561,12 +561,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -576,11 +576,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -589,12 +589,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -604,15 +604,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/9.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -626,13 +626,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -645,12 +645,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -660,11 +660,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -673,12 +673,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -688,15 +688,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/8.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -710,13 +710,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -729,12 +729,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -744,11 +744,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -757,12 +757,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>
@@ -772,15 +772,15 @@ const MyAlbumPage = () => {
                     </ul>
                 </div>
             </div>
-            <div class="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
-                <div class="relative mb-2">
+            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem]">
+                <div className="relative mb-2">
                     <img src="/images/songs/9.webp" alt="skipBack" loading="lazy"
-                        class="rounded-[0.75rem] w-full" />
+                        className="rounded-[0.75rem] w-full" />
 
-                    <div class="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
-                        <h6 class="text-sm font-semibold">$ 1.30</h6>
+                    <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
+                        <h6 className="text-sm font-semibold">$ 1.30</h6>
                         <a href="#"
-                            class="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
+                            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -794,13 +794,13 @@ const MyAlbumPage = () => {
                         </a>
                     </div>
                 </div>
-                <h5><a href="#" class="text-sm font-semibold">Maecenas biben</a></h5>
-                <p class="text-xs text-[#9D9D9D]">John Doe</p>
-                <div class="flex justify-between mt-2">
+                <h5><a href="#" className="text-sm font-semibold">Maecenas biben</a></h5>
+                <p className="text-xs text-[#9D9D9D]">John Doe</p>
+                <div className="flex justify-between mt-2">
                     <span
-                        class="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
+                        className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
-                            class="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
+                            className="stroke-current text-[#4D41FA] mr-1" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="6.68408" cy="7.81589" rx="1.26319" ry="1.26316" stroke-width="1.2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                             <ellipse cx="10.4741" cy="5.92112" rx="1.26319" ry="1.26316" stroke-width="1.2"
@@ -813,12 +813,12 @@ const MyAlbumPage = () => {
                         </svg>
                         1.5K
                     </span>
-                    <ul class="flex">
-                        <li class="ml-2">
+                    <ul className="flex">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group">
                                 <svg width="9" height="12" viewBox="0 0 9 12" fill="none"
-                                    class="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#4D41FA] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259"
@@ -828,11 +828,11 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] ">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
-                                    class="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
+                                    className="stroke-current text-[#F844B0] group-hover:text-white transition-colors duration-300"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M8.7998 5.37535L6.58936 7.58579C5.80831 8.36684 4.54199 8.36684 3.76094 7.58579L1.5505 5.37535C0.549575 4.37442 0.549574 2.75161 1.5505 1.75069C2.55142 0.74977 4.17423 0.74977 5.17515 1.75069C6.17607 0.74977 7.79888 0.74977 8.7998 1.75069C9.80073 2.75161 9.80073 4.37442 8.7998 5.37535Z"
@@ -841,12 +841,12 @@ const MyAlbumPage = () => {
                                 </svg>
                             </a>
                         </li>
-                        <li class="ml-2">
+                        <li className="ml-2">
                             <a href="#"
-                                class="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
+                                className="bg-white w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group ">
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current text-[#4D41FA] group-hover:text-black">
+                                    className="fill-current text-[#4D41FA] group-hover:text-black">
                                     <path
                                         d="M2.38357 0.57942C1.09896 1.01023 0.875 3.31888 0.875 4.99793C0.875 6.67698 1.09896 8.93045 2.38357 9.41649C3.66821 9.90253 9.125 6.88687 9.125 4.99793C9.125 3.109 3.75071 0.115472 2.38357 0.57942Z" />
                                 </svg>

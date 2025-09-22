@@ -6,7 +6,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { getPrivateSongList } from '@/services/api/user-api';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
-import MusicCard from '@/app/songs/_components/music-card';
+import MusicCard from '../(others)/artists/my-library/song/_components/MusicCard';
 import { withAuthProtection } from '@/components/auth/protected-component';
 
 const DriftSong = () => {

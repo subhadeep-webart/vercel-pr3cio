@@ -22,9 +22,10 @@ type FileUploaderProps = {
     onClose: () => void
     accept: Accept
     maxSize?: number // in MB
+    isMulti?:boolean
 }
 const FileUploader = (props: FileUploaderProps) => {
-    const { isOpen, onClose, onSuccess, accept } = props
+    const { isOpen, onClose, onSuccess, accept,isMulti=false } = props
     const [progress, setProgress] = useState(0)
 
     const supportedFileTypes = useMemo(() => {
@@ -107,8 +108,8 @@ const FileUploader = (props: FileUploaderProps) => {
                                 <Button
                                     type='button'
                                     size='sm'
-                                    color='primary'
-                                    className='font-semibold'
+                                    className='font-semibold;
+'
                                     startContent={
                                         <MdOutlineFileUpload className='text-2xl' />
                                     }

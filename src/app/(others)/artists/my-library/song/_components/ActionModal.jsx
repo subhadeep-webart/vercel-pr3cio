@@ -36,7 +36,7 @@ const ActionModal = ({ trackId,onActionComplete }) => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Delete Song</ModalHeader>
                             <ModalBody>
                                 <p>
                                     This draft song will be gone forever — are you sure you want to delete it?

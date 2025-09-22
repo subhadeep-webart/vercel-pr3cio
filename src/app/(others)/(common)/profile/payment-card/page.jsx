@@ -3,7 +3,7 @@ import { IoIosArrowBack } from "react-icons/io";
 const PaymentCard=()=>{
     return(
         <>
-         <div class="flex items-start flex-wrap w-full  justify-end ">
+         <div class="flex items-start flex-wrap w-full justify-end ">
             <div class="bg-[#333232] w-full rounded-[0.75rem]">
                 {/* <div
                     class="bg-[#1C1919] rounded-[0.75rem] px-10 py-8 bg-cover bg-no-repeat bg-[url('/images/artist/bg.webp')] w-full bg-center flex items-center">

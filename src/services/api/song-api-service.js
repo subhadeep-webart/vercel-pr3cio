@@ -30,6 +30,7 @@ export const editSongs = async (songId, reqObj) => {
         }
         throw new Error(response.data.message)
     } catch (err) {
+        console.log("ERROROORO===>",err);
         const errorMessage = httpService.getErrorMessage(err)
         throw new Error(errorMessage)
     }

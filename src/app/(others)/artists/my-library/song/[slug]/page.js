@@ -8,6 +8,7 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { withAuthProtection } from '@/components/auth/protected-component';
 import { useParams } from "next/navigation";
 import MusicCard from "../_components/MusicCard";
+import MusicCardSkeleton from "../_components/MusicCardSkeleton";
 
 const MyLibraryPage = () => {
     const { slug } = useParams();
@@ -27,7 +28,7 @@ const MyLibraryPage = () => {
             return getPrivateSongList({
                 isPublic,
                 page: pageParam,
-                limit: 10,
+                limit: 12,
             });
         },
         initialPageParam: 1,
@@ -57,13 +58,10 @@ const MyLibraryPage = () => {
     console.log("draft Songs========>", songs);
     return (
         <div
-            class="grid grid-cols-1 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+            class="grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
             {status === 'pending' &&
-                Array.from({ length: 6 }).map((_, i) => (
-                    <div
-                        key={i}
-                        className="h-36 bg-gray-800 animate-pulse rounded-lg"
-                    />
+                Array.from({ length: 5 }).map((_, i) => (
+                    <MusicCardSkeleton key={`card-skelton-${i + 1}`} />
                 ))}
 
             {status === 'success' &&
@@ -79,16 +77,25 @@ const MyLibraryPage = () => {
 
             }
             {isFetchingNextPage &&
-                Array.from({ length: 3 }).map((_, i) => (
-                    <div
-                        key={`loading-${i}`}
-                        className="h-36 bg-gray-700 animate-pulse rounded-lg"
-                    />
+                Array.from({ length: 5 }).map((_, i) => (
+                    <MusicCardSkeleton key={`card-skelton-${i + 1}`} />
                 ))}
-            <CircularProgress
+            {/* <CircularProgress
                 ref={observerRef}
                 className={cn(hasNextPage ? 'block mt-4 mx-auto' : 'hidden')}
-            />
+            /> */}
+            {/* {hasNextPage && (
+                <div
+                    ref={observerRef}
+                    className="h-1 w-full mt-4"
+                />
+            )} */}
+            {hasNextPage && (
+                <div
+                    ref={observerRef}
+                    className="h-1 w-full mt-4"
+                />
+            )}
         </div>
     )
 }

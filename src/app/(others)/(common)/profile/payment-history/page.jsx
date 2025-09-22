@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { IoIosArrowBack } from 'react-icons/io'
 
 import { withAuthProtection } from '@/components/auth/protected-component'
+import PaymentHistoryCard from './_components/PaymentHistoryCard'
 
 const Page = () => {
     const [history, setHistory] = useState([])
@@ -20,6 +21,8 @@ const Page = () => {
     useEffect(() => {
         getAllPlanHistory()
     }, [])
+
+    console.log("Historey========>",history);
 
     return (
         <>
@@ -61,71 +64,13 @@ const Page = () => {
                     </div>
                     {history?.length > 0
                         ? history.map((item, index) => (
-                              <div key={index} class='group grid w-full grid-cols-12 items-center p-5 transition-colors delay-300 hover:rounded-[0.4rem] hover:border-transparent hover:bg-[#484848] sm:gap-x-4 md:gap-x-4 lg:gap-x-4 xl:gap-x-4 2xl:gap-x-4'>
-                                  <div class='col-span-8'>
-                                      <div class='flex items-center'>
-                                          <img
-                                              src='/images/user/2.webp'
-                                              alt='artist'
-                                              class='mr-2 inline-block h-[4.13rem] w-[3.25rem] flex-[0_0_3.25rem] rounded-[0.4rem] object-cover'
-                                          />
-                                          <div class=''>
-                                              <h6 class='text-sm font-semibold'>
-                                                  Maecenas biben
-                                              </h6>
-                                              <p class='my-1 text-xs text-[#9D9D9D]'>
-                                                  John coleman
-                                              </p>
-                                              <p class='my-1 text-xs text-[#9D9D9D]'>
-                                                  Order ID: 254741
-                                              </p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class='col-span-4 text-right'>
-                                      <p class='my-1 text-xs text-[#9D9D9D]'>
-                                          Purchased by 20 nov, 2024
-                                      </p>
-                                      <a
-                                          href='#'
-                                          class='group float-right mt-5 flex h-[1.63rem] w-[1.63rem] items-center justify-center rounded-full bg-[#191919]'>
-                                          <svg
-                                              width='9'
-                                              height='12'
-                                              viewBox='0 0 9 12'
-                                              fill='none'
-                                              class='stroke-current text-[#4D41FA] transition-colors duration-300 group-hover:text-white'
-                                              xmlns='http://www.w3.org/2000/svg'>
-                                              <path
-                                                  d='M1.58594 6.19527L4.26886 8.8782M4.26886 8.8782L6.95179 6.19527M4.26886 8.8782L4.26886 1.90259'
-                                                  stroke-width='2'
-                                                  stroke-linecap='round'
-                                                  stroke-linejoin='round'></path>
-                                              <path
-                                                  d='M1.04883 10.4878H7.48785'
-                                                  stroke-width='2'
-                                                  stroke-linecap='round'
-                                                  stroke-linejoin='round'></path>
-                                          </svg>
-                                      </a>
-                                  </div>
-                                  <div class='col-span-12'>
-                                      <div class='group mt-3 grid grid-cols-2 items-center justify-between border-t-1 border-solid border-[rgba(255,255,255,0.2)] pt-2'>
-                                          <div class='col-auto text-sm'>
-                                              Total Billed
-                                          </div>
-                                          <div class='col-auto text-right text-base font-semibold'>
-                                              $ 1.30
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          ))
+                            <PaymentHistoryCard paymentDetails={item} key={item?._id}/>
+                        ))
                         : ''}
                 </div>
             </div>
 
-            <div className='hidden p-8'>
+            {/* <div className='p-8'>
                 <h1 className='mb-6 text-2xl font-semibold'>Payment History</h1>
                 <div className='overflow-x-auto rounded-lg bg-white shadow-md'>
                     <table className='min-w-full table-auto'>
@@ -187,7 +132,7 @@ const Page = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

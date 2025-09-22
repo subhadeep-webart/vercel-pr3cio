@@ -16,6 +16,9 @@ const config: Config = {
                 primary: '#6156E2',
                 secondary: '#343839',
             },
+            backgroundImage: {
+                'custom-gradient': 'linear-gradient(to right, rgba(45,38,148,0.18), rgba(211,68,201,0.18))'
+            }
         },
     },
     darkMode: 'class',

@@ -13,6 +13,12 @@ const protectedRoutes = [
     '/store',
     '/artists',
     '/users/songs-library',
+    '/users/songs/latests',
+    '/users/songs/trendings',
+    '/users/purchase-library/albums',
+    '/users/purchase-library/songs',
+    '/users/albums-library/latest',
+    '/users/albums-library/trendings'
 ]
 
 const authRoutes = ['/signin', '/signup', '/user-signup', '/artist-signup']

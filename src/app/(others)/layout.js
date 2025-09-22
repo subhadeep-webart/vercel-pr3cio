@@ -9,7 +9,7 @@ const OthersPageLayout = ({ children }) => {
             <Header />
             <section className='homeBody flex flex-wrap items-start justify-end px-0 py-4 sm:px-5'>
                 <SideBar />
-                <div className='flex w-full flex-wrap items-start sm:w-[calc(100%-11.63rem)]'>
+                <div className='flex w-full flex-wrap items-start sm:w-[calc(100%-11.63rem)] '>
                     {children}
                 </div>
                 <Advertisement />

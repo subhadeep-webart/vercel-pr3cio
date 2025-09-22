@@ -31,6 +31,6 @@
         "**/*.jsx",
         ".next/types/**/*.ts",
         "src/components/file-uploader"
-    ],
+, "src/app/(others)/albums/album-details/[id]"    ],
     "exclude": ["node_modules"]
 }

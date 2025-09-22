@@ -7,7 +7,7 @@ const SignupToggle = () => {
     console.log("Path Name======>", pathname);
     return (
         <div
-            className="absolute top-[1rem] left-[-4rem] 2xl:top-[15%] bg-[url('/images/login/shadow.webp')] bg-no-repeat bg-cover py-4 bg-center text-center">
+            className="absolute top-[1rem] left-[24rem] 2xl:top-[15%] bg-[url('/images/login/shadow.webp')] bg-no-repeat bg-cover py-4 bg-center text-center">
             <Link
                 href="/user-signup"
                 className={`group w-[7.56rem] h-[2.63rem] rounded-md px-4 font-semibold text-base flex justify-center items-center mt-2 mb-2 border border-[#2E2E2E] 

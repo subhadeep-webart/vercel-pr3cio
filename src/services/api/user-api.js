@@ -83,12 +83,99 @@ export const getAllGenreCategory = async () => {
 
 export const postCategory = async (payload) => {
     try {
-        const response = await httpService.post(`${queryConstants.postCategory}`,payload)
+        const response = await httpService.post(`${queryConstants.postCategory}`, payload)
         if (response.status === HttpStatusCode.Ok) {
             return response.data
         }
         throw new Error(response.data.message)
     } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const uploadGallery = async (formData) => {
+    try {
+        const response = await httpService.post(`${queryConstants.uploadGallery}`, formData)
+        console.log("Response Object=====>", response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const uploadProductImages = async (formData) => {
+    try {
+        const response = await httpService.put(`${queryConstants.uploadProductImage}`, formData)
+        console.log("Response Object=====>", response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const addProuct = async (productPayload) => {
+    try {
+        const response = await httpService.post(`${queryConstants.productUpload}`, formData)
+        console.log("Response Object=====>", response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const deleteGallery = async (payload) => {
+    try {
+        const response = await httpService.delete(`${queryConstants.deleteGallery}`, { data: payload })
+        console.log("Response Object=====>", response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getDownloadedProduct = async (type) => {
+    try {
+        const response = await httpService.get(queryConstants.dow + "/" + productId)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const commonImgDelete = async (payload) => {
+    try {
+        const response = await httpService.delete(`${queryConstants.commonImgDelete}`, { data: payload })
+        console.log("Response Object=====>",response?.data);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>",err);
         const errorMessage = httpService.getErrorMessage(err)
         throw new Error(errorMessage)
     }

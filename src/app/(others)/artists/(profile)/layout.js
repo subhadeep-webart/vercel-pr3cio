@@ -13,9 +13,11 @@ import ArtistDetailsSkeleton from '../_components/artist-details-skeleton'
 const Artist_layout = ({ children }) => {
     const params = useSearchParams()
     const url = usePathname()
-    const slug =  '68ba67136f7f4b3e1623868d' || params.get('id');
+    const slug = params.get('id');
     const dispatch = useDispatch()
     const status = useSelector((state) => state.artist.status)
+    const artist = useSelector((state) => state.artist)
+    console.log("artist", artist)
 
     useEffect(() => {
         if (!slug) return

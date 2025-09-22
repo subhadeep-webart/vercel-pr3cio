@@ -10,10 +10,10 @@ import queryConstants from '@/constants/query-constants'
 
 const PopularArtists = () => {
     const { data, status } = useQuery({
-        queryKey: [queryConstants.getAllArtists],
-        queryFn: () => getAllArtists({ page: 1, limit: 3 }),
+        queryKey: [queryConstants.getAllArtists, { type: 'popular' }],
+        queryFn: () => getAllArtists({ page: 1, limit: 3 , type:"popular" }),
     })
-    console.log('data', data)
+    console.log('datatest', data)
 
     const artists = data?.artist || []
     console.log('artists', artists)
@@ -33,7 +33,7 @@ const PopularArtists = () => {
                         </Link> */}
                     </span>
                 </div>
-                <div className='xl::gap-16 grid grid-cols-1 grid-cols-2 justify-center gap-4 sm:grid-cols-2 sm:justify-center md:grid-cols-3 md:justify-center md:gap-4 lg:justify-center lg:gap-8 xl:justify-between 2xl:justify-between'>
+                <div className='xl::gap-16 grid grid-cols-2 justify-center gap-4 sm:grid-cols-2 sm:justify-center md:grid-cols-3 md:justify-center md:gap-4 lg:justify-center lg:gap-8 xl:justify-between 2xl:justify-between'>
                     {status === 'pending' &&
                         Array.from({ length: 3 }).map((_, i) => (
                             <ArtistCardSkeleton key={i} />
@@ -41,7 +41,9 @@ const PopularArtists = () => {
 
                     {status === 'success' &&
                         artists?.map((item, index) => (
-                            <div key={index} className="relative mt-5 bg-center bg-no-repeat text-center after:absolute after:top-[30%] after:z-0 after:h-[4.50rem] after:w-[0.06rem] after:-translate-y-[50%] after:transform after:bg-[url('/images/artist/line.webp')] after:content-[''] lg:after:right-[0rem] xl:after:right-[-1rem] 2xl:after:right-[-1rem]">
+                            <div
+                                key={index}
+                                className="relative mt-5 bg-center bg-no-repeat text-center after:absolute after:top-[30%] after:z-0 after:h-[4.50rem] after:w-[0.06rem] after:-translate-y-[50%] after:transform after:bg-[url('/images/artist/line.webp')] after:content-[''] lg:after:right-[0rem] xl:after:right-[-1rem] 2xl:after:right-[-1rem]">
                                 <Link
                                     href={`/artists/bio?id=${item._id}`}
                                     className='block'>
@@ -52,7 +54,7 @@ const PopularArtists = () => {
                                         className='m-auto max-h-[7.63rem] w-full max-w-[7.63rem] rounded-full object-cover'
                                     />
                                     <h3 className='mt-3 text-sm font-semibold'>
-                                        {item.name}
+                                        {item?.name?.length > 9 ? item?.name?.slice(0, 9) + '...' : item?.name}
                                     </h3>
                                     <p className='text-[0.69rem]'>Artist</p>
                                 </Link>
@@ -64,4 +66,4 @@ const PopularArtists = () => {
     )
 }
 
-export default PopularArtists
+export default PopularArtists;

@@ -40,15 +40,15 @@ const SongsCard = ({
             {artist?.songs.map((item, index) => (
                 <div key={index} className='mb-3 flex w-full flex-wrap items-center justify-between rounded-[0.75rem] px-5 py-2 transition-colors duration-300 hover:bg-[#484848]'>
                     <div className='flex items-center'>
-                        <span className='mr-4 w-[2.81rem] flex-[0_0_2.81rem] h-[190px]'>
+                        <span className='mr-4 w-[2.81rem] flex-[0_0_2.81rem] h-[60px]'>
                             <img
                                 src={item?.artwork}
                                 alt='artist'
-                                className='w-full rounded-[0.5rem] h-[190px]'
+                                className='w-full rounded-[0.5rem] h-[60px]'
                             />
                         </span>
                         <div>
-                            <h6 className='text-lg font-semibold text-white'>
+                            <h6 className='text-lg font-semibold text-white line-clamp-1'>
                                 {item?.title}
                             </h6>
                             <p className='text-sm font-medium text-[#CFCFCF]'>

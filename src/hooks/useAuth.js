@@ -5,11 +5,13 @@ import {
 } from '@/redux/slices/auth-slice'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 import { setArtist } from '@/redux/slices/app-slice'
+import { useRouter } from 'next/navigation'
 
 const useAuth = () => {
+    const router = useRouter();
     const dispatch = useAppDispatch()
     const auth = useAppSelector((state) => state.auth)
-    
+
     const saveSession = (user) => {
         dispatch(saveSessionAction(user))
         dispatch(setArtist(user?.is_artist ?? false))
@@ -17,7 +19,8 @@ const useAuth = () => {
 
     const logout = () => {
         dispatch(logoutAction())
-        dispatch(setArtist(false))
+        dispatch(setArtist(false));
+        router.push("/");
     }
 
     const verifySession = () => {

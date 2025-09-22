@@ -1,9 +1,6 @@
 'use client'
 
 import React, { useEffect, useMemo, useState } from 'react'
-import AlbumCard from '@/app/albums/_components/album-card'
-import AlbumCardSkeleton from '@/app/albums/_components/album-card-skeleton'
-import MusicList from '@/app/songs/_components/music-list'
 import { getAllAlbums } from '@/services/api/album-ep'
 import { Button, CircularProgress, cn } from '@heroui/react'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
@@ -132,9 +129,9 @@ const HomePageLayout = () => {
                     <TopGenres />
                 </div>
 
-                <div class="mb-5 mt-5 rounded-[27px] bg-[#2A2929] bg-none bg-[length:70%_auto] bg-[right_center] bg-no-repeat px-5 py-3 md:bg-[url('/images/3.webp')] lg:px-10 lg:py-5">
-                    <div class=''>
-                        <h2 class='font-protest mb-5 mt-3 text-[1.2rem] leading-8 text-white lg:text-[1.75rem]'>
+                <div className="mb-5 mt-5 rounded-[27px] bg-[#2A2929] bg-none bg-[length:70%_auto] bg-[right_center] bg-no-repeat px-5 py-3 md:bg-[url('/images/3.webp')] lg:px-10 lg:py-5">
+                    <div className=''>
+                        <h2 className='font-protest mb-5 mt-3 text-[1.2rem] leading-8 text-white lg:text-[1.75rem]'>
                             Mark Your Jam!
                             <br />
                             Tap the heart to keep your top songs
@@ -142,10 +139,10 @@ const HomePageLayout = () => {
                             at your fingertips.
                         </h2>
 
-                        <span class='inline-block text-center'>
+                        <span className='inline-block text-center'>
                             <a
                                 href='#'
-                                class='rounded-4xl inline-block h-[2.50rem] border-1 border-solid border-[#494949] px-9 text-xs font-semibold leading-[2.50rem] text-white transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black'>
+                                className='rounded-4xl inline-block h-[2.50rem] border-1 border-solid border-[#494949] px-9 text-xs font-semibold leading-[2.50rem] text-white transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black'>
                                 Log in to add favorite
                             </a>
                         </span>
@@ -153,7 +150,7 @@ const HomePageLayout = () => {
                 </div>
             </div>
             <div className='lg:flex-flex-[0_0_13.31rem] sticky top-[6.2rem] w-full flex-[0_0_auto] rounded-xl pl-3 pr-3 sm:w-full sm:flex-[0_0_auto] md:w-full md:flex-[0_0_auto] md:px-4 lg:w-[13.31rem] lg:px-0 xl:w-[15.31rem] xl:flex-[0_0_15.31rem] 2xl:w-[15.31rem] 2xl:flex-[0_0_15.31rem]'>
-                <RightSidebar />
+                <RightSidebar albums={albums} onActionComplete={handleActionInAlbumCard}  />
             </div>
             {/* Footer Home */}
         </>

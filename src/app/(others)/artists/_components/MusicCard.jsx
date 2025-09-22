@@ -1,4 +1,5 @@
 'use client'
+
 import { Button, Card, CardBody, Image } from '@heroui/react'
 import usePlayer from '@/hooks/usePlayer'
 import { useMemo } from 'react'

@@ -11,21 +11,21 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#0D1B2A] p-5 text-white '>
                             <h3 className='text-[0.97rem] font-bold'>Pop</h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
-                                <i className='bi bi-chevron-right'></i>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
+                                <i className='bi bi-chevron-right text-white'></i>
                             </span>
                         </a>
                     </div>
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#343517] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Country
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -33,11 +33,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#2F3E46] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 R&B/Soul
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -45,11 +45,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#2F2448] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Latin, Pop
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -58,9 +58,9 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#2E3A59] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>Pop</h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -68,11 +68,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#0D1B2A] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Country
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -80,11 +80,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#052431] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 R&B/Soul
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -92,11 +92,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#343A40] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Latin, Pop
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -104,9 +104,9 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#2F1741] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>Pop</h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -114,11 +114,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#371F3A] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Country
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -126,11 +126,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#3122FF] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#210618] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 R&B/Soul
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>
@@ -138,11 +138,11 @@ const TopGenres = () => {
                     <div className='relative mb-1'>
                         <a
                             href='#'
-                            className='flex items-center justify-between rounded-2xl bg-[#1C57D7] p-5 text-white'>
+                            className='flex items-center justify-between rounded-2xl bg-[#2B1C07] p-5 text-white'>
                             <h3 className='text-[0.97rem] font-bold'>
                                 Latin, Pop
                             </h3>
-                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.2)] text-center text-sm leading-[2.3rem] text-black'>
+                            <span className='inline-block h-[2.20rem] w-[2.20rem] rounded-full bg-[rgba(255,255,255,0.25)] border border-[#FFFCFC] text-center text-sm leading-[2.3rem] text-black'>
                                 <i className='bi bi-chevron-right'></i>
                             </span>
                         </a>

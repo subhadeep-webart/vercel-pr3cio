@@ -9,13 +9,13 @@ const PopularAlbums = ({ albums }) => {
                 </h2>
                 <span className='inline-block text-center'>
                     <a
-                        href='#'
+                        href='/users/albums-library/latest'
                         className='inline-block h-[2.5rem] rounded-[27px] bg-[#F9FF45] px-8 text-xs font-semibold leading-[2.5rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.82)]'>
                         View all
                     </a>
                 </span>
             </div>
-            <div className='grid grid-cols-1 grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-2 lg:grid-cols-4'>
+            <div className='grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
                 {albums.map((album) => (
                     <AlbumCard albumDetails={album} key={album._id} />
                 ))}

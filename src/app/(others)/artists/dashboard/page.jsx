@@ -1,3 +1,7 @@
+import { DASHBOARD_CARD_CONTENT } from "@/utils/constant";
+import Link from "next/link";
+import DashboardCard from "./_components/DashboardCard";
+
 const ArtistDashboard = () => {
     return (
         <>
@@ -12,54 +16,21 @@ const ArtistDashboard = () => {
                         <p className="text-[#979797] mb-5 mt-4">Upload video from the below button
                             or drag and drop</p>
                         <span className="inline-block text-center">
-                            <a href="#"
+                            <Link href="/publish-song"
                                 className="bg-[#C6FF00] text-[#2A2F2C] rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-semibold inline-block hover:bg-[rgba(249,255,69,0.82)] transition-colors">Upload
-                                Song & Album</a></span>
+                                Song & Album</Link></span>
                         <div className="flex-1 relative flex mt-10">
                             <img src="/img/artist-dashboard/amico.png" alt="Upload Song & Album" />
                         </div>
                     </div>
                 </div>
                 <div className="col-span-8">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 lg:grid-cols-4 gap-5">
-                        <div
-                            className="grid grid-cols-2 gap-8 border-1 border-[rgba(193,209,238,0.18)] rounded-[0.625rem] p-3  bg-[#494848]   z-1 relative after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0 after:bg-[linear-gradient(to_right,rgba(45,38,148,0.18)_0%,rgba(211,68,201,0.18)_100%)] after:rounded-[0.3rem] after:z-[-1]  cursor-pointer">
-                            <h4 className="text-lg">1K <span className="text-[#BDBDBD] text-sm">Revenue</span></h4> <span
-                                className="grid items-center justify-center w-[1.7rem] h-[1.7rem] rounded-full border border-white">
-                                <img src="/img/artist-dashboard/revenue.svg" alt="Revenue"
-                                    className="w-[0.938rem] h-[0.938rem]" />
-                            </span>
-
-                        </div>
-                        <div
-                            className="grid grid-cols-2 gap-8 border-1 border-[rgba(193,209,238,0.18)] rounded-[0.625rem] p-3 bg-[#494848]   z-1 relative after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0 after:bg-[linear-gradient(to_right,rgba(45,14,36,0.18)_0%,rgba(77,65,250,0.18)_100%)] after:rounded-[0.3rem] after:z-[-1]  cursor-pointer">
-                            <h4 className="text-lg">254K <span className="text-[#BDBDBD] text-sm">Downloads</span></h4>
-                            <span
-                                className="grid items-center justify-center w-[1.7rem] h-[1.7rem] rounded-full border border-white">
-                                <img src="/img/artist-dashboard/downloads.svg" alt="Downloads"
-                                    className="w-[0.938rem] h-[0.938rem]" />
-                            </span>
-                        </div>
-                        <div
-                            className="grid grid-cols-2 gap-8 border-1 border-[rgba(193,209,238,0.18)] rounded-[0.625rem] p-3 bg-[#494848]   z-1 relative after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0 after:bg-[linear-gradient(to_right,rgba(65,151,250,0.18)_0%,rgba(218,70,16,0.18)_100%)] after:rounded-[0.3rem] after:z-[-1]  cursor-pointer">
-                            <h4 className="text-lg">5400
-                                <span className="text-[#BDBDBD] text-sm">Earning</span>
-                            </h4>
-                            <span
-                                className="grid items-center justify-center w-[1.7rem] h-[1.7rem] rounded-full border border-white">
-                                <img src="/img/artist-dashboard/earning.svg" alt="Earning"
-                                    className="w-[0.938rem] h-[0.938rem]" />
-                            </span>
-                        </div>
-                        <div
-                            className="grid grid-cols-2 gap-8 border-1 border-[rgba(193,209,238,0.18)] rounded-[0.625rem] p-3 bg-[#494848]  z-1 relative after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0 after:bg-[linear-gradient(to_right,rgba(252,180,24,0.18)_0%,rgba(7,11,74,0.18)_100%)] after:rounded-[0.3rem] after:z-[-1]   cursor-pointer">
-                            <h4 className="text-lg">6544 <span className="text-[#BDBDBD] text-sm">Order</span></h4>
-                            <span
-                                className="grid items-center justify-center w-[1.7rem] h-[1.7rem] rounded-full border border-white">
-                                <img src="/img/artist-dashboard/order.svg" alt="order"
-                                    className="w-[0.938rem] h-[0.938rem]" />
-                            </span>
-                        </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+                        {
+                            DASHBOARD_CARD_CONTENT.map((dashboardContent, index) => (
+                                <DashboardCard value={dashboardContent.value} label={dashboardContent.label} imgSrc={dashboardContent.imgSrc} key={`dashboard-card-${index + 1}`} />
+                            ))
+                        }
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-7">
                         <div className="space-y-6">

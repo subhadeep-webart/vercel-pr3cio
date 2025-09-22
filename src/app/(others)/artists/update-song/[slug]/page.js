@@ -8,13 +8,14 @@ import toast from 'react-hot-toast'
 import { musicCategories } from '@/data/music-data';
 import FileUploader from '@/components/file-uploader';
 import Container from '@/components/ui/container';
-import usePublishSongForm from '@/app/(others)/artists/publish-song/_hook/usePublishSongForm';
+import usePublishSongForm from '../../song-upload/_hook/usePublishSongForm';
 import { editSongs, getSongDataByID } from '@/services/api/song-api-service';
 import { withAuthProtection } from '@/components/auth/protected-component';
-import CreditDrawer from '../../publish-song/_components/CreditDrawer';
+import CreditDrawer from '../../song-upload/_components/CreditDrawer';
 import Loader from '@/components/ui/Loader';
 import { useQuery } from '@tanstack/react-query';
 import { getAllCrews } from '@/services/api/artist-api';
+import { getAllTagLists } from '@/services/api/song-api';
 
 const UpdateSong = ({ params }) => {
     const { data: crewsData, isLoading: crewLoading } = useQuery({
@@ -22,29 +23,16 @@ const UpdateSong = ({ params }) => {
         queryFn: getAllCrews,
     })
 
+    const { data: tagListsData, isLoading: isTagListLoading, isError: isTagListError } = useQuery({
+        queryKey: ['tagLists'],
+        queryFn: getAllTagLists,
+        retry: 1                     // Optional: retry once on failure
+    });
+
+    console.log("tagListsData",tagListsData)
+
     const [selectedName, setSelectedName] = useState(null);
     const [selectedRole, setSelectedRole] = useState(null);
-
-    // Whenever both are chosen → push into credits
-    // const tryAddCredit = (nameId, roleId) => {
-    //     if (nameId && roleId) {
-    //         const nameObj = crewName.find((c) => c._id === nameId);
-    //         const roleObj = crewRole.find((r) => r._id === roleId);
-
-    //         const newCredit = {
-    //             credit_user_id: nameId ?? null,
-    //             name: nameObj?.name ?? "",
-    //             credit_role_id: roleId ?? null,
-    //             role: roleObj?.role ?? ""
-    //         };
-
-    //         setFieldValue("credits", [...values.credits, newCredit]);
-
-    //         // reset local selects
-    //         setSelectedName(null);
-    //         setSelectedRole(null);
-    //     }
-    // };
 
     const tryAddCredit = (nameId, roleId) => {
         if (nameId && roleId) {
@@ -72,6 +60,7 @@ const UpdateSong = ({ params }) => {
     const { handleAddAlbum, albums } = usePublishSongForm()
     const router = useRouter()
     const [songData, setSongData] = useState(null);
+    console.log("songData",songData)
     const [isOpenThumbnailUpload, setIsOpenThumbnailUpload] = useState(false);
     const [isOpenMusicUpload, setIsOpenMusicUpload] = useState(false);
     const [singleUpload, setSingleUpload] = useState(true);  // For toggling between single upload and album upload
@@ -82,9 +71,11 @@ const UpdateSong = ({ params }) => {
         url: '',
         artwork: '',
         album_id: null,
-        credits: []
+        credits: [],
+        tags:[]
     });
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const { slug } = use(params);
 
     // Fetch song details by ID
@@ -102,14 +93,19 @@ const UpdateSong = ({ params }) => {
     // Update form values when songData changes
     useEffect(() => {
         if (songData) {
+            console.log("The Song DATA===>", songData);
             setFormValues({
-                title: songData.title || '',
-                description: songData.description || '',
-                category: songData.category.name || "",
-                url: songData.url || '',
-                artwork: songData.artwork || '',
-                albumsOfSong: songData.albumsOfSong || null,
+                title: songData?.title || '',
+                description: songData?.description || '',
+                category: songData?.category.name || "",
+                url: songData?.url || '',
+                artwork: songData?.artwork || '',
+                albumsOfSong: songData?.albumsOfSong || null,
+                album_id: songData?.albumsOfSong?.[0]?._id || null,
                 credits: songData?.credits || [],
+                // tags: songData?.tags || [],
+                 tags: songData?.tags?.map(tag => tag._id) || [],
+                amount: songData?.amount ?? 0
             });
 
             // Automatically set the upload mode if albumsOfSong is present
@@ -135,32 +131,41 @@ const UpdateSong = ({ params }) => {
 
     const handleChangeUploadMode = (value) => {
         setSingleUpload(value);
-        setFormValues({ ...formValues, album_id: null });  // Reset album_id when switching upload mode
+        setFormValues({ ...formValues, album_id: null });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors({});
+        setIsSubmitting(true);
 
         // Validation
         if (!formValues.title || !formValues.description || !formValues.category || !formValues.credits.length) {
             setErrors({ general: 'All fields are required.' });
+            setIsSubmitting(false);
             return;
         }
 
         try {
             const resp = await editSongs(slug, formValues);
+            console.log("Reponse=====>", resp);
             if (resp.status === "success") {
                 toast.success("Updated Successfully");
                 router.push("/artists/my-library/song/draft-songs");
             }
         } catch (err) {
+            console.log(err);
             setErrors({ general: 'Error updating song. Please try again.' });
-        }
+        } finally {
+        setIsSubmitting(false); 
+    }
     };
 
     if (crewLoading) return null;
 
     const { crewName = [], crewRole = [] } = crewsData;
+
+    console.log("Tag Lists Data======>",tagListsData);
 
     return (
         <div className="grid grid-cols-12 bg-[#2A2929] rounded-[0.876rem] py-7">
@@ -229,15 +234,13 @@ const UpdateSong = ({ params }) => {
                                 </span>
                             </div>
                         </button>
-                        // <Button variant='faded' onPress={handleOpenMusicUpload}>
-                        //     Upload Song
-                        // </Button>
                     )}
 
                     {formValues.artwork ? (
                         <div className='relative w-fit col-span-4'>
                             <Image
-                                src={formValues.artwork || '/img/open-graph.png'}
+                                // src={formValues.artwork || '/img/open-graph.png'}
+                                src={formValues.artwork}
                                 alt='song thumbnail'
                                 className='h-20 w-20 object-cover'
                                 radius='sm'
@@ -389,25 +392,78 @@ const UpdateSong = ({ params }) => {
                     </div>
                 </div>
                 <div className="grid grid-cols-12 gap-4 mt-5 items-end">
-                    <div className="mb-2 relative col-span-12 md:col-span-12">
-                        <label htmlFor="description" className="text-base text-[#D1CAD5] mb-2 block">
-                            Description
+                    <div className='col-span-6 mt-6'>
+                        <label className='text-base text-[#D1CAD5]'>
+                            Song Amount
                         </label>
-
-                        <textarea
-                            id="description"
-                            rows={4}
-                            className={`w-full rounded-md px-3 py-2 text-sm border bg-[#2E2E2E] resize-none border-[rgba(255,255,255,0.15)]`}
-                            placeholder="Song description"
-                            value={formValues.description || ""}
-                            onChange={(e) => setFormValues({ ...formValues, description: e.target.value })}
+                        <input
+                            id="amount"
+                            type="text"
+                            className={`w-full rounded-md px-3 h-[3rem] text-sm border-1 bg-[#2E2E2E] $
+                            border-[rgba(255,255,255,0.15)]`}
+                            placeholder="Song amount"
+                            onChange={(e) => setFormValues({ ...formValues, amount: e.target.value })}
+                            value={formValues.amount || ""}
                         />
 
-                        {/* {touched.description && errors.description && (
-                            <p className="text-red-500 text-sm mt-1">{errors.description}</p>
+                        {/* {touched.amount && errors.amount && (
+                            <p className="text-red-500 text-sm mt-1">{errors.amount}</p>
                         )} */}
                     </div>
+                    <div className='col-span-6 mt-6'>
+                        <label className='text-base text-[#D1CAD5]'>
+                            Song Tag
+                        </label>
+                        <Select
+                            name="tags"
+                            selectionMode="multiple"
+                            // selectedKeys={new Set(
+                            //     formValues.tags
+                            //         .map(tagName => tagListsData?.data?.find(t => t.name === tagName))
+                            //         .filter(Boolean)
+                            //         .map(t => t?._id)
+                            // )}
+                            // onSelectionChange={(keys) => {
+                            //     const selectedNames = Array.from(keys).map(key => {
+                            //         const tag = tagListsData?.data?.find(t => t._id === key);
+                            //         return tag?.name || '';
+                            //     }).filter(Boolean);
+
+                            //     setFormValues(prev => ({
+                            //         ...prev,
+                            //         tags: [...prev.tags, ...selectedNames],
+                            //     }));
+                            // }}
+                             selectedKeys={new Set(formValues.tags)} 
+                             onSelectionChange={(keys) => {
+                                setFormValues(prev => ({
+                                                ...prev,
+                                                tags: Array.from(keys),
+                                    }));
+                                }}
+                            placeholder="Select song tags"
+                            className="mt-2 w-full max-w-full"
+                            classNames={{
+                                trigger: `bg-transparent w-full rounded-md px-3 h-[3rem] text-[0.82rem] border border-[rgba(255,255,255,0.15)] 
+                bg-[#2E2E2E] text-[#929292]`,
+                                label: "text-base text-[#D1CAD5] mb-2 block",
+                                popoverContent: 'bg-[#2E2E2E]'
+                            }}
+                        >
+                            {tagListsData?.data?.map(option => (
+                                <SelectItem key={option._id}>{option.name}</SelectItem>
+                            ))}
+                        </Select>
+
+                        {/* {touched.tags && errors.tags && (
+                            <p className='text-sm text-red-500'>
+                                {errors.tags}
+                            </p>
+                        )} */}
+                    </div>
+
                 </div>
+
                 <div className="grid grid-cols-12 gap-4 mt-5 items-end">
                     <div className="mb-2 relative col-span-12 md:col-span-6">
                         <Select
@@ -510,12 +566,46 @@ const UpdateSong = ({ params }) => {
                         </div>
                     </div>
                 ))}
+
+                <div className="grid grid-cols-12 gap-4 mt-5 items-end">
+                        <div className="mb-2 relative col-span-12 md:col-span-12">
+                            <label htmlFor="description" className="text-base text-[#D1CAD5] mb-2 block">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                rows={4}
+                                className={`w-full rounded-md px-3 py-2 text-sm border bg-[#2E2E2E] resize-none border-[rgba(255,255,255,0.15)] }`}
+                                placeholder="Song description"
+                                 value={formValues?.description || ""}
+                            onChange={(e) => setFormValues({ ...formValues, description: e.target.value })}
+                            />
+
+                            {/* {touched.description && errors.description && (
+                                <p className="text-red-500 text-sm mt-1">{errors.description}</p>
+                            )} */}
+                        </div>
+                    </div>
+
+
                 {errors.general && <div className="text-red-500">{errors.general}</div>}
+
+
                 <div className="grid grid-cols-auto gap-4 mt-10 justify-center">
-                    <button
+                    {/* <button
                         className="w-auto h-[2.88rem] leading-[2.88rem] bg-[#C6FF00] text-center rounded-full px-20 text-black text-sm cursor-pointer">
                         Update Song
-                    </button>
+                    </button> */}
+                    <button
+    type="submit"
+    disabled={isSubmitting}
+    className={`w-auto h-[2.88rem] leading-[2.88rem] bg-[#C6FF00] text-center rounded-full px-20 text-black text-sm cursor-pointer transition-opacity duration-200 ${
+        isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+    }`}
+>
+    {isSubmitting ? <Loader /> : 'Update Song'}
+</button>
                 </div>
             </form >
         </div >

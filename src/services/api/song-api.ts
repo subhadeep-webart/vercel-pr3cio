@@ -186,6 +186,8 @@ export const getFavoritesList = async (params: fevSongParams) => {
         throw new Error(errorMessage)
     }
 }
+
+
 export const getInAppDownloadList = async (params: fevSongParams) => {
     try {
         const response = await httpService.get<PaginatedApiResponse<Song[]>>(
@@ -208,3 +210,42 @@ export const getInAppDownloadList = async (params: fevSongParams) => {
         throw new Error(errorMessage)
     }
 }
+
+export const getPurchasedList = async (params: { type: "song" | "album" }) => {
+    try {
+        const response = await httpService.get(
+            queryConstants.downloadMusicProduct,
+            {
+                params: {
+                    type: params.type,
+                },
+            }
+        )
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err: any) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+
+
+export const getAllTagLists = async () => {
+    try {
+        const response = await httpService.get(queryConstants.getAllTagLists)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err: any) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+

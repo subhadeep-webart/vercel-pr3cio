@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import { musicCategories } from '@/data/music-data';
 import FileUploader from '@/components/file-uploader';
 import Container from '@/components/ui/container';
-import usePublishSongForm from '@/app/(others)/artists/publish-song/_hook/usePublishSongForm';
+import usePublishSongForm from '@/app/(others)/artists/song-upload/_hook/usePublishSongForm';
 import { editSongs, getSongDataByID } from '@/services/api/song-api-service';
 import { withAuthProtection } from '@/components/auth/protected-component';
 
@@ -25,6 +25,8 @@ function UpdateSongForm({ params }) {
         url: '',
         artwork: '',
         album_id: null,
+        tags: [],
+        amount: 0
     });
     const [errors, setErrors] = useState({});
     const { slug } = use(params);
@@ -51,6 +53,8 @@ function UpdateSongForm({ params }) {
                 url: songData.url || '',
                 artwork: songData.artwork || '',
                 albumsOfSong: songData.albumsOfSong || null,
+                tags: songData.tags || [],
+                amount: songData.amount || []
             });
 
             // Automatically set the upload mode if albumsOfSong is present

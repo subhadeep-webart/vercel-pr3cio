@@ -12,7 +12,7 @@ import AuthProvider from '@/components/auth/auth-provider'
 import TabBar from '@/components/layout/tabbar'
 import MobilePlayer from '@/components/player/mobile-player'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import CreateAlbum from './(others)/artists/publish-song/_components/create-album'
+import CreateAlbum from './(others)/artists/song-upload/_components/create-album'
 
 const Providers = ({ children }: { children: ReactNode }) => {
     const { push: navigate } = useRouter()

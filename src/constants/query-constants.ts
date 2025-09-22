@@ -53,7 +53,26 @@ const queryConstants = {
     inAppDownLoad: "/songs/download-album-song-in-app",
     getAllCrews: "/songs/crew-details",
     addToStripeAccount: "/payments/create-stripe-account",
+    uploadGallery: "/users/upload-gallery",
+    deleteGallery: "/users/delete-file",
     getAllGenres: "/category",
-    postCategory:"/category/add-of-user"
+    postCategory: "/category/add-of-user",
+    uploadProductImage: "/products/upload",
+    productUpload: "/products/create",
+    artistProductListing: "/products/own",
+    getProductUpload: "/products",
+    editProductUpload: "/products",
+    deleteUploadedProduct: "/products",
+    productDetailById: "/products/:id",
+    postEvent: "/event/add-event",
+    eventListByArtists: "/event/event-list",
+    deleteEventById: "/event/delete-event",
+    commonImgDelete:"/users/common-image-delete",
+    deleteProductVariant:"/products/delete-variant",
+    editEvent: "/event/edit-event",
+    getEventById: "/event",
+    downloadMusicProduct: "/payments/get-purchased-items",
+    productPurchase:"/payments/purchase-product",
+    getAllTagLists: "/category/tag-list"
 }
 export default queryConstants

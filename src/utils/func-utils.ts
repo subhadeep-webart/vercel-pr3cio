@@ -14,6 +14,7 @@ export const buildURL = (
 
     return url
 }
+
 export const formatTrackTime = (seconds: number): string => {
     if (isNaN(seconds) || seconds < 0) return '00:00'
 
@@ -39,4 +40,32 @@ export function formatPlayCount(count: number): string {
     if (count < 1_000_000) return `${(count / 1000).toFixed(1)}K`
     if (count < 1_000_000_000) return `${(count / 1_000_000).toFixed(1)}M`
     return `${(count / 1_000_000_000).toFixed(1)}B`
+}
+
+
+export function convertSecondsToTime(seconds: number) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    let result = '';
+    if (hours > 0) result += `${hours}h `;
+    if (minutes > 0 || hours > 0) result += `${minutes}min `;
+    result += `${remainingSeconds}sec`;
+
+    return result.trim();
+}
+
+export function formatDateToCustom(dateString: string) {
+    const date = new Date(dateString);
+
+    // Array of month abbreviations
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    const day = date.getUTCDate();            // Get day of month (1-31)
+    const month = months[date.getUTCMonth()]; // Get month abbreviation
+    const year = date.getUTCFullYear();       // Get full year (e.g., 2024)
+
+    return `${day} ${month}, ${year}`;
 }

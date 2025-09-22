@@ -2,9 +2,9 @@
 
 import { Card, CardBody, Skeleton } from '@heroui/react'
 
-const MusicCardSkeleton = () => {
+const MusicCardSkeleton = ({ className }) => {
     return (
-        <Card className='w-full border-none bg-transparent shadow-none'>
+        <Card className={`w-full border-none bg-transparent shadow-none ${className}`}>
             <CardBody className='flex flex-row items-center justify-between border-b border-dashed border-white/10 py-4'>
                 <div className='flex items-center gap-3 w-full'>
                     <span className='w-5 text-sm text-white'>--</span>
