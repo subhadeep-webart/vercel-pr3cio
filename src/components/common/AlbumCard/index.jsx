@@ -6,7 +6,7 @@ import Link from 'next/link'
 const AlbumCard = ({ albumDetails }) => {
     return (
         <Link className='mb-3 md:mb-5 cursor-pointer' href={`/albums/album-details/${albumDetails?._id}`}>
-            <div className="relative z-0 w-full h-40 overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.5)] after:content-['']">
+            <div className="relative z-0 w-full h-40 overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:content-['']">
                 {/* <div href="/albums/album-details"> */}
                     <img
                         src={albumDetails?.thumbnail}

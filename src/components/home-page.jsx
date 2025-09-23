@@ -68,50 +68,6 @@ const HomePageLayout = () => {
     console.log('Album Data=====>', albums)
 
     return (
-        // <Container className="space-y-6">
-        //     {/* Tabs */}
-        //     <div className="flex gap-4 mb-4">
-        //         <div
-        //             onClick={() => setActiveTab('latestAlbum')}
-        //             className={`px-4 py-2 text-lg cursor-pointer border-b-2 ${activeTab === 'latestAlbum' ? 'border-primary text-primary' : 'border-transparent text-gray-500'
-        //                 }`}
-        //         >
-        //             Latest Albums
-        //         </div>
-        //         <div
-        //             onClick={() => handelTab()}
-        //             className={`px-4 py-2 text-lg cursor-pointer border-b-2 ${activeTab === 'latestSong' ? 'border-primary text-primary' : 'border-transparent text-gray-500'
-        //                 }`}
-        //         >
-        //             Latest Songs
-        //         </div>
-        //     </div>
-
-        //     {/* Tab content */}
-        //     {activeTab === 'latestAlbum' ? (
-        //         <div>
-        //             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-        //                 {status === 'pending' &&
-        //                     Array.from({ length: 8 }).map((_, i) => <AlbumCardSkeleton key={i} />)}
-
-        //                 {status === 'success' &&
-        //                     albums.map((album) => <AlbumCard key={album._id} data={album} handleActionInAlbumCard={handleActionInAlbumCard} />)}
-
-        //                 {isFetchingNextPage &&
-        //                     Array.from({ length: 4 }).map((_, i) => (
-        //                         <AlbumCardSkeleton key={`loading-${i}`} />
-        //                     ))}
-        //             </div>
-
-        //             <CircularProgress
-        //                 ref={observerRef}
-        //                 className={cn(hasNextPage ? 'block' : 'hidden')}
-        //             />
-        //         </div>
-        //     ) : (
-        //         <MusicList trending={false} />
-        //     )}
-        // </Container>
         <>
             <div className='flex-1 pl-3 pr-3 md:px-5'>
                 {/* New Releases */}
