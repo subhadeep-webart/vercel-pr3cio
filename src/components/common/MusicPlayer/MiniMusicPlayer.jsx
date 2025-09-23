@@ -12,14 +12,9 @@ import { Image } from '@heroui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-
 import queryConstants from '@/constants/query-constants'
 import useAuth from '@/hooks/useAuth'
 import usePlayer from '@/hooks/usePlayer'
-
-// import AudioDurationSlider from './AudioDurationSlider'
-// import MediaControls from './MediaControls'
-// import VolumeControl from './VolumeControl'
 import MainPlayer from "./MainPlayer";
 import TrackDetails from './TrackDetails'
 import VolumeControl from '@/app/(others)/artists/_components/VolumeControl'

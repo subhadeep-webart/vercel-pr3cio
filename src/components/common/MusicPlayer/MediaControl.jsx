@@ -30,7 +30,7 @@ const MediaControls = ({
             <li className='px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2'>
                 <button
                     onClick={onPrevious}
-                    className='flex h-[1.28rem] w-[1.28rem] items-center justify-center rounded-full bg-[#52534d]'>
+                    className={`flex h-[1.28rem] w-[1.28rem] items-center justify-center rounded-full bg-[#52534d] ${!activeTrack ? "cursor-not-allowed opacity-40" : "cursor-pointer"}`}>
                     <img
                         src='/images/player-icon/skipBack.webp'
                         alt='skipBack'
@@ -52,24 +52,11 @@ const MediaControls = ({
                             </svg>
                         )}
                 </button>
-
-                {/* <a
-                                href='#'
-                                id='playBtn'
-                                className='flex h-[2.03rem] w-[2.03rem] items-center justify-center rounded-full bg-white text-center leading-[2.03rem]'>
-                                <img
-                                    src='/images/player-icon/play.webp'
-                                    alt='play'
-                                    loading='lazy'
-                                    className=''
-                                    id='playIcon'
-                                />
-                            </a> */}
             </li>
             <li className='px-2 sm:px-2 md:px-1 xl:px-2 2xl:px-2'>
                 <button
                     onClick={onNext}
-                    className='flex h-[1.28rem] w-[1.28rem] items-center justify-center rounded-full bg-[#52534d]'>
+                    className={`flex h-[1.28rem] w-[1.28rem] items-center justify-center rounded-full bg-[#52534d] ${!activeTrack ? "cursor-not-allowed opacity-40" : "cursor-pointer"}`}>
                     <img
                         src='/images/player-icon/skipFwd.webp'
                         alt='skipFwd'
@@ -86,9 +73,6 @@ const MediaControls = ({
                     />
                 </button>
             </li>
-            {/* <li className="className='w-[0.8rem] flex-[0_0_0.8rem]'">
-                <VolumeControl />
-            </li> */}
         </ul>
     )
 }
