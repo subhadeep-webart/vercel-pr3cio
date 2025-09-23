@@ -1,12 +1,16 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { setArtist } from '@/redux/slices/app-slice'
 import { useAppDispatch } from '@/redux/store'
 import {
     Avatar,
     Button,
     Chip,
+    Drawer,
+    DrawerBody,
+    DrawerContent,
+    DrawerHeader,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -33,6 +37,7 @@ import usePlayer from '@/hooks/usePlayer'
 
 import MiniMusicPlayer from '../common/MusicPlayer/MiniMusicPlayer'
 import PageTitle from '../ui/page-title'
+import DrawerSideBar from './DrawerSidebar'
 
 const Header = () => {
     const { isLoggedIn, user, isLoading, logout } = useAuth()
@@ -53,6 +58,8 @@ const Header = () => {
         )
     }, [pathname])
 
+//    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
     const handleSigninClick = () => {
         dispatch(setArtist(false))
         setModal('signin')
@@ -71,6 +78,10 @@ const Header = () => {
         logout()
         player.stop()
     }
+
+    //   const handleHamburgerClick = () => {
+    //     if (isMobile) setIsDrawerOpen(true)
+    // }
 
     return (
         <>
@@ -308,11 +319,41 @@ const Header = () => {
                         </>
                     )}
 
-                    <span className='ml-3 inline-block cursor-pointer text-xl font-semibold transition-colors hover:text-[#ff2663] sm:ml-3 sm:hidden md:ml-3 xl:pl-3 2xl:pl-4'>
-                        <i className='bi bi-list' id='navBtn'></i>
-                    </span>
+                      {/* {isMobile && (
+                        <span
+                            className='ml-3 inline-block cursor-pointer text-xl hover:text-[#ff2663]'
+                            onClick={handleHamburgerClick}>
+                            <i className='bi bi-list'></i>
+                        </span>
+                    )} */}
+
                 </div>
             </header>
+
+           {/* <Drawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        placement='left'
+        size='sm' // you can specify appropriate size
+        backdrop='blur' // or 'opaque' etc
+        isDismissable={true}
+        shouldBlockScroll={true}
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <div className='flex justify-between items-center p-4'>
+              <span className='text-lg font-semibold text-white'>Menu</span>
+             
+            </div>
+          </DrawerHeader>
+          <DrawerBody className='px-0'>
+            <DrawerSideBar
+              onNavigate={() => setIsDrawerOpen(false)}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer> */}
+
             <Navbar isBordered={!isMobile} maxWidth='full' className='hidden'>
                 <NavbarContent justify='start'>
                     <NavbarBrand classNameName='sm:hidden'>

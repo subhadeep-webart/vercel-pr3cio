@@ -68,13 +68,11 @@ const MusicPage = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-2">
                     {status === 'pending' &&
                         Array.from({ length: 5 }).map((_, i) => (
                             <MusicCardSkeleton key={`skeleton-${i + 1}`} />
                         ))}
-
-
                     {/* Render the list of songs when the query is successful */}
                     {status === 'success' &&
                         musics?.length > 0 && musics?.map((song) => (

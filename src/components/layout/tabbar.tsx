@@ -62,9 +62,10 @@ export default function TabBar() {
                         </div>
                     }
                 />
+             
                 <Tab
                     key='/store'
-                    href='/store'
+                    href='/users/my-store'
                     title={
                         <div className='flex flex-col items-center'>
                             <PiMusicNoteFill className='text-2xl' />

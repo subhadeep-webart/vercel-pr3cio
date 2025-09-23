@@ -1,6 +1,6 @@
 const ErrorText=({errorMessage})=>{
     return(
-        <p className="text-red-500 absolute text-sm mt-1">{errorMessage}</p>
+        <p className="text-red-500 absolute text-xs mt-0.5">{errorMessage}</p>
     )
 }
 

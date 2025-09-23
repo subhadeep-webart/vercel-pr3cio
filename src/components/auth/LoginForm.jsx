@@ -178,13 +178,13 @@ const LoginForm = () => {
             </div> */}
 
              <div className="flex justify-center bg-[url('/img/login-bg.png')] bg-cover bg-bottom bg-no-repeat w-full min-h-screen">
-                <div className="w-[45%] h-screen bg-[#191919] bg-no-repeat bg-top-right flex justify-center items-center p-4">
+                <div className="w-full md:w-[45%] h-screen bg-[#191919] bg-no-repeat bg-top-right flex justify-center items-center p-4">
                     <div className="max-w-[27.38rem] w-full m-auto">
                         <center>
-                            <h1 className="font-semibold text-[2.25rem]">
+                            <h1 className="font-semibold text-lg md:text-4xl">
                                 Sign In To Continue
                             </h1>
-                            <p className="text-base text-[#A3A3A3] mb-8">
+                            <p className="text-sm md:text-base text-[#A3A3A3] mb-8">
                                 Access Your Account in Just a Few Clicks
                             </p>
                         </center>
@@ -193,7 +193,7 @@ const LoginForm = () => {
                             <div className="mb-5 relative">
                                 <label
                                     htmlFor="loginId"
-                                    className="text-base font-medium text-[#D1CAD5] mb-2 block"
+                                    className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block"
                                 >
                                     Email
                                 </label>
@@ -215,7 +215,7 @@ const LoginForm = () => {
                             <div className="mb-5 relative">
                                 <label
                                     htmlFor="password"
-                                    className="text-base font-medium text-[#D1CAD5] mb-2 block"
+                                    className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block"
                                 >
                                     Password
                                 </label>
