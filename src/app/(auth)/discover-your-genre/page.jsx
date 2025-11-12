@@ -96,15 +96,24 @@ const DiscoverYourGenre = () => {
                         />
                     </div>
                     <div className="w-[50%] bg-[#191919] relative bg-[url('/images/login/wave.webp')] bg-no-repeat bg-top-right flex justify-center items-center p-4 h-screen">
-                        <div className="max-w-[38.38rem] w-full m-auto">
+                        <div className="max-w-[38.38rem] w-full m-auto relative">
                             <center>
-                                <span className="inline-block">
+                                <div className="flex justify-center items-center">
                                     <img
                                         src="/images/login/1.webp"
                                         alt=""
-                                        className="h-full 2xl:h-screen w-full object-cover"
+                                        className="h-24 w-24 object-cover"
                                     />
-                                </span>
+                                </div>
+                                <div className="pt-4 text-right absolute top-4 right-0">
+                                    <button
+                                        className="bg-[#C6FF00] w-32 text-sm text-black h-[3rem] leading-[3rem] text-center rounded-3xl cursor-pointer hover:bg-[#afe200] transition-colors"
+                                        disabled={isCategorySubmitting}
+                                        onClick={handleSelectedGenreSubmit}
+                                    >
+                                        {isCategorySubmitting ? <Loader /> : "Continue"}
+                                    </button>
+                                </div>
                                 <h1 className="font-semibold text-2xl mt-4 mb-2">
                                     {"Let Pr3cio handpick music that you'll put on repeat and discover artists you'll love"}
                                 </h1>
@@ -118,12 +127,7 @@ const DiscoverYourGenre = () => {
                                         )) : null
                                     }
                                 </div>
-                                <div className="mt-18 text-right">
-                                    {/* <button className="text-sm text-[#9D9D9D]" onClick={handleSkip}>Skip</button> */}
-                                    <button className="bg-[#C6FF00] w-32 px-15 text-sm text-black h-[3rem] leading-[3rem] text-center rounded-3xl cursor-pointer hover:bg-[#afe200] transition-colors mt-16" disabled={isCategorySubmitting} onClick={handleSelectedGenreSubmit}>
-                                        {isCategorySubmitting ? <Loader /> : "Continue"}
-                                    </button>
-                                </div>
+
                             </center>
                         </div>
                     </div>

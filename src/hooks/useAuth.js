@@ -1,3 +1,5 @@
+"use client"
+
 import {
     logout as logoutAction,
     saveSession as saveSessionAction,

@@ -97,6 +97,7 @@ const Events = () => {
 
     return (
         <>
+     <div className='min-h-[500px]'>
             <Table aria-label='Artist event list'>
                 <TableHeader columns={EVENT_COLUMN}>
                     {(column) => (
@@ -123,7 +124,7 @@ const Events = () => {
                     )}
                 </TableBody>
             </Table>
-
+</div>
             {openDelete && (
                 <DeleteEvent
                     openDelete={openDelete}

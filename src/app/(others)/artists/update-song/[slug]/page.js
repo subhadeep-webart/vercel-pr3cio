@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, use, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Input, Textarea, Select, SelectItem, Tooltip, Image, Switch } from '@heroui/react';
 import { CiCircleRemove } from 'react-icons/ci';
@@ -18,6 +18,7 @@ import { getAllCrews } from '@/services/api/artist-api';
 import { getAllTagLists } from '@/services/api/song-api';
 
 const UpdateSong = ({ params }) => {
+    const audioRef = useRef(null);
     const { data: crewsData, isLoading: crewLoading } = useQuery({
         queryKey: ["crews"],
         queryFn: getAllCrews,
@@ -29,7 +30,7 @@ const UpdateSong = ({ params }) => {
         retry: 1                     // Optional: retry once on failure
     });
 
-    console.log("tagListsData",tagListsData)
+    console.log("tagListsData", tagListsData)
 
     const [selectedName, setSelectedName] = useState(null);
     const [selectedRole, setSelectedRole] = useState(null);
@@ -60,7 +61,7 @@ const UpdateSong = ({ params }) => {
     const { handleAddAlbum, albums } = usePublishSongForm()
     const router = useRouter()
     const [songData, setSongData] = useState(null);
-    console.log("songData",songData)
+    console.log("songData", songData)
     const [isOpenThumbnailUpload, setIsOpenThumbnailUpload] = useState(false);
     const [isOpenMusicUpload, setIsOpenMusicUpload] = useState(false);
     const [singleUpload, setSingleUpload] = useState(true);  // For toggling between single upload and album upload
@@ -72,11 +73,13 @@ const UpdateSong = ({ params }) => {
         artwork: '',
         album_id: null,
         credits: [],
-        tags:[]
+        tags: []
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { slug } = use(params);
+
+    console.log("Song Data==== ==>", songData);
 
     // Fetch song details by ID
     const getSongDetailById = async () => {
@@ -104,7 +107,7 @@ const UpdateSong = ({ params }) => {
                 album_id: songData?.albumsOfSong?.[0]?._id || null,
                 credits: songData?.credits || [],
                 // tags: songData?.tags || [],
-                 tags: songData?.tags?.map(tag => tag._id) || [],
+                tags: songData?.tags?.map(tag => tag._id) || [],
                 amount: songData?.amount ?? 0
             });
 
@@ -134,6 +137,13 @@ const UpdateSong = ({ params }) => {
         setFormValues({ ...formValues, album_id: null });
     };
 
+    const handleLoadedMetadata = () => {
+        const audio = audioRef.current;
+        if (audio && audio?.duration) {
+            setFormValues({ ...formValues, duration: audio.duration });
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
@@ -157,15 +167,15 @@ const UpdateSong = ({ params }) => {
             console.log(err);
             setErrors({ general: 'Error updating song. Please try again.' });
         } finally {
-        setIsSubmitting(false); 
-    }
+            setIsSubmitting(false);
+        }
     };
 
     if (crewLoading) return null;
 
     const { crewName = [], crewRole = [] } = crewsData;
 
-    console.log("Tag Lists Data======>",tagListsData);
+    console.log("Tag Lists Data======>", tagListsData);
 
     return (
         <div className="grid grid-cols-12 bg-[#2A2929] rounded-[0.876rem] py-7">
@@ -194,8 +204,8 @@ const UpdateSong = ({ params }) => {
                 <div className="grid grid-cols-12 gap-4 items-end mb-6">
                     {formValues.url ? (
                         <div className='flex items-center gap-1 col-span-4'>
-                            <audio controls src={`https://d13hus0rdpxu56.cloudfront.net/${formValues.url}`} className='h-8' />
-                            <Tooltip content='Remove Song'>
+                            <audio controls src={`https://d13hus0rdpxu56.cloudfront.net/${formValues.url}`} className='h-8' ref={audioRef} onLoadedMetadata={handleLoadedMetadata} />
+                            {!songData?.is_public && <Tooltip content='Remove Song'>
                                 <Button
                                     type='button'
                                     isIconOnly
@@ -203,7 +213,7 @@ const UpdateSong = ({ params }) => {
                                     onPress={handleRemoveSong}>
                                     <CiCircleRemove className='text-2xl text-danger-500' />
                                 </Button>
-                            </Tooltip>
+                            </Tooltip>}
                         </div>
                     ) : (
                         <button
@@ -434,13 +444,13 @@ const UpdateSong = ({ params }) => {
                             //         tags: [...prev.tags, ...selectedNames],
                             //     }));
                             // }}
-                             selectedKeys={new Set(formValues.tags)} 
-                             onSelectionChange={(keys) => {
+                            selectedKeys={new Set(formValues.tags)}
+                            onSelectionChange={(keys) => {
                                 setFormValues(prev => ({
-                                                ...prev,
-                                                tags: Array.from(keys),
-                                    }));
-                                }}
+                                    ...prev,
+                                    tags: Array.from(keys),
+                                }));
+                            }}
                             placeholder="Select song tags"
                             className="mt-2 w-full max-w-full"
                             classNames={{
@@ -568,25 +578,25 @@ const UpdateSong = ({ params }) => {
                 ))}
 
                 <div className="grid grid-cols-12 gap-4 mt-5 items-end">
-                        <div className="mb-2 relative col-span-12 md:col-span-12">
-                            <label htmlFor="description" className="text-base text-[#D1CAD5] mb-2 block">
-                                Description
-                            </label>
+                    <div className="mb-2 relative col-span-12 md:col-span-12">
+                        <label htmlFor="description" className="text-base text-[#D1CAD5] mb-2 block">
+                            Description
+                        </label>
 
-                            <textarea
-                                id="description"
-                                rows={4}
-                                className={`w-full rounded-md px-3 py-2 text-sm border bg-[#2E2E2E] resize-none border-[rgba(255,255,255,0.15)] }`}
-                                placeholder="Song description"
-                                 value={formValues?.description || ""}
+                        <textarea
+                            id="description"
+                            rows={4}
+                            className={`w-full rounded-md px-3 py-2 text-sm border bg-[#2E2E2E] resize-none border-[rgba(255,255,255,0.15)] }`}
+                            placeholder="Song description"
+                            value={formValues?.description || ""}
                             onChange={(e) => setFormValues({ ...formValues, description: e.target.value })}
-                            />
+                        />
 
-                            {/* {touched.description && errors.description && (
+                        {/* {touched.description && errors.description && (
                                 <p className="text-red-500 text-sm mt-1">{errors.description}</p>
                             )} */}
-                        </div>
                     </div>
+                </div>
 
 
                 {errors.general && <div className="text-red-500">{errors.general}</div>}
@@ -598,14 +608,13 @@ const UpdateSong = ({ params }) => {
                         Update Song
                     </button> */}
                     <button
-    type="submit"
-    disabled={isSubmitting}
-    className={`w-auto h-[2.88rem] leading-[2.88rem] bg-[#C6FF00] text-center rounded-full px-20 text-black text-sm cursor-pointer transition-opacity duration-200 ${
-        isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-    }`}
->
-    {isSubmitting ? <Loader /> : 'Update Song'}
-</button>
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`w-auto h-[2.88rem] leading-[2.88rem] bg-[#C6FF00] text-center rounded-full px-20 text-black text-sm cursor-pointer transition-opacity duration-200 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                    >
+                        {isSubmitting ? <Loader /> : 'Update Song'}
+                    </button>
                 </div>
             </form >
         </div >

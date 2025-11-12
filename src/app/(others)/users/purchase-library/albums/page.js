@@ -19,16 +19,16 @@ const PurchaseAlbum = () => {
         queryFn: () => getPurchasedList({ type: 'album' }),
     })
 
-    if (status === "success" && !albumData?.data?.length) {
-        return <NoDataFound component={<NoAlbumFoundComponent message={"Oops! Looks like you haven’t downloaded any albums yet. 🎵 Go ahead and grab your favorite tracks — or treat yourself to something new! 💿✨"} />} />
-    }
+    // if (status === "success" && !albumData?.data?.length) {
+    //     return <NoDataFound component={<NoAlbumFoundComponent message={"Oops! Looks like you haven’t downloaded any albums yet. 🎵 Go ahead and grab your favorite tracks — or treat yourself to something new! 💿✨"} />} />
+    // }
 
     const albumList = albumData?.data ?? []
     console.log("Albums Lists=====>", albumList);
 
     return (
         <>
-
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8 min-h-screen">
             {status === "pending" && Array.from({ length: 5 }).map((_, i) => (
                 <MusicCardSkeleton key={`skeleton-${i + 1}`} />
             ))}
@@ -43,6 +43,7 @@ const PurchaseAlbum = () => {
             {status === "error" && (
                 <p className="text-red-500">Failed to load albums.</p>
             )}
+            </div>
         </>
     )
 }

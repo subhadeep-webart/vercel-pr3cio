@@ -41,7 +41,7 @@ const Artist_layout = ({ children }) => {
         )
     return (
         <>
-            <div className='ml-3 w-full rounded-[0.75rem] bg-[#333232] md:ml-5'>
+            <div className='w-full rounded-[0.75rem] bg-[#333232]'>
                 {url !== '/artists' && <PageCommonBg slug={slug} />}
 
                 {children}

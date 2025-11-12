@@ -49,6 +49,7 @@ export const deleteSongById = async (songId) => {
         throw new Error(errorMessage)
     }
 }
+
 export const downloadSongById = async (songId) => {
     try {
         const response = await httpService.get(queryConstants.downloadSong + "/" + songId, { responseType: 'blob' })

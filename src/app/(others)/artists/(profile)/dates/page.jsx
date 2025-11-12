@@ -11,11 +11,11 @@ const Dates = () => {
     console.log("Artist Details===>", artist);
     return (
         <>
-            <div class='grid w-full grid-cols-1 gap-4 px-8 py-4 sm:grid-cols-2 lg:grid-cols-3'>
+            <div class='grid w-full grid-cols-1 gap-4 px-8 py-4 sm:grid-cols-2 lg:grid-cols-3 min-h-[310px]'>
                 {artist?.event?.length > 0 ? artist?.event?.map((eventDetails)=>(
                 <EventCard key={eventDetails?._id} eventDetails={eventDetails} />
                 )):(
-                    <div className='col-span-3 text-center text-lg text-gray-500'>No Events Found</div>
+                    <div className='col-span-3 text-center text-base md:text-lg text-gray-500 min-h-[310px]'>No Events Found</div>
                 )}
             </div>
         </>

@@ -70,17 +70,17 @@ const ProductDetails = () => {
                             <ProductGallery imageUrl={imageUrl}/>
 
                             <div className=''>
-                                <h2 className='text-2xl font-bold line-clamp-2'>
+                                <h2 className='text-base md:text-2xl font-bold line-clamp-2'>
                                     {name}
                                 </h2>
-                                <p className='mb-6 mt-3 text-sm font-medium text-[#A8A8A8] line-clamp-5'>
+                                <p className='mb-6 mt-3 text-xs md:text-sm font-medium text-[#A8A8A8] line-clamp-5'>
                                     {description}
                                 </p>
                                 <hr className='mb-3 opacity-20' />
                                 <h6 className='my-1 text-sm font-bold text-white'>
                                     Price
                                 </h6>
-                                <h3 className='my-1 text-xl font-bold text-white'>
+                                <h3 className='my-1 text-base md:text-xl font-bold text-white'>
                                     ${price}
                                 </h3>
                                 <div className='mt-6 flex'>

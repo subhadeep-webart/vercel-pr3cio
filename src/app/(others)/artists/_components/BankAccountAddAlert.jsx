@@ -1,3 +1,4 @@
+
 import { Alert, Button } from "@heroui/react";
 import Image from "next/image";
 import Loader from "@/components/ui/Loader";
@@ -5,10 +6,11 @@ import useAuth from "@/hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import { createStripeAccount } from "@/services/api/user-api";
 import { SEND_ICON } from "@/utils/icons";
+import toast from "react-hot-toast";
 
 const BankAccountAddAlert = () => {
     const { user } = useAuth();
-    const { mutate: handleBankAccountMutate, loading: isBankAccountLoading } = useMutation({
+    const { mutate: handleBankAccountMutate, isPending: isBankAccountLoading } = useMutation({
         mutationFn: createStripeAccount,
         onSuccess: (data) => {
             console.log("Data=======:>", data);
@@ -19,7 +21,11 @@ const BankAccountAddAlert = () => {
         },
         onError: (error) => {
             console.error('Stripe account creation failed:', error)
+            console.log('Stripe account creation failed:', error)
             // Optionally show toast or notification
+            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred.';
+            console.log("errorMessage",errorMessage)
+            toast.error(errorMessage)
         }
     })
     return (

@@ -1,11 +1,11 @@
 import { IoIosArrowBack } from "react-icons/io";
 
-const ChangePassword=()=>{
-    return(
+const ChangePassword = () => {
+    return (
         <>
-        <div class="flex items-start flex-wrap w-full  justify-end ">
-            <div class="bg-[#333232] w-full rounded-[0.75rem]">
-                {/* <div
+            <div class="flex items-start flex-wrap w-full  justify-end ">
+                <div class="bg-[#333232] w-full rounded-[0.75rem]">
+                    {/* <div
                     class="bg-[#1C1919] rounded-[0.75rem] px-10 py-8 bg-cover bg-no-repeat bg-[url('/images/artist/bg.webp')] w-full bg-center flex items-center">
                     <span
                         class="w-[7.50rem] flex-[0_0_7.50rem] rounded-full  border-1 border-[#d3d3d3a1] border-solid block mr-6  mb-6">
@@ -17,18 +17,18 @@ const ChangePassword=()=>{
                         <p class="text-sm font-semibold text-[#9D9D9D]">Join Since 14 nov,2024</p>
                     </div>
                 </div> */}
-                <div class="planBox ">
-                    <div
-                        class="py-10 px-8 mb-6 bg-size-[100%] bg-no-repeat bg-[url('/images/user/bg2.webp')] bg-bottom min-h-[30rem]">
+                    <div class="planBox ">
+                        <div
+                            class="py-10 px-8 mb-6 bg-size-[100%] bg-no-repeat bg-[url('/images/user/bg2.webp')] bg-bottom min-h-[30rem]">
 
-                        <div class="flex justify-between mb-5">
-                            <h2 class="font-semibold text-[1.56rem]"> <a href="/profile"
+                            <div class="flex justify-between mb-5">
+                                <h2 class="font-semibold text-[1.56rem]"> <a href="/profile"
                                     class="inline-block w-[2.38rem] h-[2.25rem] rounded-[0.75rem] border-1 border-[#848484] border-solid mr-2 leading-[2.25rem] text-center text-[1rem]">
-                                        {/* <i  class="bi bi-chevron-left"></i> */}
-                                        <IoIosArrowBack size={30} />
-                                        </a> Change Password
-                            </h2>
-                         {/* <ul class="flex">
+                                    {/* <i  class="bi bi-chevron-left"></i> */}
+                                    <IoIosArrowBack size={30} />
+                                </a> Change Password
+                                </h2>
+                                {/* <ul class="flex">
                                                         <li><a href="#"
                                                                 class="flex font-medium text-sm text-[#9D9D9D] transition-colors duration-300">Last
                                                                 30 Days
@@ -43,38 +43,38 @@ const ChangePassword=()=>{
                                                                 </span></a>
                                                         </li>
                                                     </ul>  */}
-                        </div>
-                        <form action="">
-                            <div class="grid grid-cols-12 gap-4 md:gap-x-10 auto-cols-auto">
-                                <div class="sm:col-span-6 lg:col-span-4 mt-6">
-                                    <label for="" class="text-base text-[#D1CAD5]">Current Password</label>
-                                    <input type="text" id=""
-                                        class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
-                                        placeholder="Rony Coleman" required />
-                                </div>
-                                <div class="sm:col-span-6 lg:col-span-4 mt-6">
-                                    <label for="" class="text-base text-[#D1CAD5]">New Password</label>
-                                    <input type="text" id=""
-                                        class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
-                                        placeholder="+91 9852114758" required />
-                                </div>
-                                <div class="sm:col-span-6 lg:col-span-4 mt-6">
-                                    <label for="" class="text-base text-[#D1CAD5]">Confirm New Password</label>
-                                    <input type="text" id=""
-                                        class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
-                                        placeholder="1547@w88a" required />
-                                </div>
-                                <div class="col-span-12 text-right">
-                                    <button
-                                        class="text-sm text-black h-[2.5rem] leading-[2.5rem] px-5 bg-[#C6FF00] rounded-full inline-block max-w-[8.06rem] w-full text-center transition-all duration-300 mt-3 cursor-pointer">Save</button>
-                                </div>
                             </div>
-                        </form>
+                            <form action="">
+                                <div class="grid grid-cols-12 gap-4 md:gap-x-10 auto-cols-auto">
+                                    <div class="sm:col-span-6 lg:col-span-4 mt-6">
+                                        <label for="" class="text-base text-[#D1CAD5]">Current Password</label>
+                                        <input type="text" id=""
+                                            class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
+                                            placeholder="Rony Coleman" required />
+                                    </div>
+                                    <div class="sm:col-span-6 lg:col-span-4 mt-6">
+                                        <label for="" class="text-base text-[#D1CAD5]">New Password</label>
+                                        <input type="text" id=""
+                                            class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
+                                            placeholder="+91 9852114758" required />
+                                    </div>
+                                    <div class="sm:col-span-6 lg:col-span-4 mt-6">
+                                        <label for="" class="text-base text-[#D1CAD5]">Confirm New Password</label>
+                                        <input type="text" id=""
+                                            class="bg-[#2E2E2E] border border-[#404040] w-full h-[2.50rem] d dark:placeholder-[#9D9D9D] dark:text-[#9D9D9D] rounded-[0.45rem] px-5 text-sm mt-2"
+                                            placeholder="1547@w88a" required />
+                                    </div>
+                                    <div class="col-span-12 text-right">
+                                        <button
+                                            class="text-sm text-black h-[2.5rem] leading-[2.5rem] px-5 bg-[#C6FF00] rounded-full inline-block max-w-[8.06rem] w-full text-center transition-all duration-300 mt-3 cursor-pointer">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
         </>
     )
 };

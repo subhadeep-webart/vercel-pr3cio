@@ -94,11 +94,11 @@ export const createAlbum = async (data: CreateAlbumParams) => {
     }
 }
 
-export const addToFavorite = async ({ type, id }: any) => {
+export const addToFavorite = async (data: any) => {
     try {
         const response = await httpService.post<ApiResponse>(
             queryConstants.addToFavorite,
-            { type, id }
+            { ...data }
         )
 
         if (response.status === HttpStatusCode.Ok) {

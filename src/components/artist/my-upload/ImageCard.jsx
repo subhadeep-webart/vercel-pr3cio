@@ -11,7 +11,7 @@ const ImageCard=({img,index,setOpenDeleteImage,setImgUrl})=>{
                                 src={img}
                                 alt={`uploaded-${index}`}
                                 loading='lazy'
-                                className='h-[10.13rem] w-full rounded-[0.75rem] object-cover'
+                                className='h-[8.13rem] md:h-[10.13rem] w-full rounded-[0.75rem] object-cover'
                             />
 
                             <button

@@ -180,3 +180,26 @@ export const commonImgDelete = async (payload) => {
         throw new Error(errorMessage)
     }
 }
+
+export const getHomePageSearch = async ({ page, limit, search }) => {
+    try {
+        const response = await httpService.get(queryConstants.homePageSearch, {
+            params: {
+                page,
+                limit,
+                ...(search && { search }),
+            },
+        })
+        console.log('response search', response)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response?.data ?? []
+        }
+       
+        throw new Error(response?.statusText || 'Failed to fetch data')
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+

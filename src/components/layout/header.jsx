@@ -38,6 +38,7 @@ import usePlayer from '@/hooks/usePlayer'
 import MiniMusicPlayer from '../common/MusicPlayer/MiniMusicPlayer'
 import PageTitle from '../ui/page-title'
 import DrawerSideBar from './DrawerSidebar'
+import SearchBar from './_components/SearchBar'
 
 const Header = () => {
     const { isLoggedIn, user, isLoading, logout } = useAuth()
@@ -58,7 +59,7 @@ const Header = () => {
         )
     }, [pathname])
 
-//    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    //    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleSigninClick = () => {
         dispatch(setArtist(false))
@@ -100,32 +101,7 @@ const Header = () => {
                     <MiniMusicPlayer />
                 </div>
                 <div className='headRight flex items-center justify-between'>
-                    <div className='searchBox relative mr-3 hidden sm:block'>
-                        <input
-                            type='text'
-                            placeholder='Search music, artist'
-                            className='h-[2.50rem] rounded-full border-1 border-solid border-[#d3d3d3a1] bg-[linear-gradient(135deg,rgba(211,211,211,0.2)_0%,rgba(152,152,152,0.2)_100%)] px-5 py-0 text-xs text-[#d3d3d3] md:w-[11.63rem] xl:w-[13.63rem] 2xl:w-[14.63rem]'
-                        />
-                        <button
-                            type='submit'
-                            className='absolute right-2 top-1.5 inline-block h-[1.81rem] w-[1.81rem] cursor-pointer rounded-full border-0 bg-white text-center leading-[1rem]'>
-                            <svg
-                                width='15'
-                                height='15'
-                                viewBox='0 0 15 15'
-                                className='inline-block'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'>
-                                <path
-                                    d='M10.8147 10.7916L14.0145 14.0145M12.5357 6.62049C12.5357 9.88737 9.88739 12.5357 6.62051 12.5357C3.35364 12.5357 0.705322 9.88737 0.705322 6.62049C0.705322 3.35362 3.35364 0.705299 6.62051 0.705299C9.88739 0.705299 12.5357 3.35362 12.5357 6.62049Z'
-                                    stroke='#6F6F6F'
-                                    stroke-width='1.40097'
-                                    stroke-linecap='round'
-                                    stroke-linejoin='round'
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                  <SearchBar/>
                     {isLoading ? (
                         <Skeleton classNameName='h-10 w-10 rounded-full' />
                     ) : (
@@ -177,102 +153,102 @@ const Header = () => {
                                         </DropdownItem> */}
 
                                         {user?.is_artist ? (
-                                        <>
-                                            {/* <DropdownItem
+                                            <>
+                                                {/* <DropdownItem
                                                         key='artistDashboard'
                                                         href='/artists/dashboard'>
                                                         <p classNameName='flex items-center gap-2'>
                                                             Dashboard
                                                         </p>
                                                     </DropdownItem> */}
-                                            <DropdownItem
-                                                key='biography'
-                                                href='/artists/biography'>
-                                                <p classNameName='flex items-center gap-2'>
-                                                    Biography
-                                                </p>
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                key='musicUpload'
-                                                href='/artists/song-upload'>
-                                                <p classNameName='flex items-center gap-2'>
-                                                    Music upload
-                                                </p>
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                key='merchendise'
-                                                href='/artists/merchendise'>
-                                                <p classNameName='flex items-center gap-2'>
-                                                    Merchendise
-                                                </p>
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                key='my-gallery'
-                                                href='/artist/my-upload'>
-                                                <p className='flex items-center gap-2'>
-                                                    My Gallery
-                                                </p>
-                                            </DropdownItem>
-                                             <DropdownItem
-                                                key='events'
-                                                href='/artists/events'
-                                            >
-                                                <p className='flex items-center gap-2'>
-                                                    Events
-                                                </p>
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                key='create-event'
-                                                href='/artists/create-event'
-                                            >
-                                                <p className='flex items-center gap-2'>
-                                                    Create Event
-                                                </p>
-                                            </DropdownItem>  
-                                            <DropdownItem
-                                                key='earning'
-                                                href='/artist/earning'>
-                                                <p className='flex items-center gap-2'>
-                                                    Earning
-                                                </p>
-                                                {/* <p className='pt-[1px] text-xs text-gray-600'>
+                                                <DropdownItem
+                                                    key='biography'
+                                                    href='/artists/biography'>
+                                                    <p classNameName='flex items-center gap-2'>
+                                                        Biography
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='musicUpload'
+                                                    href='/artists/song-upload'>
+                                                    <p classNameName='flex items-center gap-2'>
+                                                        Music upload
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='merchendise'
+                                                    href='/artists/merchendise'>
+                                                    <p classNameName='flex items-center gap-2'>
+                                                        Merchendise
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='my-gallery'
+                                                    href='/artists/my-upload'>
+                                                    <p className='flex items-center gap-2'>
+                                                        My Gallery
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='events'
+                                                    href='/artists/events'
+                                                >
+                                                    <p className='flex items-center gap-2'>
+                                                        Events
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='create-event'
+                                                    href='/artists/create-event'
+                                                >
+                                                    <p className='flex items-center gap-2'>
+                                                        Create Event
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='earning'
+                                                    href='/artists/earning'>
+                                                    <p className='flex items-center gap-2'>
+                                                        Earning
+                                                    </p>
+                                                    {/* <p className='pt-[1px] text-xs text-gray-600'>
                                                         Development is in
                                                         process
                                                     </p> */}
-                                            </DropdownItem>
+                                                </DropdownItem>
 
                                             </>
-                                             ) : ( 
-                                             <> 
-                                            {/* <DropdownItem
+                                        ) : (
+                                            <>
+                                                {/* <DropdownItem
                                                         key='userDashboard'
                                                         href='/user/dashboard'>
                                                         <p className='flex items-center gap-2'>
                                                             Dashboard
                                                         </p>
                                                     </DropdownItem> */}
-                                            <DropdownItem
-                                                key='myPlan'
-                                                href='/users/my-plans'>
-                                                <p className='flex items-center gap-2'>
-                                                    My Plans
-                                                </p>
-                                            </DropdownItem>
-                                            <DropdownItem
-                                                key='paymentHistory'
-                                                href='/profile/order-history'>
-                                                <p className='flex items-center gap-2'>
-                                                    Payment History
-                                                </p>
-                                            </DropdownItem>
-                                            {/* <DropdownItem
+                                                <DropdownItem
+                                                    key='myPlan'
+                                                    href='/users/my-plans'>
+                                                    <p className='flex items-center gap-2'>
+                                                        My Plans
+                                                    </p>
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    key='paymentHistory'
+                                                    href='/profile/order-history'>
+                                                    <p className='flex items-center gap-2'>
+                                                        Payment History
+                                                    </p>
+                                                </DropdownItem>
+                                                {/* <DropdownItem
                                                     key='download'
                                                     href='/download'>
                                                     <p className='flex items-center gap-2'>
                                                         Download
                                                     </p>
                                                 </DropdownItem> */}
-                                            {/* <DropdownItem
+                                                {/* <DropdownItem
                                                         key='myOrder'
                                                     >
                                                         <p className='flex items-center gap-2'>
@@ -280,15 +256,15 @@ const Header = () => {
                                                         </p>
                                                         <p className='text-xs pt-[1px] text-gray-600'>Development is in process</p>
                                                     </DropdownItem> */}
-                                            {/* <DropdownItem
+                                                {/* <DropdownItem
                                                     key='favourite'
                                                     href='/favourite'>
                                                     <p className='flex items-center gap-2'>
                                                         Favourite
                                                     </p>
                                                 </DropdownItem> */}
-                                        </>
-                                         )} 
+                                            </>
+                                        )}
 
                                         <DropdownItem
                                             key='logout'
@@ -319,7 +295,7 @@ const Header = () => {
                         </>
                     )}
 
-                      {/* {isMobile && (
+                    {/* {isMobile && (
                         <span
                             className='ml-3 inline-block cursor-pointer text-xl hover:text-[#ff2663]'
                             onClick={handleHamburgerClick}>
@@ -330,7 +306,7 @@ const Header = () => {
                 </div>
             </header>
 
-           {/* <Drawer
+            {/* <Drawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         placement='left'
@@ -460,101 +436,101 @@ const Header = () => {
                                             Help & Feedback
                                         </DropdownItem> */}
                                             {user?.is_artist ? (
-                                            <>
-                                                {/* <DropdownItem
+                                                <>
+                                                    {/* <DropdownItem
                                                         key='artistDashboard'
                                                         href='/artists/dashboard'>
                                                         <p classNameName='flex items-center gap-2'>
                                                             Dashboard
                                                         </p>
                                                     </DropdownItem> */}
-                                                <DropdownItem
-                                                    key='biography'
-                                                    href='/artists/biography'>
-                                                    <p classNameName='flex items-center gap-2'>
-                                                        Biography
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='musicUpload'
-                                                    href='/artists/song-upload'>
-                                                    <p classNameName='flex items-center gap-2'>
-                                                        Music upload
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='merchendise'
-                                                    href='/artist/merchendise'>
-                                                    <p classNameName='flex items-center gap-2'>
-                                                        Merchendise
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='my-gallery'
-                                                    href='/artist/my-upload'>
-                                                    <p className='flex items-center gap-2'>
-                                                        My Gallery
-                                                    </p>
-                                                </DropdownItem>
-                                                  <DropdownItem
-                                                    key='events'
-                                                    href='/artists/events'
-                                                >
-                                                    <p className='flex items-center gap-2'>
-                                                       Events
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='create-event'
-                                                    href='/artists/create-event'
-                                                >
-                                                    <p className='flex items-center gap-2'>
-                                                        Create Event
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='earning'
-                                                    href='/artist/earning'>
-                                                    <p className='flex items-center gap-2'>
-                                                        Earning
-                                                    </p>
-                                                    {/* <p className='pt-[1px] text-xs text-gray-600'>
+                                                    <DropdownItem
+                                                        key='biography'
+                                                        href='/artists/biography'>
+                                                        <p classNameName='flex items-center gap-2'>
+                                                            Biography
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='musicUpload'
+                                                        href='/artists/song-upload'>
+                                                        <p classNameName='flex items-center gap-2'>
+                                                            Music upload
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='merchendise'
+                                                        href='/artists/merchendise'>
+                                                        <p classNameName='flex items-center gap-2'>
+                                                            Merchendise
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='my-gallery'
+                                                        href='/artists/my-upload'>
+                                                        <p className='flex items-center gap-2'>
+                                                            My Gallery
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='events'
+                                                        href='/artists/events'
+                                                    >
+                                                        <p className='flex items-center gap-2'>
+                                                            Events
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='create-event'
+                                                        href='/artists/create-event'
+                                                    >
+                                                        <p className='flex items-center gap-2'>
+                                                            Create Event
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='earning'
+                                                        href='/artists/earning'>
+                                                        <p className='flex items-center gap-2'>
+                                                            Earning
+                                                        </p>
+                                                        {/* <p className='pt-[1px] text-xs text-gray-600'>
                                                         Development is in
                                                         process
                                                     </p> */}
-                                                </DropdownItem>
+                                                    </DropdownItem>
                                                 </>
                                             ) : (
                                                 <>
-                                                {/* <DropdownItem
+                                                    {/* <DropdownItem
                                                         key='userDashboard'
                                                         href='/user/dashboard'>
                                                         <p className='flex items-center gap-2'>
                                                             Dashboard
                                                         </p>
                                                     </DropdownItem> */}
-                                                <DropdownItem
-                                                    key='myPlan'
-                                                    href='/my-plans'>
-                                                    <p className='flex items-center gap-2'>
-                                                        My Plans
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='paymentHistory'
-                                                    href='/payment-history'>
-                                                    <p className='flex items-center gap-2'>
-                                                        Payment History
-                                                    </p>
-                                                </DropdownItem>
-                                                <DropdownItem
-                                                    key='download'
-                                                    href='/download'>
-                                                    <p className='flex items-center gap-2'>
-                                                        Download
-                                                    </p>
-                                                </DropdownItem>
-                                                {/* <DropdownItem
+                                                    <DropdownItem
+                                                        key='myPlan'
+                                                        href='/my-plans'>
+                                                        <p className='flex items-center gap-2'>
+                                                            My Plans
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='paymentHistory'
+                                                        href='/payment-history'>
+                                                        <p className='flex items-center gap-2'>
+                                                            Payment History
+                                                        </p>
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        key='download'
+                                                        href='/download'>
+                                                        <p className='flex items-center gap-2'>
+                                                            Download
+                                                        </p>
+                                                    </DropdownItem>
+                                                    {/* <DropdownItem
                                                         key='myOrder'
                                                     >
                                                         <p className='flex items-center gap-2'>
@@ -562,15 +538,15 @@ const Header = () => {
                                                         </p>
                                                         <p className='text-xs pt-[1px] text-gray-600'>Development is in process</p>
                                                     </DropdownItem> */}
-                                                <DropdownItem
-                                                    key='favourite'
-                                                    href='/favourite'>
-                                                    <p className='flex items-center gap-2'>
-                                                        Favourite
-                                                    </p>
-                                                </DropdownItem>
-                                            </>
-                                             )} 
+                                                    <DropdownItem
+                                                        key='favourite'
+                                                        href='/favourite'>
+                                                        <p className='flex items-center gap-2'>
+                                                            Favourite
+                                                        </p>
+                                                    </DropdownItem>
+                                                </>
+                                            )}
 
                                             <DropdownItem
                                                 key='logout'

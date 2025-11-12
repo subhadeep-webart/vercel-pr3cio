@@ -13,6 +13,8 @@ import { SigninData } from '@/models/responses/signin-data'
 import queryConstants from '@/constants/query-constants'
 import useAuth from '@/hooks/useAuth'
 
+import Loader from '../ui/Loader'
+
 type GoogleLoginButtonProps = {
     onSuccess: () => void
     isArtist?: boolean
@@ -20,6 +22,8 @@ type GoogleLoginButtonProps = {
 
 const GoogleLoginButton = ({ onSuccess, isArtist }: GoogleLoginButtonProps) => {
     const { saveSession } = useAuth()
+    console.log('isArtist', isArtist)
+
     const { status, mutateAsync } = useMutation<
         SigninData,
         Error,
@@ -31,7 +35,10 @@ const GoogleLoginButton = ({ onSuccess, isArtist }: GoogleLoginButtonProps) => {
 
     const login = useGoogleLogin({
         onSuccess: (tokenResponse) => {
-            mutateAsync({ access_token: tokenResponse.access_token, is_artist: isArtist ?? false })
+            mutateAsync({
+                access_token: tokenResponse.access_token,
+                is_artist: isArtist ?? false,
+            })
                 .then((data) => {
                     saveSession(data.user)
                     toast.success('login successfully!')
@@ -42,17 +49,43 @@ const GoogleLoginButton = ({ onSuccess, isArtist }: GoogleLoginButtonProps) => {
                 })
         },
     })
+    const userTypeCheck = () => {
+        toast.error('Oops! We need to know if you’re a User or an Artist.')
+    }
 
     return (
-        <Button
-            isLoading={status === 'pending'}
-            onPress={() => login()}
-            className='my-10 w-full'
-            variant='faded'
-            size='lg'
-            startContent={<FcGoogle className='text-2xl' />}>
-            Login With Google
-        </Button>
+        <>
+            {isArtist === null ? (
+                <button
+                    onClick={userTypeCheck}
+                    className='rounded-4xl mt-2 flex h-[3.5rem] w-full cursor-pointer items-center justify-center border-1 border-[rgba(255,255,255,0.15)] text-center text-sm leading-[3.5rem] text-[#9D9D9D] transition-colors hover:bg-white'>
+                    <span>
+                        <img
+                            src='/images/login/google.webp'
+                            alt='pr3cio-logo'
+                            loading='lazy'
+                            className='mr-3'
+                        />
+                    </span>{' '}
+                    Log in to continue
+                </button>
+            ) : (
+                <button
+                    onClick={() => login()}
+                    disabled={status === 'pending'}
+                    className='rounded-4xl mt-2 flex h-[3.5rem] w-full cursor-pointer items-center justify-center border-1 border-[rgba(255,255,255,0.15)] text-center text-sm leading-[3.5rem] text-[#9D9D9D] transition-colors hover:bg-white'>
+                    <span>
+                        <img
+                            src='/images/login/google.webp'
+                            alt='pr3cio-logo'
+                            loading='lazy'
+                            className='mr-3'
+                        />
+                    </span>{' '}
+                    {status === 'pending' ? <Loader /> : 'Log in to continue'}
+                </button>
+            )}
+        </>
     )
 }
 

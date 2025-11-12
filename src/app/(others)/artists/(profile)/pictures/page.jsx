@@ -10,7 +10,7 @@ const Pictures = () => {
 
     return (
         <>
-            <div class='grid w-full grid-cols-2 gap-8 px-8 py-4 sm:grid-cols-3 lg:grid-cols-6'>
+            <div class='grid w-full grid-cols-2 gap-8 px-8 py-4 sm:grid-cols-3 lg:grid-cols-6 min-h-[340px]'>
                 {
                     gallery.map((img, index) => (<PictureCard imageUrl={img} key={`gallery-image-${index + 1}`} />))
                 }

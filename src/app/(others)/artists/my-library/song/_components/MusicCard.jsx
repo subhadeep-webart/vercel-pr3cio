@@ -15,8 +15,10 @@ import queryConstants from "@/constants/query-constants";
 import { addToFavorite } from '@/services/api/album-ep'
 import BuySongButton from "./BuySongButton";
 import { downloadSongById, postInAppDownload } from "@/services/api/song-api-service";
+import AddToPlaylistModal from "@/app/(others)/users/songs/_components/AddToPlaylistModal";
 
 const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComplete, showing = true }) => {
+    console.log("tracks", tracks)
     const player = usePlayer()
     const queryClient = useQueryClient()
     const router = useRouter()
@@ -24,7 +26,9 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
 
     console.log("Music Card====>", track);
 
-    const handleSongPlay = () => {
+    const handleSongPlay = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         player.clearCachedState();
         if (player.isCurrentSong(track?._id)) {
             player.togglePlayback()
@@ -45,6 +49,12 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
                 queryClient.invalidateQueries({
                     queryKey: [queryConstants.getSongs],
                 })
+                queryClient.invalidateQueries({
+                    queryKey: [queryConstants.inAppDownload, { type: 'song' }],
+                })
+                queryClient.invalidateQueries({
+                    queryKey: [queryConstants.getFavoriteSongsList, { type: 'song' }],
+                })
                 toast.success(data?.message ?? "Song added to favourite successfully")
             },
             onError: (error) => {
@@ -52,11 +62,15 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
             },
         })
 
-    const handleLike = () => {
+    const handleLike = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         addToFavoriteMutate({ type: 'song', id: track._id })
     }
 
-    const publishSongById = async (id) => {
+    const publishSongById = async (e, id) => {
+        e.preventDefault();
+        e.stopPropagation();
         const resp = await postToAddSongToPublish(id)
         if (resp.status === "success") {
             toast.success(resp.message)
@@ -111,17 +125,19 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
 
     return (
         <>
-            <div className="mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem] cursor-pointer">
-                <div className="relative mb-2">
+            <div className="max-h-[280px] h-full mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem] cursor-pointer">
+                <Link href={`/song-details/${track?._id}`} className="relative mb-2">
                     <img src={track?.artwork} alt="skipBack" loading="lazy"
                         className="rounded-[0.75rem] w-full h-[170px]" />
                     <div className="absolute bottom-[1rem] px-4 flex justify-between items-end w-full">
                         <h6 className="text-sm font-semibold">$ {track?.amount ?? 0}</h6>
-                        <BuySongButton songId={track?._id} />
+                        {!user?.is_artist && !track?.inAppDownload && !track?.isSongDownLoad && <BuySongButton songId={track?._id} />}
                     </div>
-                </div>
-                <h5><a href="#" className="text-sm font-semibold">{track?.title}</a></h5>
-                <p className="text-xs text-[#9D9D9D]">{track?.artist}</p>
+                </Link>
+                <Link href={`/song-details/${track?._id}`} >
+                    <h5><a href="#" className="text-sm font-semibold">{track?.title}</a></h5>
+                    <p className="text-xs text-[#9D9D9D]">{track?.artist}</p>
+                </Link>
                 <div className="flex justify-between mt-2">
                     <span
                         className="bg-[#2A2929] px-2 py-1 group rounded-full text-white font-semibold text-xs flex">
@@ -188,7 +204,7 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
                         </li>}
                         {!showing && <li className="ml-2">
                             <button
-                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] " onClick={handleLike}
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] " onClick={(e) => handleLike(e)}
                             >
                                 <svg
                                     width={11}
@@ -210,7 +226,7 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
                         </li>}
                         {!publish && showing && <li className="ml-2">
                             <button
-                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group" onClick={() => publishSongById(track?._id)}>
+                                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group" onClick={(e) => publishSongById(e, track?._id)}>
                                 <Image src={PUBLISH_ICON?.src} alt="Click to publish song" height={10} width={10} />
                             </button>
                         </li>}
@@ -223,6 +239,7 @@ const MusicCard = ({ track, tracks, likable = true, drift, publish, onActionComp
                         {showing && <li className="ml-2">
                             <ActionModal trackId={track?._id} onActionComplete={onActionComplete} />
                         </li>}
+                        <li className="ml-2">  <AddToPlaylistModal trackId={track?._id} type={"song"}/> </li>
                     </ul>
                 </div>
             </div>

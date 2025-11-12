@@ -22,6 +22,12 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { BiShuffle } from 'react-icons/bi'
+import { FaMusic, FaPlay, FaRegFolder } from 'react-icons/fa'
+import { FiPlus, FiPlusCircle } from 'react-icons/fi'
+import { IoMdArrowDropright } from 'react-icons/io'
+import { MdOutlineDownloadForOffline } from 'react-icons/md'
+import { TiPlus } from 'react-icons/ti'
 
 import queryConstants from '@/constants/query-constants'
 import { PAUSE_ICON } from '@/utils/icons'
@@ -32,6 +38,7 @@ import MainAlbumTitle from './MainAlbumTitle'
 import MainPlayerControl from './MainPlayerControl'
 import MediaControls from './MediaControl'
 import MusicAlbumCard from './MusicAlbumCard'
+import MusicPlayerMain from './MusicPlayerMain'
 // import AudioDurationSlider from './AudioDurationSlider'
 // import MediaControls from './MediaControls'
 // import VolumeControl from './VolumeControl'
@@ -84,7 +91,9 @@ const MainPlayer = () => {
         mutationKey: [queryConstants.userSongCount],
         mutationFn: updateUserSongPlayCount,
         onSuccess: (data) => {
-            player.play()
+            if (isOpen) {
+                player.play()
+            }
             // console.log("data", data)
             // if (data?.limitReached) {
             //     if (data.data.song.isSongDownLoad) {
@@ -131,15 +140,22 @@ const MainPlayer = () => {
 
     useEffect(() => {
         const isSubscribed = user?.isSubscribed || false
-        if (isSubscribed || !player.activeTrack?._id) return
+        if (isSubscribed || !player.activeTrack?._id || !isOpen) return
         updateUserSongCount()
-    }, [player.activeTrack?._id, updateUserSongCount, user?.isSubscribed])
+    }, [
+        player.activeTrack?._id,
+        updateUserSongCount,
+        user?.isSubscribed,
+        isOpen,
+    ])
 
     useEffect(() => {
         let animationFrame
         let hasUpdatedCount = false
 
         const updateTime = (currTime, dur) => {
+            if (!isOpen) return
+
             animationFrame = requestAnimationFrame(() => {
                 setCurrentTime(currTime)
                 setDuration((prev) => (prev !== dur ? dur : prev))
@@ -151,15 +167,15 @@ const MainPlayer = () => {
             }
         }
 
-        if (!playDemo) {
+        if (!playDemo && isOpen) {
             playerService.onTimeUpdate(updateTime)
         }
 
         return () => {
-            playerService.onTimeUpdate(() => { })
+            playerService.onTimeUpdate(() => {})
             cancelAnimationFrame(animationFrame)
         }
-    }, [player.activeTrack?._id, updateSongCount, playDemo])
+    }, [player.activeTrack?._id, updateSongCount, playDemo, isOpen])
 
     useEffect(() => {
         if (playDemo && demoAudioRef.current) {
@@ -187,7 +203,7 @@ const MainPlayer = () => {
                 audio.removeEventListener('ended', handleDemoEnded)
             }
         }
-    }, [playDemo, player])
+    }, [playDemo, player, isOpen])
 
     const handleDemoPlayPause = () => {
         if (demoAudioRef.current) {
@@ -209,7 +225,11 @@ const MainPlayer = () => {
         <>
             <div className='flex flex-wrap gap-3'>
                 <div className='mx-1'>
-                    <button onClick={handleOpen} disabled className='cursor-not-allowed'>
+                    <button
+                        onClick={handleOpen}
+                        disabled
+                        className='cursor-not-allowed'
+                    >
                         <i className='bi bi-arrows-fullscreen'></i>
                     </button>
                 </div>
@@ -228,21 +248,21 @@ const MainPlayer = () => {
                                     id='default-modal'
                                     tabIndex='-1'
                                     aria-hidden='true'
-                                    className='fixed left-0 right-0 top-0 z-50 h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0'>
+                                    className='fixed left-0 right-0 top-0 z-50 h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-hidden md:inset-0'>
                                     <div className='max-w-screen relative max-h-full w-full p-4'>
                                         <div className='relative shadow-sm dark:bg-gray-700'>
                                             <div className='space-y-4'>
                                                 <div className="px-15 relative m-auto w-full rounded-[1.75rem] border-1 border-solid border-[#878787] bg-[url('/images/player-bg.webp')] bg-cover bg-no-repeat py-10">
                                                     <button
                                                         type='button'
-                                                        className='absolute right-10 top-10 flex h-[2.38rem] w-[2.38rem] flex-[0_0_2.38rem] cursor-pointer items-center justify-center rounded-full border-1 border-solid border-[#878787] text-gray-400'
+                                                        className='absolute right-2 top-1 flex h-[1.875rem] w-[1.875rem] flex-[0_0_1.875rem] cursor-pointer items-center justify-center rounded-full border border-solid border-[#878787] text-gray-400'
                                                         onClick={onClose}>
                                                         <span className='clodePopup'>
                                                             <img
                                                                 src='/images/player/close.webp'
-                                                                alt='cover'
+                                                                alt='close'
                                                                 loading='lazy'
-                                                                className='inline-block'
+                                                                className='inline-block h-[0.9rem] w-[0.9rem]'
                                                             />
                                                         </span>
                                                         <span className='sr-only'>
@@ -250,7 +270,7 @@ const MainPlayer = () => {
                                                         </span>
                                                     </button>
 
-                                                    <div className='musicPlayer hidden items-center justify-between sm:hidden md:ml-4 md:inline-flex xl:ml-8 2xl:ml-12'>
+                                                    {/* <div className='musicPlayer hidden items-center justify-between sm:hidden md:ml-4 md:inline-flex xl:ml-8 2xl:ml-12'>
                                                         {player?.activeTrack && (
                                                             <TrackDetails
                                                                 trackDetails={
@@ -283,11 +303,11 @@ const MainPlayer = () => {
                                                                 }
                                                             )}
                                                         <div className='innerWap player z-1 relative m-auto w-full max-w-[15.63rem]'>
-                                                            {/* <img src="/images/player/1.webp" alt="cover" loading="lazy"
+                                                            <img src="/images/player/1.webp" alt="cover" loading="lazy" 
                                                                 className="m-auto rounded-[0.75rem] max-w[12.50rem] h-[15.63rem] object-cover" />
                                                             <h2 className="text-sm font-semibold mt-3">Maecenas biben</h2>
                                                             <p className="truncate text-xs w-[12.25rem] m-auto text-[#C3C3C3]">Quisque isus laoreet,
-                                                                risus </p> */}
+                                                                risus </p>                  
                                                             {player?.activeTrack && (
                                                                 <MainAlbumTitle
                                                                     trackDetails={
@@ -295,10 +315,10 @@ const MainPlayer = () => {
                                                                     }
                                                                 />
                                                             )}
-                                                            {/* <div className="w-full relative overflow-hidden bg-white h-0.5 mt-4">
+                                                            <div className="w-full relative overflow-hidden bg-white h-0.5 mt-4">
                                                                 <span className="absolute left-0 top-0 w-30 bg-[#ff2663]  h-0.5"></span>
-                                                            </div> */}
-                                                            {/* <div className="w-full relative overflow-hidden h-4 mt-4"> */}
+                                                            </div>
+                                                            <div className="w-full relative overflow-hidden h-4 mt-4">
                                                             <AudioDurationSlider
                                                                 currentTime={
                                                                     currentTime
@@ -313,7 +333,7 @@ const MainPlayer = () => {
                                                                     duration
                                                                 }
                                                             />
-                                                            {/* </div> */}
+                                                            </div>
                                                             <div className='mt-1 flex w-full justify-between'>
                                                                 <span className='text-xs text-[#C3C3C3]'>
                                                                     {formatTime(
@@ -349,9 +369,11 @@ const MainPlayer = () => {
                                                                 }
                                                             />
 
-                                                            {/* <audio id="myAudio2" className="hidden myAudio" src="/music.mp3"></audio> */}
+                                                            <audio id="myAudio2" className="hidden myAudio" src="/music.mp3"></audio>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
+
+                                                    <MusicPlayerMain />
                                                 </div>
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@ import { formatDateToCustom } from "@/utils/func-utils";
 const PaymentHistoryCard = ({ paymentDetails }) => {
     console.log("Payment Details======>", paymentDetails);
 
-    const { songDesc = "", songArtist = "", amount = "", created_at = "" } = paymentDetails;
+    // const { songDesc = "", songArtist = "", amount = "", created_at = "" } = paymentDetails;
     return (
         <div className='group grid w-full grid-cols-12 items-center p-5 transition-colors delay-300 hover:rounded-[0.4rem] hover:border-transparent hover:bg-[#484848] sm:gap-x-4 md:gap-x-4 lg:gap-x-4 xl:gap-x-4 2xl:gap-x-4'>
             <div className='col-span-8'>
@@ -15,10 +15,10 @@ const PaymentHistoryCard = ({ paymentDetails }) => {
                     />
                     <div className=''>
                         <h6 className='text-sm font-semibold'>
-                            {songDesc}
+                            {paymentDetails?.albumName || paymentDetails?.songName}
                         </h6>
                         <p className='my-1 text-xs text-[#9D9D9D]'>
-                            {songArtist}
+                            {paymentDetails?.albumArtist ||paymentDetails?.songArtist}
                         </p>
                         {/* <p className='my-1 text-xs text-[#9D9D9D]'>
                             Order ID: 254741
@@ -28,7 +28,7 @@ const PaymentHistoryCard = ({ paymentDetails }) => {
             </div>
             <div className='col-span-4 text-right'>
                 <p className='my-1 text-xs text-[#9D9D9D]'>
-                    Purchased by {created_at && formatDateToCustom(created_at)}
+                    Purchased by {paymentDetails?.created_at && formatDateToCustom(paymentDetails?.created_at)}
                 </p>
                 <a
                     href='#'
@@ -59,7 +59,7 @@ const PaymentHistoryCard = ({ paymentDetails }) => {
                         Total Billed
                     </div>
                     <div className='col-auto text-right text-base font-semibold'>
-                        $ {amount.toFixed(2)}
+                        $ {paymentDetails?.amount.toFixed(2)}
                     </div>
                 </div>
             </div>

@@ -131,6 +131,23 @@ export const createEvent = async (eventDetails) => {
     }
 }
 
+export const addCrew = async (crewDetails) => {
+    try {
+        const response = await httpService.post(queryConstants.addCrew, crewDetails)
+        console.log("Event create=====>", response);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+
 
 export const eventListByArtists = async ({ id }) => {
     try {
@@ -208,6 +225,164 @@ export const editEvent = async (eventId, payload) => {
             return response.data
         }
         throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const generateSongWithAI = async (songAIContext) => {
+    try {
+        const response = await httpService.post(queryConstants.generateSongWithAI, songAIContext)
+        console.log("Event create=====>", response);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getSongsByTaskId = async (songAIContext) => {
+    try {
+        const response = await httpService.post(queryConstants.generateSongWithAI, songAIContext)
+        console.log("Event create=====>", response);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const generateLyricsWithAI = async (promptDetails) => {
+    try {
+        const response = await httpService.post(queryConstants.generateLyricsWithAI, promptDetails)
+        console.log("Event create=====>", response);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getSongHistoryAi = async (userId) => {
+    try {
+        const response = await httpService.get(`${queryConstants.getAiSongHistory}/${userId}`)
+        console.log("Get All History======>", response);
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+
+        throw new Error(response.data.message)
+    } catch (err) {
+        console.log("Error=====>", err);
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const deleteArtistAlbumById = async (albumId) => {
+    try {
+        const response = await httpService.delete(queryConstants.deleteArtistAlbum + "/" + albumId)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (error) {
+        const errorMessage = httpService.getErrorMessage(error)
+        throw new Error(errorMessage)
+    }
+}
+
+
+export const getArtistDashboardItemList = async ({ page, limit, type }) => {
+    try {
+        const response = await httpService.get(queryConstants.artistDashboardItemList, {
+            params: {
+                page,
+                limit,
+                ...(type && { type }),
+            },
+        })
+        console.log('responseDash items', response)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response?.data ?? []
+        }
+       
+        throw new Error(response?.statusText || 'Failed to fetch items')
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getArtistDashboardCard = async ({ page , type }) => {
+    try {
+        const response = await httpService.get(queryConstants.artistDashboardCard, {
+            params: {
+                ...(page && { page }),
+                ...(type && { type }),
+            },
+        })
+        console.log('responseDash', response)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response?.data ?? []
+        }
+       
+        throw new Error(response?.statusText || 'Failed to fetch card')
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getPurchasedItems = async ({  type }) => {
+    try {
+        const response = await httpService.get(queryConstants.getPurchasedItems, {
+            params: {
+                ...(type && { type }),
+            },
+        })
+        console.log('response purchased', response)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response?.data ?? []
+        }
+       
+        throw new Error(response?.statusText || 'Failed to fetch items')
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+export const getAccountData = async () => {
+    try {
+        const response = await httpService.get(queryConstants.getAccountData)
+        console.log('response account', response)
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response?.data ?? []
+        }
+       
+        throw new Error(response?.statusText || 'Failed to fetch data')
     } catch (err) {
         const errorMessage = httpService.getErrorMessage(err)
         throw new Error(errorMessage)

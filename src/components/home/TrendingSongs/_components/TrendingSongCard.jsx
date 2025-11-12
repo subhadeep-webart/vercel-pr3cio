@@ -1,11 +1,14 @@
 import Image from "next/image";
 import usePlayer from "@/hooks/usePlayer";
 import { PAUSE_ICON } from "@/utils/icons";
+import Link from "next/link";
 
-const TrendingSongCard = ({ song,songs, index }) => {
+const TrendingSongCard = ({ song, songs, index }) => {
     const player = usePlayer();
 
-    const handleSongPlay = (song) => {
+    const handleSongPlay = (e,song) => {
+        e.preventDefault();
+        e.stopPropagation();
         if (!songs) return
         player.clearCachedState()
         if (player.isCurrentSong(song._id)) {
@@ -16,7 +19,7 @@ const TrendingSongCard = ({ song,songs, index }) => {
     }
 
     return (
-        <div className="songlist relative mt-5 flex items-center justify-between pb-5 after:absolute after:bottom-0 after:left-0 after:z-0 after:h-[0.06rem] after:w-full after:bg-[url('/images/artist/line2.webp')] after:content-['']">
+        <Link href={`/song-details/${song?._id}`} className="songlist relative mt-5 flex items-center justify-between pb-5 after:absolute after:bottom-0 after:left-0 after:z-0 after:h-[0.06rem] after:w-full after:bg-[url('/images/artist/line2.webp')] after:content-['']">
             <span className='pr-3 text-[0.81rem]'>
                 {index + 1}
             </span>
@@ -38,9 +41,9 @@ const TrendingSongCard = ({ song,songs, index }) => {
             </div>
             <span className='mr-3 flex h-[1.31rem] w-[1.31rem] cursor-pointer items-center justify-center rounded-full bg-[#D3D7E4] leading-[1.31rem]'>
                 <button
-                    onClick={() =>
+                    onClick={(e) =>
                         handleSongPlay(
-                            song
+                            e, song
                         )
                     }
                     className='group flex h-[1.38rem] w-[1.38rem] items-center justify-center rounded-full bg-white'>
@@ -75,10 +78,10 @@ const TrendingSongCard = ({ song,songs, index }) => {
                                         className=''
                                     /> */}
             </span>
-            <span className='pl-3 text-sm font-semibold w-14'>
+            <span className='pl-3 text-sm font-semibold w-16'>
                 $ {song.amount?.toFixed(2)}
             </span>
-        </div>
+        </Link>
     )
 }
 

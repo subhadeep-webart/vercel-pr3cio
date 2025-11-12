@@ -11,14 +11,14 @@ const ArtistCard = ({ data }) => {
     const handleClick = () => {
         if (!data?._id) return;
 
-        router.push(`artists/bio?id=${data?._id}`)
+        router.push(`/artists/bio?id=${data?._id}`)
     }
 
     return (
         <div
-            class=" group mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 p-3 rounded-[0.75rem] cursor-pointer" onClick={handleClick}>
+            className=" group mb-3 md:mb-0 hover:bg-[#484848] transition-colors duration-300 md:p-3 rounded-[0.75rem] cursor-pointer" onClick={handleClick}>
             <center>
-                <div className="w-[9.38rem] h-[9.38rem] rounded-full p-3 border border-[#585858] mb-2 group-hover:border-[#D344C9] transition-colors duration-300 relative">
+                <div className="w-[7.38rem] h-[7.38rem] md:w-[9.38rem] md:h-[9.38rem] rounded-full p-3 border border-[#585858] mb-2 group-hover:border-[#D344C9] transition-colors duration-300 relative">
                     <img
                         src={data.image}
                         alt="Artist"

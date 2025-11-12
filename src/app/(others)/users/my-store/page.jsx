@@ -16,7 +16,7 @@ const MyStore = () => {
                         <span className='absolute bottom-6 left-[2.5rem] m-auto text-center md:bottom-10 lg:bottom-10 xl:bottom-10 2xl:bottom-10'>
                             <a
                                 href='#'
-                                className='rounded-4xl inline-block h-[2.38rem] bg-[#F9FF45] px-3 text-xs font-semibold leading-[2.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:px-4 sm:leading-[2.38rem] md:h-[2.38rem] md:px-4 md:leading-[2.38rem] lg:h-[2.38rem] lg:px-4 lg:px-8 lg:leading-[2.38rem] xl:h-[2.38rem] xl:px-6 xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:px-6 2xl:leading-[2.38rem]'>
+                                className='rounded-4xl inline-block h-[1.38rem] md:h-[2.38rem] bg-[#F9FF45] px-3 text-xs font-semibold leading-[1.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:px-4 sm:leading-[2.38rem] md:px-4 md:leading-[2.38rem] lg:h-[2.38rem] lg:px-4 lg:px-8 lg:leading-[2.38rem] xl:h-[2.38rem] xl:px-6 xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:px-6 2xl:leading-[2.38rem]'>
                                 Explore Your Vibe{' '}
                                 <img
                                     src='/images/store/ic_round-send.webp'
@@ -499,7 +499,7 @@ const MyStore = () => {
                             <h2 className='mb-5 text-base font-semibold text-white'>
                                 Most Downloaded Songs
                             </h2>
-                            <div className='h-[31.5rem] w-full overflow-y-auto overflow-x-hidden [scrollbar-width:none]'>
+                            <div className='h-[31.5rem] w-full overflow-y-auto md:overflow-x-hidden [scrollbar-width:none]'>
                                 <SongsCard
                                     showAmount={false}
                                     showDownload={false}
@@ -656,7 +656,7 @@ const MyStore = () => {
                         <span className='absolute bottom-6 left-0 right-0 m-auto text-center md:bottom-10 lg:bottom-10 xl:bottom-10 2xl:bottom-10'>
                             <a
                                 href='#'
-                                className='rounded-4xl inline-block h-[2.38rem] bg-[#F9FF45] px-6 text-xs font-semibold leading-[2.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:leading-[2.38rem] md:h-[2.38rem] md:leading-[2.38rem] lg:h-[2.38rem] lg:leading-[2.38rem] xl:h-[2.38rem] xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:leading-[2.38rem]'>
+                                className='rounded-4xl inline-block h-[1.38rem] bg-[#F9FF45] px-6 text-xs font-semibold leading-[1.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:leading-[2.38rem] md:h-[2.38rem] md:leading-[2.38rem] lg:h-[2.38rem] lg:leading-[2.38rem] xl:h-[2.38rem] xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:leading-[2.38rem]'>
                                 Explore Now{' '}
                                 <img
                                     src='/images/store/ic_round-send.webp'
@@ -696,7 +696,7 @@ const MyStore = () => {
                                 <span className='my-4.5 inline-block text-center'>
                                     <a
                                         href='#'
-                                        className='rounded-4xl inline-block h-[2.38rem] bg-[#F9FF45] px-4 text-xs font-semibold leading-[2.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:leading-[2.38rem] md:h-[2.38rem] md:leading-[2.38rem] lg:h-[2.38rem] lg:leading-[2.38rem] xl:h-[2.38rem] xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:leading-[2.38rem]'>
+                                        className='rounded-4xl inline-block h-[1.38rem] bg-[#F9FF45] px-4 text-xs font-semibold leading-[1.38rem] text-[#2A2F2C] transition-colors hover:bg-[rgba(249,255,69,0.)] hover:bg-[rgba(249,255,69,0.82)] sm:leading-[2.38rem] md:h-[2.38rem] md:leading-[2.38rem] lg:h-[2.38rem] lg:leading-[2.38rem] xl:h-[2.38rem] xl:leading-[2.38rem] 2xl:h-[2.38rem] 2xl:leading-[2.38rem]'>
                                         Dive In
                                         <img
                                             src='/images/store/ic_round-send.webp'

@@ -1,22 +1,28 @@
-"use client"
-import { useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { InputOtp } from "@heroui/react";
-import useAuth from "@/hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
-import { useFormik } from "formik";
-import { otpValidationSchema } from "@/utils/formValidation";
-import { getEmailFromCookie } from "@/utils/auth-utils";
-import queryConstants from "@/constants/query-constants";
+'use client'
+
+import { useEffect } from 'react'
 import { verifyEmail } from '@/services/api/user-ep'
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import Loader from "../ui/Loader";
+import { InputOtp } from '@heroui/react'
+import { useMutation } from '@tanstack/react-query'
+import { useFormik } from 'formik'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
+
+import queryConstants from '@/constants/query-constants'
+import { getEmailFromCookie } from '@/utils/auth-utils'
+import { otpValidationSchema } from '@/utils/formValidation'
+import useAuth from '@/hooks/useAuth'
+
+import Loader from '../ui/Loader'
 
 const EmailVerifyForm = () => {
-    const router = useRouter();
-    const email = sessionStorage.getItem("email") ?? ""
+    const router = useRouter()
+    const email = sessionStorage.getItem('email') ?? ''
+    const isForgotPassword = sessionStorage.getItem('isForgotPassword') ?? null
+    console.log('isForgotPassword', isForgotPassword)
+    console.log('email', email)
     const { saveSession } = useAuth()
 
     const { mutateAsync } = useMutation({
@@ -32,29 +38,42 @@ const EmailVerifyForm = () => {
         validationSchema: otpValidationSchema,
         onSubmit: async (values, { resetForm, setSubmitting }) => {
             try {
-                const data = await mutateAsync({ ...values, email: getEmailFromCookie() });
-                toast.success('Verify email successfully!');
+                const payload = { ...values }
+                console.log({ payload })
+                const data = await mutateAsync(payload)
+                console.log('Data cming from=======>', data)
+                toast.success('Verify email successfully!')
                 // saveSession(data.user);
-                console.log("Data=======>", data.user);
-                router.push("/discover-your-genre");
+                console.log('Data=======>', data.user)
+                if (isForgotPassword == true) {
+                    router.push('/create-new-password')
+                } 
+                else {
+                    router.push('/discover-your-genre')
+                }
                 // if (data.user.is_artist) {
                 //     router.push("/discover-your-genre");
                 // } else {
                 //     router.push("/");
                 // }
-                resetForm();
+                resetForm()
             } catch (err) {
-                toast.error(err?.message);
+                console.log('Error coming from', err)
+                toast.error(err?.message)
             } finally {
-                setSubmitting(false);
+                setSubmitting(false)
             }
         },
     })
 
     const { errors, touched, setFieldValue } = formik
 
+    console.log('abc=====>', typeof getEmailFromCookie())
     useEffect(() => {
-        setFieldValue('email', getEmailFromCookie())
+        const cookieEmail = getEmailFromCookie()
+        const userEmail = cookieEmail === 'undefined' ? email : cookieEmail
+        console.log('User Email======>', userEmail)
+        setFieldValue('email', userEmail)
     }, [setFieldValue])
 
     const handleOtpComplete = (otp) => {
@@ -62,25 +81,25 @@ const EmailVerifyForm = () => {
         formik.submitForm()
     }
     return (
-        <section className="login">
-            <div className="flex flex-col md:flex-row ">
-                <div className="w-[50%]">
+        <section className='login'>
+            <div className='flex flex-col md:flex-row'>
+                <div className='w-[50%]'>
                     <Image
                         height={700}
                         width={400}
-                        src="/images/login/login.webp"
-                        alt=""
-                        className="h-full 2xl:h-screen w-full object-cover"
+                        src='/images/login/login.webp'
+                        alt=''
+                        className='h-full w-full object-cover 2xl:h-screen'
                         quality={50}
                     />
                 </div>
-                <div className="w-[50%] bg-[#191919] relative bg-[url('/images/login/wave.webp')] bg-no-repeat bg-top-right flex justify-center items-center p-4 relative">
-                    <div className="max-w-[27.38rem] w-full m-auto">
+                <div className="bg-top-right relative flex w-[50%] items-center justify-center bg-[#191919] bg-[url('/images/login/wave.webp')] bg-no-repeat p-4">
+                    <div className='m-auto w-full max-w-[27.38rem]'>
                         <center>
-                            <h1 className="font-semibold text-[2.25rem]">
+                            <h1 className='text-[2.25rem] font-semibold'>
                                 Please Check Your Email
                             </h1>
-                            <p className="text-base text-[#A3A3A3] mb-8">
+                            <p className='mb-8 text-base text-[#A3A3A3]'>
                                 We have sent an code to{' '}
                                 <span className='font-semibold text-primary'>
                                     {email}
@@ -90,7 +109,7 @@ const EmailVerifyForm = () => {
                         <form
                             onSubmit={formik.handleSubmit}
                             onReset={formik.handleReset}>
-                            <div className="mb-5 relative flex justify-center items-center">
+                            <div className='relative mb-5 flex items-center justify-center'>
                                 <InputOtp
                                     length={6}
                                     value={formik.values.otp}
@@ -109,12 +128,15 @@ const EmailVerifyForm = () => {
                                 />
                             </div>
 
-                            <div className="mb-5 relative">
+                            <div className='relative mb-5'>
                                 <button
-                                    type="submit"
-                                    className="bg-[#C6FF00] w-full text-sm text-black h-[3rem] leading-[3rem] text-center rounded-4xl cursor-pointer hover:bg-[#afe200] transition-colors"
-                                >
-                                    {formik.isSubmitting ? <Loader size="sm" /> : "Submit"}
+                                    type='submit'
+                                    className='rounded-4xl h-[3rem] w-full cursor-pointer bg-[#C6FF00] text-center text-sm leading-[3rem] text-black transition-colors hover:bg-[#afe200]'>
+                                    {formik.isSubmitting ? (
+                                        <Loader size='sm' />
+                                    ) : (
+                                        'Submit'
+                                    )}
                                 </button>
                             </div>
                         </form>
@@ -153,4 +175,4 @@ const EmailVerifyForm = () => {
     )
 }
 
-export default EmailVerifyForm;
+export default EmailVerifyForm

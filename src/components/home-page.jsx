@@ -17,6 +17,9 @@ import PopularArtists from './home/PopularArtists'
 import RightSidebar from './home/RightSideBar'
 import TopGenres from './home/TopGenres/TopGenres'
 import TrendingSongs from './home/TrendingSongs/TrendingSongs'
+import LatestSongs from './home/LatestSongs'
+import Link from 'next/link'
+import { getAllPlayLists } from '@/services/api/playlist-api'
 
 const HomePageLayout = () => {
     const [activeTab, setActiveTab] = useState('latestAlbum') // 'latestAlbum' or 'latestSong'
@@ -50,9 +53,21 @@ const HomePageLayout = () => {
         },
     })
 
+    const { data: playlistData, isPending: isPlaylistLoading } = useQuery({
+        queryKey: ['allPlaylists'], // unique key for caching
+        queryFn: getAllPlayLists,
+        staleTime: 1000 * 60 * 5,
+        retry: 1,
+        enabled: isLoggedIn
+    });
+
     const albums = useMemo(() => {
         return albumData?.pages.flatMap((page) => page.albums) || []
     }, [albumData])
+
+    const playlists = useMemo(() => {
+        return playlistData?.data
+    }, [playlistData])
 
     const { observerRef } = useInfiniteScroll({
         callback: () => {
@@ -67,9 +82,11 @@ const HomePageLayout = () => {
 
     console.log('Album Data=====>', albums)
 
+    console.log("Playlist data=======>", playlistData);
+
     return (
         <>
-            <div className='flex-1 pl-3 pr-3 md:px-5'>
+            <div className='flex-1 ml-6 md:ml-0 md:pl-3 md:pr-3 md:px-5'>
                 {/* New Releases */}
                 <NewReleases />
                 {/* Popular Album */}
@@ -84,10 +101,10 @@ const HomePageLayout = () => {
                     {/* <!-- Top Genres --> */}
                     <TopGenres />
                 </div>
-
+                <LatestSongs />
                 <div className="mb-5 mt-5 rounded-[27px] bg-[#2A2929] bg-none bg-[length:70%_auto] bg-[right_center] bg-no-repeat px-5 py-3 md:bg-[url('/images/3.webp')] lg:px-10 lg:py-5">
                     <div className=''>
-                        <h2 className='font-protest mb-5 mt-3 text-[1.2rem] leading-8 text-white lg:text-[1.75rem]'>
+                        <h2 className='font-protest mb-5 mt-3 text-[1rem] leading-8 text-white lg:text-[1.75rem]'>
                             Mark Your Jam!
                             <br />
                             Tap the heart to keep your top songs
@@ -96,17 +113,21 @@ const HomePageLayout = () => {
                         </h2>
 
                         <span className='inline-block text-center'>
-                            <a
-                                href='#'
+                            {isLoggedIn ? <Link
+                                href='/users/songs/latests'
+                                className='rounded-4xl inline-block h-[2.50rem] border-1 border-solid border-[#494949] px-9 text-xs font-semibold leading-[2.50rem] text-white transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black'>
+                                Explore the songs
+                            </Link> : <Link
+                                href='/login'
                                 className='rounded-4xl inline-block h-[2.50rem] border-1 border-solid border-[#494949] px-9 text-xs font-semibold leading-[2.50rem] text-white transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black'>
                                 Log in to add favorite
-                            </a>
+                            </Link>}
                         </span>
                     </div>
                 </div>
             </div>
-            <div className='lg:flex-flex-[0_0_13.31rem] sticky top-[6.2rem] w-full flex-[0_0_auto] rounded-xl pl-3 pr-3 sm:w-full sm:flex-[0_0_auto] md:w-full md:flex-[0_0_auto] md:px-4 lg:w-[13.31rem] lg:px-0 xl:w-[15.31rem] xl:flex-[0_0_15.31rem] 2xl:w-[15.31rem] 2xl:flex-[0_0_15.31rem]'>
-                <RightSidebar albums={albums} onActionComplete={handleActionInAlbumCard}  />
+            <div className='lg:flex-flex-[0_0_13.31rem] sticky top-[6.2rem] w-full flex-[0_0_auto] rounded-xl pl-3 pr-3 ml-3 md:ml-0 sm:w-full sm:flex-[0_0_auto] md:w-full md:flex-[0_0_auto] md:px-4 lg:w-[13.31rem] lg:px-0 xl:w-[15.31rem] xl:flex-[0_0_15.31rem] 2xl:w-[15.31rem] 2xl:flex-[0_0_15.31rem]'>
+                <RightSidebar albums={albums} playlists={playlistData?.data ?? []} onActionComplete={handleActionInAlbumCard} />
             </div>
             {/* Footer Home */}
         </>

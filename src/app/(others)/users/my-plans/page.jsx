@@ -19,7 +19,7 @@ const MyPlans=()=>{
                     <div
                         class="py-10 px-8 mb-6 bg-size-[100%] bg-no-repeat bg-[url('/images/user/bg2.webp')] bg-bottom min-h-[30rem]">
                         <div class="flex justify-between mb-5">
-                            <h2 class="font-semibold text-[1.56rem] inline-block"> Subscription Plans
+                            <h2 class="font-semibold text-base md:text-[1.56rem] inline-block"> Subscription Plans
                             </h2>
                              {/* <ul class="flex">
                                 <li><a href="#"
@@ -39,55 +39,55 @@ const MyPlans=()=>{
                         </div>
                         <div
                             class="w-full grid grid-cols-12 sm:gap-x-4 md:gap-x-4 lg:gap-x-4 xl:gap-x-4 2xl:gap-x-4 group items-center transition-colors delay-300 hover:border-transparent">
-                            <div class="lg:col-span-4 md:col-span-6">
+                            <div class="lg:col-span-4 md:col-span-6 col-span-12">
                                 <div
                                     class="flowBox p-5 bg-[#282828] rounded-[0.75rem] z-0 overflow-hidden w-full relative after:content-[''] after:absolute after:bg-[#282828] after:w-[calc(100%-0.125rem)] after:h-[calc(100%-0.125rem)] after:top-[0.0625rem] after:right-[0.0625rem] after:z-[-1] after:rounded-[0.75rem]">
-                                    <h3 class="text-[1.75rem]">Monthly Access</h3>
-                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-sm">Porem ipsum dolor sit amet, consectetur
+                                    <h3 class="text-base md:text-[1.75rem]">Monthly Access</h3>
+                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-xs md:text-sm">Porem ipsum dolor sit amet, consectetur
                                         adipiscing elit.
                                     </p>
-                                    <h2 class="text-[3.13rem] font-semibold mb-8"><span class="font-normal">$</span>4.99
+                                    <h2 class="text-lg md:text-[3.13rem] font-semibold mb-8"><span class="font-normal">$</span>4.99
                                     </h2>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-[#616161] text-black rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161]">Choose
+                                            class="bg-[#616161] text-black rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161]">Choose
                                             Plan</a></span>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-transparent text-[#616161] rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161] hover:text-black mt-3">Choose
+                                            class="bg-transparent text-[#616161] rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161] hover:text-black mt-3">Choose
                                             Plan</a></span>
                                 </div>
                             </div>
-                            <div class="lg:col-span-4 md:col-span-6">
+                            <div class="lg:col-span-4 md:col-span-6 col-span-12 mt-4 md:mt-0">
                                 <div
                                     class="flowBox p-5 bg-[linear-gradient(0deg,rgba(248,68,176,1)_0%,rgba(77,65,250,1)_100%)] rounded-[0.75rem] z-0 overflow-hidden w-full relative after:content-[''] after:absolute after:bg-[#282828] after:w-[calc(100%-0.125rem)] after:h-[calc(100%-0.125rem)] after:top-[0.0625rem] after:right-[0.0625rem] after:z-[-1] after:rounded-[0.75rem]  after:bg-[url('/images/user/bg3.webp')]  after:bg-cover  after:bg-no-repeat  after:bg-top">
-                                    <h3 class="text-[1.75rem]">6-Month Access</h3>
-                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-sm">Porem ipsum dolor sit amet, consectetur
+                                    <h3 class="text-base md:text-[1.75rem]">6-Month Access</h3>
+                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-xs md:text-sm">Porem ipsum dolor sit amet, consectetur
                                         adipiscing elit.
                                     </p>
-                                    <h2 class="text-[3.13rem] font-semibold mb-8"><span class="font-normal">$</span>7.99
+                                    <h2 class="text-lg md:text-[3.13rem] font-semibold mb-8"><span class="font-normal">$</span>7.99
                                     </h2>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-[rgba(249,255,69,1)] text-black rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[rgba(249,255,69,1)]">Choose
+                                            class="bg-[rgba(249,255,69,1)] text-black rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[rgba(249,255,69,1)]">Choose
                                             Plan</a></span>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-transparent text-[rgba(249,255,69,1)] rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[rgba(249,255,69,1)] hover:text-black mt-3">Choose
+                                            class="bg-transparent text-[rgba(249,255,69,1)] rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[rgba(249,255,69,1)] hover:text-black mt-3">Choose
                                             Plan</a></span>
                                 </div>
                             </div>
-                            <div class="lg:col-span-4 md:col-span-6">
+                            <div class="lg:col-span-4 md:col-span-6 col-span-12 mt-4 md:mt-0">
                                 <div
                                     class="flowBox p-5 bg-[#282828]  rounded-[0.75rem] z-0 overflow-hidden w-full relative after:content-[''] after:absolute after:bg-[#282828] after:w-[calc(100%-0.125rem)] after:h-[calc(100%-0.125rem)] after:top-[0.0625rem] after:right-[0.0625rem] after:z-[-1] after:rounded-[0.75rem]">
-                                    <h3 class="text-[1.75rem]">Yearly Access</h3>
-                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-sm">Porem ipsum dolor sit amet, consectetur
+                                    <h3 class="text-base md:text-[1.75rem]">Yearly Access</h3>
+                                    <p class="text-[#9D9D9D] mt-1 mb-3 text-xs md:text-sm">Porem ipsum dolor sit amet, consectetur
                                         adipiscing elit.
                                     </p>
-                                    <h2 class="text-[3.13rem] font-semibold mb-8"><span
+                                    <h2 class="text-lg md:text-[3.13rem] font-semibold mb-8"><span
                                             class="font-normal">$</span>10.99
                                     </h2>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-[#616161] text-black rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161]">Choose
+                                            class="bg-[#616161] text-black rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161]">Choose
                                             Plan</a></span>
                                     <span class="block text-center"><a href="#"
-                                            class="bg-transparent text-[#616161] rounded-4xl px-8 text-sm h-[2.5rem] leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161] hover:text-black mt-3">Choose
+                                            class="bg-transparent text-[#616161] rounded-4xl px-8 text-sm h-[1.5rem] leading-[1.5rem] md:h-[2.5rem] md:leading-[2.5rem] font-normal block hover:bg-[rgba(249,255,69,0.82)] transition-colors border-1 border-solid border-[#616161] hover:text-black mt-3">Choose
                                             Plan</a></span>
                                 </div>
                             </div>

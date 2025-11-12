@@ -1,4 +1,5 @@
 import { IoIosArrowBack } from "react-icons/io";
+import OrderHistoryCard from "./_components/OrderHistoryCard";
 
 const OrderHistory=()=>{
     return(
@@ -21,15 +22,15 @@ const OrderHistory=()=>{
                     <div
                         class="py-10 px-8 mb-6 bg-size-[100%] bg-no-repeat bg-[url('/images/user/bg2.webp')] bg-bottom min-h-[30rem]">
                         <div class="flex justify-between mb-5">
-                            <h2 class="font-semibold text-[1.56rem] inline-block"><a href="/profile"
-                                    class="inline-block w-[2.38rem] h-[2.25rem] rounded-[0.75rem] border-1 border-[#848484] border-solid mr-2 leading-[2.25rem] text-center text-[1rem]">
+                            <h2 class="font-semibold text-base md:text-[1.56rem] inline-block"><a href="/profile"
+                                    class="inline-block w-[1.38rem] h-[1.25rem] md:w-[2.38rem] md:h-[2.25rem] md:rounded-[0.75rem] border-1 border-[#848484] border-solid mr-2 leading-[2.25rem] text-center text-base md:text-[1rem]">
                                         {/* <i  class="bi bi-chevron-left"></i> */}
-                                        <IoIosArrowBack size={30} />
+                                        <IoIosArrowBack size={22} className="md:size-[30px]"/>
                                         </a> Order History
                             </h2>
                             <ul class="flex">
                                 <li><a href="#"
-                                        class="flex font-medium text-sm text-[#9D9D9D] transition-colors duration-300">Last
+                                        class="flex font-medium text-xs md:text-sm text-[#9D9D9D] transition-colors duration-300">Last
                                         30 Days
                                         <span class="inline-block ml-2">
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -43,7 +44,7 @@ const OrderHistory=()=>{
                                 </li>
                             </ul>
                         </div>
-                        <div
+                        {/* <div
                             class="w-full hover:bg-[#484848] hover:rounded-[0.4rem] grid grid-cols-12 p-5 sm:gap-x-4 md:gap-x-4 lg:gap-x-4 xl:gap-x-4 2xl:gap-x-4 group items-center transition-colors delay-300 hover:border-transparent">
                             <div class="col-span-8">
                                 <div class="flex items-center">
@@ -205,7 +206,13 @@ const OrderHistory=()=>{
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <OrderHistoryCard/>
+                        <OrderHistoryCard/>
+                        <OrderHistoryCard/>
+                        <OrderHistoryCard/>
+                       
                     </div>
                 </div>
 

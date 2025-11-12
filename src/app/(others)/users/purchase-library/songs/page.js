@@ -2,9 +2,11 @@
 
 import MusicCard from "@/app/(others)/artists/my-library/song/_components/MusicCard";
 import MusicCardSkeleton from "@/app/(others)/artists/my-library/song/_components/MusicCardSkeleton";
+import NoDataFound from "@/components/NoDataFound";
 import queryConstants from "@/constants/query-constants";
 import { getPurchasedList } from "@/services/api/song-api";
 import { useQuery } from "@tanstack/react-query";
+import NoSongFoundComponent from "../../songs-library/_components/NoSongFoundComponent";
 
 const PurchaseSong = () => {
     const {
@@ -17,15 +19,15 @@ const PurchaseSong = () => {
         queryFn: () => getPurchasedList({ type: 'song' }),
     })
 
-    if (status === "success" && !songsData?.data?.length) {
-        return <NoDataFound component={<NoSongFoundComponent message={"Your favorites list is feeling a little lonely. 💔 Start adding songs you love and we’ll keep them right here for you! ❤️🎶"} />} />
-    }
+    // if (status === "success" && !songsData?.data?.length) {
+    //     return <NoDataFound component={<NoSongFoundComponent message={"Your favorites list is feeling a little lonely. 💔 Start adding songs you love and we’ll keep them right here for you! ❤️🎶"} />} />
+    // }
 
     const songList = songsData?.data ?? [];
 
     return (
         <>
-
+  {/* <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8 min-h-screen"> */}
             {status === "pending" && Array.from({ length: 5 }).map((_, i) => (
                 <MusicCardSkeleton key={`skeleton-${i + 1}`} />
             ))}
@@ -44,7 +46,7 @@ const PurchaseSong = () => {
             {status === "error" && (
                 <p className="text-red-500">Failed to load songs.</p>
             )}
-
+{/* </div> */}
         </>
     )
 }

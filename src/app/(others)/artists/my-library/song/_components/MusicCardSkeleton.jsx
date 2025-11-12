@@ -3,7 +3,7 @@ import { Card } from "@heroui/react";
 const MusicCardSkeleton = () => {
     return (
         <>
-            <Card className="w-full space-y-5 p-4" radius="lg">
+            <Card className=" max-h-[280px] h-full w-full space-y-5 p-4" radius="lg">
                 <Skeleton className="rounded-lg">
                     <div className="h-24 rounded-lg bg-default-300" />
                 </Skeleton>

@@ -6,13 +6,13 @@ const TrackDetails = ({ trackDetails }) => {
     const { artwork, title, artist } = trackDetails;
     return (
         <>
-            <span className='w-[3.25rem] flex-[0_0_3.25rem]'>
+            <span className='w-[3.25rem] h-[3.25rem] flex-[0_0_3.25rem]'>
                 <Link href='#'>
                     <img
                         src={artwork}
                         alt='pr3cio-logo'
                         loading='lazy'
-                        className='w-full rounded-[0.56rem]'
+                        className='w-full rounded-[0.56rem] h-[3.25rem]'
                     />
                 </Link>
             </span>

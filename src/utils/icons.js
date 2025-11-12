@@ -3,3 +3,7 @@ export { default as EDIT_ICON } from "@/assets/icons/Edit_icon.svg";
 export { default as PUBLISH_ICON } from "@/assets/icons/Publish_icon.svg";
 export { default as PAUSE_ICON } from "@/assets/icons/Pause_icon.svg";
 export { default as SEND_ICON } from "@/assets/icons/Send_icon.svg";
+export { default as SEND_ICON_2 } from "@/assets/icons/send.svg";
+export { default as MUSIC_NOTES } from "@/assets/icons/music-notes.svg";
+export { default as GENERATE_AI } from "@/assets/icons/generate-ai.svg";
+export { default as RECORD } from "@/assets/icons/record.svg";

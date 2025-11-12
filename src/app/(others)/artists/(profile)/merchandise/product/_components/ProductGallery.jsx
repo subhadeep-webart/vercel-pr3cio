@@ -29,11 +29,11 @@ const ProductGallery = ({ imageUrl }) => {
                     src={selectedImage}
                     alt={"product-image"}
                     loading="lazy"
-                    className={`rounded-full h-[24.31rem] object-cover transition-opacity duration-800 ${preloadImage ? 'opacity-100' : 'opacity-0'}`}
+                    className={`rounded-full md:h-[24.31rem] h-[10.31rem] object-cover transition-opacity duration-800 ${preloadImage ? 'opacity-100' : 'opacity-0'}`}
                     onLoad={handleLoad}
                 />
             </div>
-            <div className=" w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 lg:grid-cols-4 gap-5">
+            <div className=" w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-5">
                 {
                     imageUrl?.map((image, index) => (<GalleryImageCard image={image} key={`gallery-image-${index + 1}`} handleClick={handleClick} selectedImage={selectedImage} />))
                 }

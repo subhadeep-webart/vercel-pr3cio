@@ -77,6 +77,7 @@ export default function usePublishSongForm() {
         values: FormValues,
         formikHelpers: FormikHelpers<FormValues>
     ) => {
+        console.log("Publish Data",values);
         try {
             await publishSongAsync(values)
             toast.success('Song published successfully!')

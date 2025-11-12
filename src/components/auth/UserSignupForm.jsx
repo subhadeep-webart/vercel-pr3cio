@@ -1,18 +1,32 @@
-"use client"
+"use client";
 
-import Image from "next/image";
-import SignupToggle from "./SignupToggle";
-import { useFormik } from "formik";
-import { signupValidationSchema } from "@/utils/formValidation";
-import ErrorText from "../ui/ErrorText";
-import queryConstants from "@/constants/query-constants";
 import { signup } from "@/services/api/user-ep";
 import { useMutation } from "@tanstack/react-query";
+import { useFormik } from "formik";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import ReactPhoneInput from 'react-phone-input-2';
+
+
+
+import queryConstants from "@/constants/query-constants";
+import { signupValidationSchema } from "@/utils/formValidation";
+
+
+
+import ErrorText from "../ui/ErrorText";
 import Loader from "../ui/Loader";
-import ReactPhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+import SignupToggle from "./SignupToggle";
+
+
+
+import 'react-phone-input-2/lib/style.css';
+
+
+
+import GoogleLoginButton from "./goole-login";
+
 
 const UserSignupForm = () => {
     const router = useRouter();
@@ -31,6 +45,11 @@ const UserSignupForm = () => {
         validationSchema: signupValidationSchema,
         onSubmit: async (values, { resetForm, setSubmitting }) => {
             const { confirmPassword, ...payload } = values;
+
+            console.log("Values", values);
+            if (payload.phone && !payload.phone.startsWith('+')) {
+                payload.phone = `+${payload.phone}`;
+            }
             console.log("Values", values)
             try {
                 await mutateAsync({ ...payload, is_artist: false });
@@ -46,36 +65,40 @@ const UserSignupForm = () => {
         },
     });
     return (
-        <section className="login">
-            <div className="flex justify-center bg-[url('/img/login-bg.png')] bg-cover bg-bottom bg-no-repeat w-full min-h-screen">
-                <div
-                    className=" relative w-full md:w-[45%] bg-[#191919] bg-no-repeat bg-center flex justify-center items-center p-4 bg-cover ">
+        <section className='login'>
+            <div className="flex min-h-screen w-full justify-center bg-[url('/img/login-bg.png')] bg-cover bg-bottom bg-no-repeat">
+                <div className='gradient-bg-2 relative mb-20 flex w-full items-center justify-center p-4 md:mb-0 md:w-[45%]'>
                     <SignupToggle />
-                    <div className="max-w-[27.38rem] w-full m-auto mt-36 md:mt-0">
+                    <div className='m-auto mt-36 w-full max-w-[27.38rem] md:mt-0'>
                         <center>
-                            <h1 className="font-semibold text-lg md:text-4xl mb-2">Let’s Get Started</h1>
+                            <h1 className='mb-2 text-xl font-semibold md:text-4xl'>
+                                Let’s Get Started
+                            </h1>
                         </center>
                         <form onSubmit={formik.handleSubmit}>
-                            <div className="mb-4 relative">
-                                <label className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block">
+                            <div className='relative mb-4'>
+                                <label className='mb-2 block text-sm font-medium text-[#D1CAD5] md:text-base'>
                                     Email
                                 </label>
                                 <input
-                                    type="text"
-                                    name="email"
+                                    type='text'
+                                    name='email'
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value={formik.values.email}
-                                    className="w-full rounded-md px-3 h-[3rem] text-sm border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E]"
-                                    placeholder="Enter Email or Number"
+                                    className='h-[3rem] w-full rounded-md border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E] px-3 text-sm'
+                                    placeholder='Enter Email or Number'
                                 />
-                                {formik.touched.email && formik.errors.email && (
-                                    <ErrorText errorMessage={formik.errors.email} />
-                                )}
+                                {formik.touched.email &&
+                                    formik.errors.email && (
+                                        <ErrorText
+                                            errorMessage={formik.errors.email}
+                                        />
+                                    )}
                             </div>
 
-                            <div className="mb-4 relative">
-                                <label className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block">
+                            <div className='relative mb-4'>
+                                <label className='mb-2 block text-sm font-medium text-[#D1CAD5] md:text-base'>
                                     Phone
                                 </label>
                                 {/* <input
@@ -90,78 +113,112 @@ const UserSignupForm = () => {
                                 <ReactPhoneInput
                                     country={'us'} // default country
                                     value={formik.values.phone}
-                                    onChange={(phone) => formik.setFieldValue('phone', phone)}
-                                    onBlur={() => formik.setFieldTouched('phone', true)}
+                                    onChange={(phone) =>
+                                        formik.setFieldValue('phone', phone)
+                                    }
+                                    onBlur={() =>
+                                        formik.setFieldTouched('phone', true)
+                                    }
                                     inputProps={{
                                         name: 'phone',
                                         required: true,
-                                        className: 'w-full rounded-md pl-12 h-[3rem] text-sm border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E] text-white'
+                                        className:
+                                            'w-full rounded-md pl-12 h-[3rem] text-sm border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E] text-white',
                                     }}
-                                    containerClass="w-full"
-                                    inputClass="!bg-[#2E2E2E] !border !border-[rgba(255,255,255,0.15)] !text-white"
-                                    dropdownStyle={{ backgroundColor: "#2E2E2E" }}
-                                    buttonClass="!bg-[#2E2E2E]"
-                                    placeholder="Enter Number"
+                                    containerClass='w-full'
+                                    inputClass='!bg-[#2E2E2E] !border !border-[rgba(255,255,255,0.15)] !text-white'
+                                    dropdownStyle={{
+                                        backgroundColor: '#2E2E2E',
+                                    }}
+                                    buttonClass='!bg-[#2E2E2E]'
+                                    placeholder='Enter Number'
                                 />
-                                {formik.touched.phone && formik.errors.phone && (
-                                    <ErrorText errorMessage={formik.errors.phone} />
-                                )}
+                                {formik.touched.phone &&
+                                    formik.errors.phone && (
+                                        <ErrorText
+                                            errorMessage={formik.errors.phone}
+                                        />
+                                    )}
                             </div>
 
-                            <div className="mb-4 relative">
-                                <label className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block">
+                            <div className='relative mb-4'>
+                                <label className='mb-2 block text-sm font-medium text-[#D1CAD5] md:text-base'>
                                     Password
                                 </label>
                                 <input
-                                    type="password"
-                                    name="password"
+                                    type='password'
+                                    name='password'
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value={formik.values.password}
-                                    className="w-full rounded-md px-3 h-[3rem] text-sm border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E]"
-                                    placeholder="Enter Password"
+                                    className='h-[3rem] w-full rounded-md border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E] px-3 text-sm'
+                                    placeholder='Enter Password'
                                 />
-                                {formik.touched.password && formik.errors.password && (
-                                    <ErrorText errorMessage={formik.errors.password} />
-                                )}
+                                {formik.touched.password &&
+                                    formik.errors.password && (
+                                        <ErrorText
+                                            errorMessage={
+                                                formik.errors.password
+                                            }
+                                        />
+                                    )}
                             </div>
 
-                            <div className="mb-4 relative">
-                                <label className="text-sm md:text-base font-medium text-[#D1CAD5] mb-2 block">
+                            <div className='relative mb-4'>
+                                <label className='mb-2 block text-sm font-medium text-[#D1CAD5] md:text-base'>
                                     Confirm Password
                                 </label>
                                 <input
-                                    type="password"
-                                    name="confirmPassword"
+                                    type='password'
+                                    name='confirmPassword'
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value={formik.values.confirmPassword}
-                                    className="w-full rounded-md px-3 h-[3rem] text-sm border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E]"
-                                    placeholder="Enter Password"
+                                    className='h-[3rem] w-full rounded-md border border-[rgba(255,255,255,0.15)] bg-[#2E2E2E] px-3 text-sm'
+                                    placeholder='Enter Password'
                                 />
-                                {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                                    <ErrorText errorMessage={formik.errors.confirmPassword} />
-                                )}
+                                {formik.touched.confirmPassword &&
+                                    formik.errors.confirmPassword && (
+                                        <ErrorText
+                                            errorMessage={
+                                                formik.errors.confirmPassword
+                                            }
+                                        />
+                                    )}
                             </div>
 
-                            <div className="mt-6 relative">
+                            <div className='relative mt-6'>
                                 <button
-                                    type="submit"
-                                    className="bg-[#C6FF00] w-full text-sm text-black h-[3rem] leading-[3rem] text-center rounded-4xl cursor-pointer hover:bg-[#afe200] transition-colors"
-                                >
-                                    {formik.isSubmitting ? <Loader size="sm" /> : "Submit"}
+                                    type='submit'
+                                    className='rounded-4xl h-[3rem] w-full cursor-pointer bg-[#C6FF00] text-center text-sm leading-[3rem] text-black transition-colors hover:bg-[#afe200]'>
+                                    {formik.isSubmitting ? (
+                                        <Loader size='sm' />
+                                    ) : (
+                                        'Submit'
+                                    )}
                                 </button>
                             </div>
                         </form>
                         <center>
-                            <h6 className="mt-2 mb-2 text-sm font-semibold">Already have an account? <a href="/login"
-                                className="text-[#4D41FA] underline">Sign
-                                In</a></h6>
-                            <p className="text-sm text-[#B5B5B5]">OR</p>
-                            <a href="#"
+                            <h6 className='mb-2 mt-2 text-sm font-semibold'>
+                                Already have an account?{' '}
+                                <a
+                                    href='/login'
+                                    className='text-[#4D41FA] underline'>
+                                    Sign In
+                                </a>
+                            </h6>
+                            <p className='text-sm text-[#B5B5B5]'>OR</p>
+                            {/* <a href="#"
                                 className="border-1 mt-2 border-[rgba(255,255,255,0.15)] w-full text-sm text-[#9D9D9D] h-[3.5rem] leading-[3.5rem] text-center rounded-4xl cursor-pointer hover:bg-white transition-colors flex justify-center items-center"><span><img
                                     src="/images/login/google.webp" alt="pr3cio-logo" loading="lazy"
-                                    className="mr-3" /></span> Log in to continue</a>
+                                    className="mr-3" /></span> Log in to continue</a> */}
+                            <GoogleLoginButton
+                                onSuccess={() =>
+                                    router.push('/discover-your-genre')
+                                }
+                                isArtist={false}
+                            />
                         </center>
                     </div>
                 </div>

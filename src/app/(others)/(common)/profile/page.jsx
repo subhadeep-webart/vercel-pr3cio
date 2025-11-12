@@ -44,8 +44,8 @@ const ProfilePage = () => {
                         <span class='absolute left-8 top-[-1rem] h-[2.00rem] w-[8.00rem] rounded-[0.4rem] border-1 border-solid border-[#424242] bg-black text-center leading-[2.00rem]'>
                             {plan === null ? 'No Active Plan' : 'Current Plan'}
                         </span>
-                        <div class='col-span-5'>
-                            <h2 class='text-[1.75rem]'>
+                        <div class='md:col-span-5 col-span-12'>
+                            <h2 class='text-base md:text-[1.75rem]'>
                                 {' '}
                                 {plan === null
                                     ? 'You currently have no active plans.'
@@ -66,26 +66,26 @@ const ProfilePage = () => {
                                 ''
                             )}
                         </div>
-                        <div class='col-span-7'>
-                            <h1 class='text-right text-[2.75rem]'>
+                        <div class='md:col-span-7 col-span-12'>
+                            <h1 class='text-right text-base md:text-[2.75rem]'>
                                 $ {plan === null ? '0.00' : '10.99'}
                             </h1>
                         </div>
                     </div>
                     <div class='my-8 grid auto-cols-auto grid-cols-12 rounded-[0.63rem] bg-[linear-gradient(to_right,rgba(77,65,250,1)_0%,rgba(255,38,99,1)_100%)] p-8 sm:gap-4 md:gap-4 lg:gap-4 xl:gap-6 2xl:gap-4'>
-                        <div class='md:col-span-9'>
-                            <h3 class='text-lg font-bold text-white'>
+                        <div class='md:col-span-9 col-span-12'>
+                            <h3 class='text-base md:text-lg font-bold text-white'>
                                 Discover the Premium Experience
                             </h3>
-                            <p class='text-[0.94rem] text-base text-white'>
+                            <p class='text-sm md:text-[0.94rem] text-white mt-2 md:mt-0'>
                                 Unlock exclusive features, content, and benefits
                                 designed just for our premium members..
                             </p>
                         </div>
-                        <span class='md:col-span-3 md:text-right'>
+                        <span class='col-span-12 md:col-span-3 md:text-right mt-4 md:mt-0'>
                             <a
                                 href='#'
-                                class='rounded-4xl inline-block h-[3rem] bg-white px-4 text-sm font-semibold leading-[3rem] text-black transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black lg:px-9'>
+                                class='rounded-4xl inline-block h-[2rem] md:h-[3rem] bg-white px-4 text-sm font-semibold leading-[2rem] md:leading-[3rem] text-black transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black lg:px-9'>
                                 <img
                                     src='/images/user/1.webp'
                                     alt='icon'
@@ -95,17 +95,17 @@ const ProfilePage = () => {
                             </a>
                         </span>
                     </div>
-                    <h2 class='mb-4 text-2xl font-semibold'>Account</h2>
+                    <h2 class='mb-4 text-lg md:text-2xl font-semibold'>Account</h2>
                     {AFTER_LOGIN_USER.map((item, index) => (
                         <div key={index} class='w-full'>
                             <Link
                                 href={`/profile${item.path}`}
                                 class='group grid auto-cols-auto grid-cols-12 items-center border-b-1 border-solid border-[#393A39] p-5 transition-colors delay-300 hover:rounded-[0.4rem] hover:border-transparent hover:bg-[#484848] sm:gap-4 md:gap-4 lg:gap-4 xl:gap-6 2xl:gap-4'>
                                 <div class='col-span-10'>
-                                    <span class='mr-2 inline-flex h-[2.25rem] w-[2.38rem] items-center justify-center rounded-[0.63rem] border-1 border-solid border-[#848484]'>
+                                    <span class='mr-2 inline-flex h-[1.25rem] w-[1.38rem] md:h-[2.25rem] md:w-[2.38rem] items-center justify-center md:rounded-[0.63rem] border-1 border-solid border-[#848484]'>
                                         {item.icon}
                                     </span>
-                                    <strong class='relative top-[-0.4rem] inline-block text-base font-semibold leading-[0.8]'>
+                                    <strong class='relative top-[-0.4rem] inline-block text-sm md:text-base font-semibold leading-[0.8]'>
                                         {item.label}
                                     </strong>
                                 </div>

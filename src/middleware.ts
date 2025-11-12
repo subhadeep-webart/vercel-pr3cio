@@ -8,7 +8,6 @@ const protectedRoutes = [
     '/profile',
     '/albums',
     '/publish-song',
-    '/songs',
     '/library',
     '/store',
     '/artists',
@@ -46,7 +45,7 @@ export default async function middleware(req: NextRequest) {
             // 🔑 Fetch fresh user data if session exists
             if (hasSession) {
                 console.log("Is entered======> inside middleware");
-                const res = await fetch(`https://adminpr3cio.dwstaging.link/api/v1/users/me`, {
+                const res = await fetch(`https://pr3cio-api.onrender.com/api/v1/users/me`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${cookie}`,

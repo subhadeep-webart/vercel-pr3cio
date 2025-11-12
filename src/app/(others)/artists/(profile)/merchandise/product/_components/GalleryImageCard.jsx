@@ -10,7 +10,7 @@ const GalleryImageCard = ({ image, handleClick, selectedImage }) => {
                 src={image}
                 alt="skipBack"
                 loading="lazy"
-                className="rounded-full h-[4.67rem] object-cover"
+                className="rounded-full md:h-[4.67rem] h-[2.67rem] object-cover"
             />
         </div>
     )

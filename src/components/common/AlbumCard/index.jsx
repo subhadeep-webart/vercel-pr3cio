@@ -1,19 +1,38 @@
-"use client";
+'use client'
 
+import DeleteAlbumModal from '@/app/(others)/artists/my-library/song/_components/DeleteAlbumModal'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+import useAuth from '@/hooks/useAuth'
+
+import BuyAlbumButton from './_components/BuyAlbumButton'
 
 const AlbumCard = ({ albumDetails }) => {
+    console.log('albumDetails', albumDetails)
+    const router = useRouter()
+
+    const { user } = useAuth()
+
+    const handleClick = () => {
+        router.push(`/albums/album-details/${albumDetails?._id}`)
+    }
+
     return (
-        <Link className='mb-3 md:mb-5 cursor-pointer' href={`/albums/album-details/${albumDetails?._id}`}>
-            <div className="relative z-0 w-full h-40 overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:content-['']">
+        <div
+            className='mb-3 cursor-pointer md:mb-5'
+            onClick={() => handleClick()}
+            // href={`/albums/album-details/${albumDetails?._id}`}
+        >
+            <div className="relative z-0 h-40 w-full overflow-hidden rounded-2xl after:absolute after:right-0 after:top-0 after:z-0 after:h-full after:w-full after:content-['']">
                 {/* <div href="/albums/album-details"> */}
-                    <img
-                        src={albumDetails?.thumbnail}
-                        alt="Artist"
-                        loading="lazy"
-                        className="w-full h-full object-cover rounded-2xl"
-                    />
+                <img
+                    src={albumDetails?.thumbnail}
+                    alt='Artist'
+                    loading='lazy'
+                    className='h-full w-full rounded-2xl object-cover'
+                />
                 {/* </div> */}
 
                 {/* <Image
@@ -49,17 +68,32 @@ const AlbumCard = ({ albumDetails }) => {
                     />
                 </span> */}
             </div>
-            <h3>
-                <p
-                    className='mt-3 block text-sm font-semibold text-white'>
-                    {albumDetails?.user?.name ?? ''}
-                </p>
-            </h3>
-            <p className='w-full truncate text-xs text-white'>{albumDetails?.name}</p>
-            <h3 className='mt-1 block text-sm font-semibold text-white'>
-                ${albumDetails?.amount}
-            </h3>
-        </Link>
+            <div className='flex justify-between'>
+                <div>
+                    <h3>
+                        <p className='mt-3 block text-sm font-semibold text-white'>
+                            {albumDetails?.user?.name ?? ''}
+                        </p>
+                    </h3>
+                    <p className='w-full truncate text-xs text-white'>
+                        {albumDetails?.name}
+                    </p>
+                </div>
+
+                {!user?.is_artist && !albumDetails?.inAppDownload && !albumDetails?.isAlbumDownLoad && (
+                    <BuyAlbumButton albumId={albumDetails?._id} />
+                )}
+            </div>
+            <div className='flex justify-between'>
+                <h3 className='mt-1 block text-sm font-semibold text-white'>
+                    ${albumDetails?.amount}
+                </h3>
+                {user?.is_artist && (
+                    <DeleteAlbumModal albumId={albumDetails?._id} />
+                )}
+               
+            </div>
+        </div>
     )
 }
 

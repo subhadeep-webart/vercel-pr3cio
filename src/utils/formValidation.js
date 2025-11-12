@@ -9,6 +9,17 @@ export const loginValidationSchema = Yup.object({
         .min(6, "Password must be at least 6 characters"),
 })
 
+export const forgotPasswordValidationSchema = Yup.object({
+    userId: Yup.string()
+        .required("Username is required")
+})
+
+export const changePasswordValidationSchema = Yup.object({
+    password: Yup.string()
+        .required("Password is required")
+        .min(6, "Password must be at least 6 characters"),
+})
+
 export const signupValidationSchema = Yup.object({
     email: Yup.string().label("Email").required("Email is required"),
     phone: Yup.string().label("Phone").required("Phone is required"),

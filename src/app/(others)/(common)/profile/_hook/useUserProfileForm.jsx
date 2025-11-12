@@ -32,6 +32,8 @@ export default function useUserProfileForm() {
         newPassword: '',
         confirmPassword: '',
         bio: user?.bio || [],
+        email: user?.email,
+        phone: user?.phone
     }
 
     const { mutateAsync: updateUserProfileAsync } = useMutation({
@@ -63,18 +65,22 @@ export default function useUserProfileForm() {
                 key: section.title,
             }));
         }
-        
+
         try {
             const updatedUser = await updateUserProfileAsync({
                 name: values.name,
                 avatar: values.avatar,
                 bio: updatedBio,
+                phone: values.phone
             })
             console.log('hellooo', values.avatar)
 
             toast.success('Profile updated successfully!')
             dispatch(saveSession(updatedUser.user))
-            router.push('/artists/biography');
+            if (updatedUser?.user?.is_artist) {
+                router.push('/artists/biography');
+            }
+
         } catch (error) {
             toast.error(error?.message || 'Failed to update profile.')
         }

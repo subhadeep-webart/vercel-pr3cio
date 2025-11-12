@@ -9,9 +9,9 @@ const Music = () => {
 
     return (
         <>
-            <div class='w-full px-4 py-4'>
+            <div class='w-full px-4 py-4 min-h-[340px]'>
                 {artist?.songs.map((item, index, items) => (
-                    <SongsCard key={item?._id} song={item} data={items} />
+                    <SongsCard key={item?._id} track={item} tracks={items} />
                 ))}
             </div>
         </>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, use, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Input, Textarea, Select, SelectItem, Tooltip, Image, Switch } from '@heroui/react';
 import { CiCircleRemove } from 'react-icons/ci';
@@ -12,6 +12,7 @@ import { editSongs, getSongDataByID } from '@/services/api/song-api-service';
 import { withAuthProtection } from '@/components/auth/protected-component';
 
 function UpdateSongForm({ params }) {
+    const audioRef=useRef(null);
     const { handleAddAlbum, albums } = usePublishSongForm()
     const router = useRouter()
     const [songData, setSongData] = useState(null);
@@ -26,7 +27,8 @@ function UpdateSongForm({ params }) {
         artwork: '',
         album_id: null,
         tags: [],
-        amount: 0
+        amount: 0,
+        duration: 0
     });
     const [errors, setErrors] = useState({});
     const { slug } = use(params);
@@ -47,18 +49,19 @@ function UpdateSongForm({ params }) {
     useEffect(() => {
         if (songData) {
             setFormValues({
-                title: songData.title || '',
-                description: songData.description || '',
-                category: songData.category.name || "",
-                url: songData.url || '',
-                artwork: songData.artwork || '',
-                albumsOfSong: songData.albumsOfSong || null,
-                tags: songData.tags || [],
-                amount: songData.amount || []
+                title: songData?.title || '',
+                description: songData?.description || '',
+                category: songData?.category.name || "",
+                url: songData?.url || '',
+                artwork: songData?.artwork || '',
+                albumsOfSong: songData?.albumsOfSong || null,
+                tags: songData?.tags || [],
+                amount: songData?.amount || 0,
+                duration: songData?.duration || 0,
             });
 
             // Automatically set the upload mode if albumsOfSong is present
-            setSingleUpload(songData.albumsOfSong?.length === 0);  // If no album, use Single upload mode
+            setSingleUpload(songData?.albumsOfSong?.length === 0);  // If no album, use Single upload mode
         }
     }, [songData]);
 
@@ -148,7 +151,7 @@ function UpdateSongForm({ params }) {
                     {formValues.url && (
                         <div>
                             <div className="flex items-center gap-1">
-                                <audio controls src={`https://d13hus0rdpxu56.cloudfront.net/${formValues.url}`} className="h-8" />
+                                <audio controls src={`https://d13hus0rdpxu56.cloudfront.net/${formValues.url}`} className="h-8" ref={audioRef}/>
                                 <Tooltip content="Remove Song">
                                     <Button isIconOnly variant="light" onPress={handleRemoveSong} isDisabled={songData?.is_public}>
                                         <CiCircleRemove className="text-2xl text-danger-500" />

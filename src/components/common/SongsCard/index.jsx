@@ -38,26 +38,26 @@ const SongsCard = ({
     return (
         <>
             {artist?.songs.map((item, index) => (
-                <div key={index} className='mb-3 flex w-full flex-wrap items-center justify-between rounded-[0.75rem] px-5 py-2 transition-colors duration-300 hover:bg-[#484848]'>
+                <div key={index} className='mb-3 flex w-full md:flex-wrap items-center justify-between rounded-[0.75rem] px-5 py-2 transition-colors duration-300 hover:bg-[#484848]'>
                     <div className='flex items-center'>
-                        <span className='mr-4 w-[2.81rem] flex-[0_0_2.81rem] h-[60px]'>
+                        <span className='mr-4 md:w-[2.81rem] w-[1.81rem] flex-[0_0_2.81rem] md:h-[60px] h-[40px]'>
                             <img
                                 src={item?.artwork}
                                 alt='artist'
-                                className='w-full rounded-[0.5rem] h-[60px]'
+                                className='w-full rounded-[0.5rem] h-[40px] md:h-[60px]'
                             />
                         </span>
                         <div>
-                            <h6 className='text-lg font-semibold text-white line-clamp-1'>
+                            <h6 className='text-base md:text-lg font-semibold text-white line-clamp-1'>
                                 {item?.title}
                             </h6>
-                            <p className='text-sm font-medium text-[#CFCFCF]'>
+                            <p className='text-xs md:text-sm font-medium text-[#CFCFCF]'>
                                 {item?.artist}
                             </p>
                         </div>
                         <div className='flex items-center px-4'>
                             {showHeart && (
-                                <span className='group mx-2 flex items-center rounded-full bg-[#2A2929] px-3 py-1 text-sm font-semibold text-white'>
+                                <span className='group md:mx-2 flex items-center rounded-full bg-[#2A2929] px-3 py-1 text-sm font-semibold text-white'>
                                     <svg
                                         width='17'
                                         height='15'
@@ -71,7 +71,7 @@ const SongsCard = ({
                                 </span>
                             )}
                             {showPlayCount && (
-                                <span className='group mx-2 flex items-center rounded-full bg-[#2A2929] px-2 py-1 text-xs font-semibold text-white'>
+                                <span className='group md:mx-2 flex items-center rounded-full bg-[#2A2929] px-2 py-1 text-xs font-semibold text-white'>
                                     <svg
                                         width='14'
                                         height='15'
@@ -110,12 +110,12 @@ const SongsCard = ({
                                 </span>
                             )}
                             {showAmount && (
-                                <span className='mx-2 text-base'>$ {item?.amount}</span>
+                                <span className='md:mx-2 text-base'>$ {item?.amount}</span>
                             )}
                         </div>
                     </div>
                     <div className='flex items-center'>
-                        {showDuration && <span className='mx-2 text-lg'>5:14</span>}
+                        {showDuration && <span className='md:mx-2 md:text-lg text-sm'>5:14</span>}
 
                         <ul className='mx-3 flex min-w-[8rem] items-center'>
                             {showDownload && (
@@ -200,4 +200,4 @@ const SongsCard = ({
     )
 }
 
-export default SongsCard
+export default SongsCard;

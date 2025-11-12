@@ -13,23 +13,28 @@ import BankAccountAddDrawer from './_components/BankAccountAddDrawer'
 import BankAccountAddAlert from './_components/BankAccountAddAlert'
 import useAuth from '@/hooks/useAuth'
 
+
 const Artist_layout = ({ children }) => {
-    const { user } = useAuth();
-    console.log("user",user?.bankAccountId)
-    const [isBankAccountAlert, setIsBankAccountAlert] = useState(false);
-    useEffect(() => {
-        if (user?.is_artist && !user?.bankAccountId) {
-            console.log("Executed===>");
-            setIsBankAccountAlert(true);
-        }else{
-            setIsBankAccountAlert(false);
-        }
-    }, [user]);
+    const pathname=usePathname();
+    // const { user } = useAuth();
+    // console.log("user",user?.bankAccountId)
+    // const [isBankAccountAlert, setIsBankAccountAlert] = useState(false);
+    // useEffect(() => {
+    //     if (user?.is_artist && !user?.bankAccountId && pathname === '/artists/song-upload') {
+    //         console.log("Executed===>");
+    //         setIsBankAccountAlert(true);
+    //     }else{
+    //         setIsBankAccountAlert(false);
+    //     }
+    // }, [user,pathname]);
+
+    const isAiPage=pathname==="/artists/create-song-with-ai";
+
     return (
         <>
-            {isBankAccountAlert && <BankAccountAddAlert />}
+            {/* {isBankAccountAlert && <BankAccountAddAlert />} */}
             {/* <BankAccountAddDrawer/> */}
-            <div className='ml-3 w-full rounded-[0.75rem] bg-[#333232] md:ml-5'>
+            <div className={`ml-3 w-full rounded-[0.75rem]  md:ml-5 ${isAiPage ? 'bg-transparent' :'bg-[#333232]'}`}>
                 {children}
             </div>
         </>

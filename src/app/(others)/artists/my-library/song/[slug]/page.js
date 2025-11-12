@@ -13,7 +13,8 @@ import MusicCardSkeleton from "../_components/MusicCardSkeleton";
 const MyLibraryPage = () => {
     const { slug } = useParams();
     console.log("Slug from the page=====>", slug);
-    const isPublic = slug === "published-song";
+    const isPublic = slug === "published-songs";
+    console.log("Is Public==========>", isPublic);
     const {
         data,
         fetchNextPage,
@@ -28,7 +29,7 @@ const MyLibraryPage = () => {
             return getPrivateSongList({
                 isPublic,
                 page: pageParam,
-                limit: 12,
+                limit: 30,
             });
         },
         initialPageParam: 1,
@@ -58,7 +59,7 @@ const MyLibraryPage = () => {
     console.log("draft Songs========>", songs);
     return (
         <div
-            class="grid  grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+            class="grid  grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-4 min-h-[450px]">
             {status === 'pending' &&
                 Array.from({ length: 5 }).map((_, i) => (
                     <MusicCardSkeleton key={`card-skelton-${i + 1}`} />

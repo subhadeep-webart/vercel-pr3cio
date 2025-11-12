@@ -63,7 +63,7 @@ const Page = () => {
                         </ul>
                     </div>
                     {history?.length > 0
-                        ? history.map((item, index) => (
+                        ? history?.map((item, index) => (
                             <PaymentHistoryCard paymentDetails={item} key={item?._id}/>
                         ))
                         : ''}

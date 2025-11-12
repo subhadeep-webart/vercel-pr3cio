@@ -39,6 +39,8 @@ const MusicPage = () => {
         },
     })
 
+    console.log("data latest",data)
+
     // Combine all pages of songs into one array using useMemo
     const musics = useMemo(() => {
         return data?.pages.flatMap((page) => page?.data) ?? []
@@ -51,9 +53,9 @@ const MusicPage = () => {
 
     return (
         <div className="flex items-start flex-wrap w-full justify-end">
-            <div className="bg-[#2B2B2B] rounded-[0.75rem] p-6 sm:w-[calc(100%-1rem)] float-right">
+            <div className="bg-[#2B2B2B] rounded-[0.75rem] p-6 md:w-[calc(100%-1rem)] md:float-right w-full ml-2 md:ml-2">
                 <div className="flex justify-between">
-                    <h1 className="text-[1.56rem] font-semibold mb-5">Songs</h1>
+                    <h1 className="text-base md:text-[1.56rem] font-semibold mb-5">Songs</h1>
                     <ul className="flex">
                         <li>
                             <Link className={`bg-[#373437] ml-2 hover:bg-gradient-to-r hover:from-[#D344C9] hover:to-[#2D2694] rounded-[0.50rem] font-medium text-xs text-white px-6 py-2 transition-colors duration-300 bg-gradient-to-r from-[#D344C9] to-[#2D2694]`} href={"/users/songs/latests"}>

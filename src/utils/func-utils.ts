@@ -69,3 +69,10 @@ export function formatDateToCustom(dateString: string) {
 
     return `${day} ${month}, ${year}`;
 }
+
+export function formatSecondsToMinutes(seconds: number) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    const paddedSecs = secs.toString().padStart(2, '0');
+    return `${mins}:${paddedSecs}`;
+}

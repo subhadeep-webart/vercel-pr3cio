@@ -49,10 +49,11 @@ const ArtistDetailsPage = () => {
     const artist = useSelector((state) => state.artist.data)
 
     console.log('artist data=====>', artist?.bio)
+    console.log('artist data=====>', artist)
 
     return (
         <>
-            <div class='flex w-full justify-between px-16 py-11'>
+            <div class='flex flex-col md:flex-row w-full justify-between px-4 md:px-16 py-6 md:py-11 min-h-[320px]'>
                 <BioTab bioDetails={artist?.bio || []} />
             </div>
         </>

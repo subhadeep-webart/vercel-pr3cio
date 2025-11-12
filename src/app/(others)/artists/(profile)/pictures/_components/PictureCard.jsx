@@ -5,7 +5,7 @@ const PictureCard = ({ imageUrl }) => {
                 src={imageUrl}
                 alt='skipBack'
                 loading='lazy'
-                class='h-[10.13rem] w-full rounded-[0.75rem] object-cover'
+                class='md:h-[10.13rem] h-[7.13rem] w-full rounded-[0.75rem] object-cover'
             />
         </div>
     )

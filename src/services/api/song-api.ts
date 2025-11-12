@@ -249,3 +249,29 @@ export const getAllTagLists = async () => {
 }
 
 
+export const uploadRecordedMusic = async (param: any) => {
+    try {
+        const formData = new FormData()
+        formData.append('song', param.song)
+
+        const response = await httpService.put(
+            queryConstants.uploadRecordedMusic,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        )
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err: any) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
+

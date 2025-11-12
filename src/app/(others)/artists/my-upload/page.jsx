@@ -19,10 +19,10 @@ const UploadPage = () => {
     return (
         <>
             <div className='grid w-full grid-cols-2 gap-8 rounded-[0.876rem] bg-[#2A2929] px-8 py-8 sm:grid-cols-3 lg:grid-cols-5'>
-                <div className='flex h-[10.13rem] items-center justify-center border-2 border-dashed border-[#3c3c3c] bg-[#333333]'>
+                <div className='flex h-[8.13rem] md:h-[10.13rem] items-center justify-center border-2 border-dashed border-[#3c3c3c] bg-[#333333]'>
                     <button
                         onClick={() => setOpenAddImage(true)}
-                        className='h-[2.88rem] w-auto cursor-pointer rounded-full bg-[#C6FF00] px-5 text-center text-sm leading-[2.88rem] text-black'>
+                        className='h-[1.88rem] md:h-[2.88rem] w-auto cursor-pointer rounded-full bg-[#C6FF00] px-5 text-center text-sm leading-[1.88rem] md:leading-[2.88rem] text-black'>
                         Add Image
                     </button>
                 </div>

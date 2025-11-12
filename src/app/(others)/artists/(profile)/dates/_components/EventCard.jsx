@@ -1,21 +1,24 @@
 const EventCard = ({ eventDetails }) => {
     console.log('eventDetails', eventDetails)
     return (
-        <div class="flowBox relative z-0 mb-5 w-full rounded-[0.75rem] bg-[linear-gradient(35deg,rgba(248,68,176,1)_0%,rgba(77,65,250,1)_100%)] p-4 after:absolute after:right-[0.0625rem] after:top-[0.0625rem] after:z-[-1] after:h-[calc(100%-0.125rem)] after:w-[calc(100%-0.125rem)] after:rounded-[0.75rem] after:bg-[#282828] after:content-['']">
+        <div class="flowBox relative z-0 mb-5 w-full rounded-[0.75rem] 
+        bg-[linear-gradient(35deg,rgba(248,68,176,1)_0%,rgba(77,65,250,1)_100%)] 
+        p-4 after:absolute after:right-[0.0625rem] after:top-[0.0625rem] after:z-[-1] after:h-[calc(100%-0.125rem)] 
+        after:w-[calc(100%-0.125rem)] after:rounded-[0.75rem] after:bg-[#282828] after:content-['']">
             <div class='group relative flex flex-col justify-between'>
                 <img
                     src={eventDetails?.imageUrl}
                     alt='image'
                     loading='lazy'
-                    class='mt-3 block h-[9.25rem] w-full rounded-[0.50rem] object-cover'
+                    class='mt-3 block md:h-[9.25rem] h-[7.25rem] w-full rounded-[0.50rem] object-cover'
                 />
                 <div class='mt-3'>
                     <h6>
-                        <a href='#' class='text-[0.96rem] font-bold text-white'>
+                        <a href='#' class='text-base md:text-[0.96rem] font-bold text-white'>
                             {eventDetails?.title}
                         </a>
                     </h6>
-                    <p class='my-2 mb-0 text-[0.79rem] leading-[1.2] text-[#909291]'>
+                    <p class='my-2 mb-0 text-sm md:text-[0.79rem] leading-[1.2] text-[#909291] line-clamp-1'>
                         {eventDetails?.description}
                     </p>
                     <img

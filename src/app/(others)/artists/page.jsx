@@ -59,7 +59,7 @@ const ArtistsPage = () => {
             <div className="flex items-start flex-wrap w-full justify-end">
                 <div className="rounded-[0.75rem] p-6 sm:w-[calc(100%-1rem)] float-right">
                     <div className="flex justify-between">
-                        <h1 className="text-[1.56rem] font-semibold mb-5">My Artist</h1>
+                        <h1 className="text-base md:text-[1.56rem] font-semibold mb-5">My Artist</h1>
                         {/* <ul className="flex">
                         <li><a href="#"
                                 className="bg-[#373437] ml-2 hover:bg-gradient-to-r hover:from-[#D344C9] hover:to-[#2D2694] rounded-[0.50rem] font-medium text-xs text-white px-6 py-2 transition-colors duration-300">Liked</a>

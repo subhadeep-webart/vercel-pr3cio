@@ -3,22 +3,29 @@ import { useRouter } from "next/navigation"
 import toast from "react-hot-toast";
 const BuySongButton = ({ songId }) => {
     const router = useRouter();
-    const handelBuySong = (songId) => {
+    const handelBuySong = (e, songId) => {
+        e.preventDefault();      // prevent default link behavior
+        e.stopPropagation();
         console.log("Song Id coming from songs====>", songId);
         purchaseSong(songId)
             .then((res) => {
-                router.push(res.paymentUrl)
+                // ✅ Open payment link in new tab
+                if (res?.paymentUrl) {
+                    window.open(res.paymentUrl, '_blank');
+                } else {
+                    toast.error('No payment URL received.');
+                }
             })
             .catch((error) => {
-                toast.error(error.message)
-            })
+                toast.error(error.message || 'Failed to initiate payment');
+            });
     }
 
     if (!songId) return;
 
     return (
         <button
-            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer" onClick={() => handelBuySong(songId)}>
+            className="group inline-block w-[2.25rem] h-[2.25rem] rounded-full inline-flex justify-center items-center bg-[#C6FF00] cursor-pointer" onClick={(e) => handelBuySong(e, songId)}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

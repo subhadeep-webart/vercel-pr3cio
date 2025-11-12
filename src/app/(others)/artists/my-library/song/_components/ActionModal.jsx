@@ -13,7 +13,7 @@ import {
 } from "@heroui/react";
 import toast from "react-hot-toast";
 import { deleteSongById } from "@/services/api/song-api-service";
-const ActionModal = ({ trackId,onActionComplete }) => {
+const ActionModal = ({ trackId, onActionComplete }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const handleDeleteSong = async () => {
@@ -26,10 +26,16 @@ const ActionModal = ({ trackId,onActionComplete }) => {
         }
         onOpenChange();
     }
+
+    const handleDeleteOpen = (e) => {
+        e.preventDefault();      // prevent default link behavior
+        e.stopPropagation();
+        onOpen();
+    }
     return (
         <>
             <button
-                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] " onClick={onOpen}>
+                className="bg-[#191919] w-[1.38rem] h-[1.38rem] rounded-full flex justify-center items-center group border-1 border-[#989898] " onClick={(e) => handleDeleteOpen(e)}>
                 <Image src={DELETE_ICON?.src} height={10} width={10} alt="Click to delete" />
             </button>
             <Modal isOpen={isOpen} placement={"center"} onOpenChange={onOpenChange}>

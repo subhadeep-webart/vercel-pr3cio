@@ -13,14 +13,17 @@ const DownloadSongs = () => {
         data: songData,
         isLoading: songsLoading,
         error: songsError,
+        status
     } = useQuery({
         queryKey: [queryConstants.inAppDownload, { type: 'song' }],
         queryFn: () => getInAppDownloadList({ type: 'song' }),
     })
+
     const songList = (songData?.song || []).filter((song) => song !== null)
 
+
     if (status === "success" && !songList.length) {
-        return <NoDataFound component={<NoSongFoundComponent message={"Your favorites list is feeling a little lonely. 💔 Start adding songs you love and we’ll keep them right here for you! ❤️🎶"} />} />
+        return <NoDataFound component={<NoSongFoundComponent message={"Your downloads list is feeling a little lonely. 💔 Start adding songs you love and we’ll keep them right here for you! ❤️🎶"} />} />
     }
 
 

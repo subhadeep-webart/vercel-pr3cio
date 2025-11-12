@@ -52,6 +52,22 @@ export const purchaseSong = async (songId) => {
     }
 }
 
+export const purchaseAlbum = async (albumId) => {
+    try {
+        const response = await httpService.post(queryConstants.purchaseAlbum, {
+            albumId: albumId,
+        })
+
+        if (response.status === HttpStatusCode.Ok) {
+            return response.data
+        }
+        throw new Error(response.data.message)
+    } catch (err) {
+        const errorMessage = httpService.getErrorMessage(err)
+        throw new Error(errorMessage)
+    }
+}
+
 export const productPurchase = async (productId) => {
     try {
         const response = await httpService.post(queryConstants.productPurchase, {

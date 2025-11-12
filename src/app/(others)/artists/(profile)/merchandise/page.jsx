@@ -14,7 +14,7 @@ const Merchandise = () => {
 
     return (
         <>
-            <div class='grid h-[40rem] w-full grid-cols-1 items-start gap-8 overflow-y-auto overflow-x-hidden px-8 py-4 [scrollbar-width:none] sm:grid-cols-2 lg:grid-cols-3'>
+            <div class='grid h-[40rem] w-full grid-cols-2 items-start gap-8 overflow-y-auto overflow-x-hidden px-8 py-4 [scrollbar-width:none] sm:grid-cols-2 lg:grid-cols-3'>
                 {artist?.products?.length > 0 &&
                     artist?.products?.map((product) => (
                         <MerchandiseCard product={product} key={product?._id} artist_id={artist?._id}/>

@@ -13,6 +13,8 @@ function MusicCard({ tracks, track, index, drift }) {
     const router = useRouter()
 
     const handleSongPlay = () => {
+         e.preventDefault();
+        e.stopPropagation();
         player.clearCachedState()
         if (player.isCurrentSong(track?._id)) {
             player.togglePlayback()
@@ -26,6 +28,8 @@ function MusicCard({ tracks, track, index, drift }) {
     }, [player, track?._id])
 
     const publishSongById = async (id) => {
+        e.preventDefault();
+        e.stopPropagation();
         const resp = await postToAddSongToPublish(id)
         if (resp.status === "success") {
             toast.success(resp.message)

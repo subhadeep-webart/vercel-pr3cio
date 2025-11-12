@@ -13,6 +13,7 @@ import TabBar from '@/components/layout/tabbar'
 import MobilePlayer from '@/components/player/mobile-player'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import CreateAlbum from './(others)/artists/song-upload/_components/create-album'
+import {ToastProvider} from "@heroui/toast";
 
 const Providers = ({ children }: { children: ReactNode }) => {
     const { push: navigate } = useRouter()
@@ -25,6 +26,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
                     <Suspense>
                         <AuthProvider>
                             {children}
+                            <ToastProvider/>
                             <Toaster />
                             <MobilePlayer />
                             <TabBar />

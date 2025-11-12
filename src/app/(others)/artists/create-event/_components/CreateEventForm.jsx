@@ -263,7 +263,7 @@ const {
                                 <Image
                                     src={values.imageUrl}
                                     alt='product thumbnail'
-                                    className='h-40 w-40 object-cover'
+                                    className='h-20 w-20 md:h-40 md:w-40 object-cover'
                                     radius='sm'
                                 />
                                 <Tooltip content='Remove Image'>
@@ -273,7 +273,7 @@ const {
                                         className='absolute -right-8 -top-6'
                                         onPress={handleRemoveImage}
                                     >
-                                        <CiCircleRemove className='text-2xl text-danger-500' />
+                                        <CiCircleRemove className='text-xl md:text-2xl text-danger-500' />
                                     </Button>
                                 </Tooltip>
                             </div>
@@ -281,9 +281,11 @@ const {
                             <button
                                 type='button'
                                 onClick={() => setIsOpenImageUpload(true)}
-                                className="rounded-[0.3rem] border-1 border-[#666] border-solid p-3 col-span-4 z-1 relative after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0 bg-custom-gradient after:rounded-[0.3rem] after:z-[-1] text-center cursor-pointer">
+                                className="rounded-[0.3rem] border-1 border-[#666] border-solid p-3 col-span-4 z-1 
+                                 after:content-[''] after:absolute after:w-full after:h-full after:bottom-0 after:left-0
+                                  bg-custom-gradient after:rounded-[0.3rem] after:z-[-1] text-center cursor-pointer">
                                 <div className="grid grid-flow-col gap-4 justify-center items-center">
-                                    <span className="xl:text-[0.9rem] xxl:text-[1.05rem] font-bold col-span-auto">Upload Event Image</span>
+                                    <span className="text-sm xl:text-[0.9rem] xxl:text-[1.05rem] font-bold col-span-auto">Upload Event Image</span>
                                     <span
                                         className="w-[2.40rem] h-[2.40rem] rounded-full bg-[rgba(255,255,255,.25)] leading-[2.40rem] text-center col-span-auto">
                                         <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
@@ -312,7 +314,7 @@ const {
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-5 items-end">
                         <div className="mb-2 relative col-span-12 md:col-span-12">
-                            <label htmlFor="title" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="title" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 Title
                             </label>
 
@@ -332,7 +334,7 @@ const {
                             )}
                         </div>
                         <div className="mb-2 relative col-span-12 md:col-span-12">
-                            <label htmlFor="title" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="title" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 Button Link
                             </label>
 
@@ -354,7 +356,7 @@ const {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 items-end">
                         <div className="mb-2 relative">
-                            <label htmlFor="venue" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="venue" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 Venue
                             </label>
 
@@ -423,7 +425,7 @@ const {
                                     input: "text-sm text-white",
 
                                     // label
-                                    label: "text-base text-[#D1CAD5] mb-2 block",
+                                    label: "text-sm md:text-base text-[#D1CAD5] mb-2 block",
                                 }}
                             />
                             {/* <DatePicker
@@ -457,7 +459,7 @@ const {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 items-end">
                         <div className="mb-2 relative">
-                            <label htmlFor="state" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="state" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 State
                             </label>
 
@@ -477,7 +479,7 @@ const {
                             )}
                         </div>
                         <div className="mb-2 relative">
-                            <label htmlFor="city" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="city" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 City
                             </label>
 
@@ -499,7 +501,7 @@ const {
                     </div>
                     <div className="grid grid-cols-12 gap-4 mt-5 items-end">
                         <div className="mb-2 relative col-span-12 md:col-span-12">
-                            <label htmlFor="description" className="text-base text-[#D1CAD5] mb-2 block">
+                            <label htmlFor="description" className="text-sm md:text-base text-[#D1CAD5] mb-2 block">
                                 Description
                             </label>
 
@@ -533,4 +535,4 @@ const {
     )
 }
 
-export default CreateEventForm
+export default CreateEventForm;

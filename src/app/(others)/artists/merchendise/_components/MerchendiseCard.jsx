@@ -38,22 +38,22 @@ const MerchendiseCard = () => {
                 data?.data?.map((product) => (
                     <div
                         key={product?._id}
-                        className="flowBox group relative z-0 mb-3 h-[380px] w-full rounded-[0.75rem] bg-[linear-gradient(35deg,rgba(248,68,176,1)_0%,rgba(77,65,250,1)_100%)] p-5 after:absolute after:right-[0.0625rem] after:top-[0.0625rem] after:z-[-1] after:h-[calc(100%-0.125rem)] after:w-[calc(100%-0.125rem)] after:rounded-[0.75rem] after:bg-[#282828] after:content-['']">
+                        className="flowBox group relative z-0 mb-3 md:h-[380px] h-[250px] w-full rounded-[0.75rem] bg-[linear-gradient(35deg,rgba(248,68,176,1)_0%,rgba(77,65,250,1)_100%)] p-5 after:absolute after:right-[0.0625rem] after:top-[0.0625rem] after:z-[-1] after:h-[calc(100%-0.125rem)] after:w-[calc(100%-0.125rem)] after:rounded-[0.75rem] after:bg-[#282828] after:content-['']">
                         <img
                             src={product?.imageUrl?.[0]}
                             alt='skipBack'
                             loading='lazy'
-                            className='mb-3 h-[15.13rem] w-full rounded-[0.75rem] object-cover'
+                            className='mb-3 h-[7.13rem] md:h-[15.13rem] w-full rounded-[0.75rem] object-cover'
                         />
                         <div className='flex justify-between'>
-                            <h3 className='text-xl font-semibold'>
+                            <h3 className='text-sm md:text-xl font-semibold'>
                                 {product?.name}
                             </h3>
-                            <h4 className='text-lg font-bold text-[#F844B0]'>
+                            <h4 className='text-sm md:text-lg font-bold text-[#F844B0]'>
                                 ${product?.price}
                             </h4>
                         </div>
-                        <p className='mb-6 mt-1 line-clamp-3 text-xs text-[#9D9D9D]'>
+                        <p className='mb-6 mt-1 line-clamp-3 text-xs text-[#9D9D9D] line-clamp-1'>
                             {product?.description}
                         </p>
                         <div className='absolute bottom-[-1.5rem] left-0 right-0 m-auto w-full max-w-[13.06rem] text-center opacity-0 transition-all duration-300 group-hover:opacity-100'>

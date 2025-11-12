@@ -89,7 +89,7 @@ const SideBar = () => {
                                                 <span>{item?.label}</span>
                                             </div>
                                         }>
-                                        <ul class='rounded-[0_0_0.8rem_0.8rem] border border-1 border-[#373737] bg-black pb-2 pl-10 pt-2'>
+                                        <ul class='rounded-[0_0_0.8rem_0.8rem]  border-1 border-[#373737] bg-black pb-2 pl-10 pt-2'>
                                             {item?.children.map(
                                                 (innerItem, index) => (
                                                     <li key={`sub-menu-${index + 1}`}>

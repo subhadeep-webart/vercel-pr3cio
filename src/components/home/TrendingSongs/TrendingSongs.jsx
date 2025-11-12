@@ -44,15 +44,15 @@ const TrendingSongs = () => {
                             <span className='inline-block text-center'>
                                 <Link
                                     // href='/browse'
-                                    href='/users/songs'
+                                    href='/users/songs/trendings'
                                     className='inline-block h-[1.88rem] rounded-[27px] border-1 border-solid border-[#d3d3d3a1] px-8 text-xs font-semibold leading-[1.88rem] text-[#F9FF45] transition-colors hover:bg-[rgba(249,255,69,0.82)] hover:text-black'>
                                     View all {total}
                                 </Link>
                             </span>
                         </div>
-                        {songs?.length >0 ? songs?.map((item, index) => (
+                        {songs?.length > 0 ? songs?.map((item, index) => (
                             <TrendingSongCard song={item} songs={songs} key={item?._id} index={index} />
-                        )):(
+                        )) : (
                             <p className='mt-4 text-sm text-gray-300'>No trending songs available.</p>
                         )}
                     </>
